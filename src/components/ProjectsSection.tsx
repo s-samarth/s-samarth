@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { ExternalLink, Play, Subtitles, Star, TrendingUp, Users } from "lucide-react";
-import { Button } from "./ui/button";
+import { useRef, useState } from "react";
+import { ExternalLink, Play, Subtitles, Star, TrendingUp, FileText, Layers } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 const projects = [
   {
+    id: "netflix",
     title: "Netflix — AI-Powered Regional Subtitle Expansion",
     tags: ["AI Product", "NLP", "Experimentation"],
     icon: Subtitles,
@@ -14,8 +15,17 @@ const projects = [
     solution: "AI-powered subtitle pipeline combining ASR + LLM + human-in-loop quality checks",
     metrics: ["Metrics-driven experimentation strategy", "Scalable to 50+ languages"],
     gradient: "from-red-500/20 to-orange-500/20",
+    caseStudyDeck: [
+      { slide: 1, title: "Problem Statement", content: "Regional content lacks subtitles in local languages, limiting accessibility and watch time." },
+      { slide: 2, title: "Market Opportunity", content: "500M+ potential viewers in emerging markets with language barriers." },
+      { slide: 3, title: "Proposed Solution", content: "AI-powered pipeline: ASR → LLM Translation → Human QA → Deployment." },
+      { slide: 4, title: "Technical Architecture", content: "Whisper ASR + GPT-4 Translation + Human-in-loop validation system." },
+      { slide: 5, title: "Success Metrics", content: "Watch time increase, completion rates, user satisfaction scores." },
+    ],
+    prototypeFeatures: ["Real-time subtitle generation", "Multi-language support", "Quality scoring dashboard", "Human review interface"],
   },
   {
+    id: "bookmyshow",
     title: "BookMyShow — Ratings & Reviews for Live Events",
     tags: ["Product Strategy", "Recommendations", "Trust"],
     icon: Star,
@@ -24,12 +34,23 @@ const projects = [
     solution: "Designed ratings & reviews system with AI-driven ranking and recommendations",
     metrics: ["Linked to booking conversion", "Enhanced event discovery"],
     gradient: "from-blue-500/20 to-purple-500/20",
+    caseStudyDeck: [
+      { slide: 1, title: "Problem Statement", content: "Users hesitate to book live events due to lack of trust signals and reviews." },
+      { slide: 2, title: "User Research", content: "78% of users want to see reviews before booking live events." },
+      { slide: 3, title: "Proposed Solution", content: "Post-attendance rating system with AI-powered recommendation engine." },
+      { slide: 4, title: "Feature Design", content: "Star ratings, written reviews, photo uploads, helpful votes." },
+      { slide: 5, title: "Expected Impact", content: "15% increase in booking conversion, improved event discovery." },
+    ],
+    prototypeFeatures: ["Post-event review prompts", "AI-powered event recommendations", "Trust badges for venues", "Review authenticity verification"],
   },
 ];
 
 export const ProjectsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeTab, setActiveTab] = useState<Record<string, string>>({});
+
+  const getActiveTab = (projectId: string) => activeTab[projectId] || "overview";
 
   return (
     <section id="projects" className="section-padding relative">
@@ -87,39 +108,117 @@ export const ProjectsSection = () => {
                   </div>
                 </div>
 
-                {/* Content Grid */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Problem & Insight */}
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-primary text-sm font-medium mb-1">Problem</p>
-                      <p className="text-muted-foreground">{project.problem}</p>
-                    </div>
-                    <div>
-                      <p className="text-primary text-sm font-medium mb-1">Key Insight</p>
-                      <p className="text-muted-foreground">{project.insight}</p>
-                    </div>
-                  </div>
+                {/* Tabs */}
+                <Tabs 
+                  value={getActiveTab(project.id)} 
+                  onValueChange={(value) => setActiveTab(prev => ({ ...prev, [project.id]: value }))}
+                  className="w-full"
+                >
+                  <TabsList className="grid w-full grid-cols-3 mb-6">
+                    <TabsTrigger value="overview" className="flex items-center gap-2">
+                      <TrendingUp className="w-4 h-4" />
+                      <span className="hidden sm:inline">Overview</span>
+                    </TabsTrigger>
+                    <TabsTrigger value="deck" className="flex items-center gap-2">
+                      <FileText className="w-4 h-4" />
+                      <span className="hidden sm:inline">Case Study Deck</span>
+                    </TabsTrigger>
+                    <TabsTrigger value="prototype" className="flex items-center gap-2">
+                      <Layers className="w-4 h-4" />
+                      <span className="hidden sm:inline">Solution Prototype</span>
+                    </TabsTrigger>
+                  </TabsList>
 
-                  {/* Solution & Metrics */}
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-primary text-sm font-medium mb-1">Solution</p>
-                      <p className="text-muted-foreground">{project.solution}</p>
+                  {/* Overview Tab */}
+                  <TabsContent value="overview">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-primary text-sm font-medium mb-1">Problem</p>
+                          <p className="text-muted-foreground">{project.problem}</p>
+                        </div>
+                        <div>
+                          <p className="text-primary text-sm font-medium mb-1">Key Insight</p>
+                          <p className="text-muted-foreground">{project.insight}</p>
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-primary text-sm font-medium mb-1">Solution</p>
+                          <p className="text-muted-foreground">{project.solution}</p>
+                        </div>
+                        <div>
+                          <p className="text-primary text-sm font-medium mb-1">Impact</p>
+                          <ul className="space-y-1">
+                            {project.metrics.map((metric, idx) => (
+                              <li key={idx} className="text-muted-foreground flex items-center gap-2">
+                                <TrendingUp className="w-4 h-4 text-primary shrink-0" />
+                                {metric}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-primary text-sm font-medium mb-1">Impact</p>
-                      <ul className="space-y-1">
-                        {project.metrics.map((metric, idx) => (
-                          <li key={idx} className="text-muted-foreground flex items-center gap-2">
-                            <TrendingUp className="w-4 h-4 text-primary shrink-0" />
-                            {metric}
-                          </li>
+                  </TabsContent>
+
+                  {/* Case Study Deck Tab */}
+                  <TabsContent value="deck">
+                    <div className="space-y-4">
+                      <div className="grid gap-3">
+                        {project.caseStudyDeck.map((slide) => (
+                          <div 
+                            key={slide.slide}
+                            className="bg-secondary/50 rounded-lg p-4 border border-border/50"
+                          >
+                            <div className="flex items-center gap-3 mb-2">
+                              <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-sm font-bold">
+                                {slide.slide}
+                              </span>
+                              <h4 className="font-semibold text-foreground">{slide.title}</h4>
+                            </div>
+                            <p className="text-muted-foreground text-sm pl-11">{slide.content}</p>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
+                      <div className="flex justify-center pt-4">
+                        <button className="px-6 py-3 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg font-medium transition-colors flex items-center gap-2">
+                          <FileText className="w-4 h-4" />
+                          View Full Deck (Coming Soon)
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </TabsContent>
+
+                  {/* Solution Prototype Tab */}
+                  <TabsContent value="prototype">
+                    <div className="space-y-6">
+                      <div className="bg-secondary/30 rounded-xl p-6 border border-border/50">
+                        <h4 className="text-foreground font-semibold mb-4">Prototype Features</h4>
+                        <div className="grid sm:grid-cols-2 gap-3">
+                          {project.prototypeFeatures.map((feature, idx) => (
+                            <div 
+                              key={idx}
+                              className="flex items-center gap-3 bg-background/50 rounded-lg p-3"
+                            >
+                              <div className="w-2 h-2 rounded-full bg-primary" />
+                              <span className="text-muted-foreground text-sm">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="aspect-video bg-secondary/20 rounded-xl border border-border/50 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                            <Play className="w-8 h-8 text-primary" />
+                          </div>
+                          <p className="text-muted-foreground">Interactive Prototype</p>
+                          <p className="text-muted-foreground/60 text-sm mt-1">Coming Soon</p>
+                        </div>
+                      </div>
+                    </div>
+                  </TabsContent>
+                </Tabs>
               </div>
             </motion.div>
           ))}

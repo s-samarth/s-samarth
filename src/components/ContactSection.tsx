@@ -7,14 +7,14 @@ import { Button } from "./ui/button";
 const contactLinks = [
   {
     label: "Email",
-    value: "samarth@example.com",
-    href: "mailto:samarth@example.com",
+    value: "samarth.iitg@gmail.com",
+    href: "mailto:samarth.iitg@gmail.com",
     icon: Mail,
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/samarth",
-    href: "https://linkedin.com/in/samarth",
+    value: "linkedin.com/in/s-samarth",
+    href: "https://linkedin.com/in/s-samarth",
     icon: Linkedin,
   },
   {
@@ -25,8 +25,8 @@ const contactLinks = [
   },
   {
     label: "Phone",
-    value: "+91 9876543210",
-    href: "tel:+919876543210",
+    value: "+91 7062303003",
+    href: "tel:+917062303003",
     icon: Phone,
   },
 ];
@@ -94,7 +94,7 @@ export const ContactSection = () => {
           className="text-center mt-12"
         >
           <Button variant="hero" size="xl" asChild>
-            <a href="mailto:samarth@example.com">
+            <a href="mailto:samarth.iitg@gmail.com">
               <Mail className="w-5 h-5 mr-2" />
               Send me an email
             </a>

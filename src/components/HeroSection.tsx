@@ -109,8 +109,7 @@ export const HeroSection = () => {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           >
-            <span className="text-xs tracking-widest uppercase">Scroll</span>
-            <ArrowDown size={16} />
+            <ArrowDown size={20} />
           </motion.a>
         </motion.div>
       </div>
