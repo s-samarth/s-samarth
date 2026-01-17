@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "./ui/button";
+import profilePhoto from "@/assets/profile-photo.jpg";
 
 export const HeroSection = () => {
   return (
@@ -22,53 +23,79 @@ export const HeroSection = () => {
       />
 
       <div className="container-narrow relative z-10 pt-20">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Eyebrow */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-muted-foreground text-sm md:text-base tracking-widest uppercase mb-6"
-          >
-            Welcome to
-          </motion.p>
-
-          {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
-          >
-            <span className="text-foreground">Samarth Saraswat,</span>
-            <br />
-            <span className="text-gradient">AI Product Manager</span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10"
-          >
-            Building AI-powered products that balance user impact, business outcomes, and flawless execution.
-          </motion.p>
-
-          {/* CTA Buttons */}
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          {/* Profile Photo */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative flex-shrink-0"
           >
-            <Button variant="hero" size="xl" asChild>
-              <a href="#projects">View Work</a>
-            </Button>
-            <Button variant="heroOutline" size="xl" asChild>
-              <a href="#contact">Contact</a>
-            </Button>
+            <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72">
+              {/* Glow effect behind image */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-purple-500/30 rounded-full blur-2xl scale-110" />
+              {/* Image container with border */}
+              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 shadow-2xl">
+                <img
+                  src={profilePhoto}
+                  alt="Samarth Saraswat"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              {/* Decorative ring */}
+              <div className="absolute -inset-2 rounded-full border border-primary/20 animate-pulse" />
+            </div>
           </motion.div>
+
+          {/* Text Content */}
+          <div className="text-center lg:text-left flex-1">
+            {/* Eyebrow */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-muted-foreground text-sm md:text-base tracking-widest uppercase mb-4"
+            >
+              Welcome to
+            </motion.p>
+
+            {/* Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
+            >
+              <span className="text-foreground">Samarth Saraswat,</span>
+              <br />
+              <span className="text-gradient">AI Product Manager</span>
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-muted-foreground text-lg md:text-xl max-w-xl mb-8"
+            >
+              Building AI-powered products that balance user impact, business outcomes, and flawless execution.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+              <Button variant="hero" size="xl" asChild>
+                <a href="#projects">View Work</a>
+              </Button>
+              <Button variant="heroOutline" size="xl" asChild>
+                <a href="#contact">Contact</a>
+              </Button>
+            </motion.div>
+          </div>
         </div>
 
         {/* Highlight Cards */}
