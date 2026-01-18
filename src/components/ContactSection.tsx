@@ -1,8 +1,11 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Mail, Linkedin, Github, Phone, ArrowUpRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { Mail, Linkedin, Github, Phone, ArrowUpRight, Send, CheckCircle } from "lucide-react";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Label } from "./ui/label";
 
 const contactLinks = [
   {
@@ -34,6 +37,38 @@ const contactLinks = [
 export const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    
+    setIsSubmitting(false);
+    setShowSuccess(true);
+    setFormData({ name: "", email: "", subject: "", message: "" });
+    
+    // Hide success message after 5 seconds
+    setTimeout(() => {
+      setShowSuccess(false);
+    }, 5000);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <section id="contact" className="section-padding relative">
@@ -56,11 +91,106 @@ export const ContactSection = () => {
           </p>
         </motion.div>
 
-        {/* Contact Cards */}
+        {/* Success Message */}
+        <AnimatePresence>
+          {showSuccess && (
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-green-500/20 border border-green-500/50 backdrop-blur-xl rounded-xl px-6 py-4 flex items-center gap-3"
+            >
+              <CheckCircle className="w-5 h-5 text-green-400" />
+              <p className="text-green-300 font-medium">Message sent successfully! I'll get back to you soon.</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Contact Form */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-2xl mx-auto mb-16"
+        >
+          <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-8 space-y-6">
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-foreground">Name</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="Your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="bg-background/50 border-white/10 focus:border-primary/50"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-foreground">Email</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="bg-background/50 border-white/10 focus:border-primary/50"
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="subject" className="text-foreground">Subject</Label>
+              <Input
+                id="subject"
+                name="subject"
+                placeholder="What's this about?"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                className="bg-background/50 border-white/10 focus:border-primary/50"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="message" className="text-foreground">Message</Label>
+              <Textarea
+                id="message"
+                name="message"
+                placeholder="Your message..."
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={5}
+                className="bg-background/50 border-white/10 focus:border-primary/50 resize-none"
+              />
+            </div>
+            <Button 
+              type="submit" 
+              variant="hero" 
+              size="lg" 
+              className="w-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                "Sending..."
+              ) : (
+                <>
+                  <Send className="w-4 h-4 mr-2" />
+                  Send Message
+                </>
+              )}
+            </Button>
+          </form>
+        </motion.div>
+
+        {/* Contact Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto"
         >
           {contactLinks.map((link, index) => (
@@ -71,7 +201,7 @@ export const ContactSection = () => {
               rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+              transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
               className="glass-card-hover rounded-xl p-6 group block"
             >
               <div className="flex items-center justify-between mb-4">
@@ -90,7 +220,7 @@ export const ContactSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
           className="text-center mt-12"
         >
           <Button variant="hero" size="xl" asChild>
