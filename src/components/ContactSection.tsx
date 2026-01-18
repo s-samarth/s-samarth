@@ -1,11 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, Linkedin, Github, Phone, ArrowUpRight, Send, CheckCircle } from "lucide-react";
+import { Mail, Linkedin, Github, Phone, ArrowUpRight, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
+import emailjs from "@emailjs/browser";
 
 const contactLinks = [
   {
@@ -45,22 +46,46 @@ export const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setShowError(false);
+    setShowSuccess(false);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    setIsSubmitting(false);
-    setShowSuccess(true);
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
+    try {
+      await emailjs.send(
+        "service_eo3ck3c",
+        "template_va2byvf",
+        {
+          to_name: "Samarth",
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        "tGHLrscykSp5T6HoO"
+      );
+      
+      setShowSuccess(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      setErrorMessage("Failed to send message. Please try again.");
+      setShowError(true);
+      
+      setTimeout(() => {
+        setShowError(false);
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -103,6 +128,22 @@ export const ContactSection = () => {
             >
               <CheckCircle className="w-5 h-5 text-green-400" />
               <p className="text-green-300 font-medium">Message sent successfully! I'll get back to you soon.</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Error Message */}
+        <AnimatePresence>
+          {showError && (
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-red-500/20 border border-red-500/50 backdrop-blur-xl rounded-xl px-6 py-4 flex items-center gap-3"
+            >
+              <AlertCircle className="w-5 h-5 text-red-400" />
+              <p className="text-red-300 font-medium">{errorMessage}</p>
             </motion.div>
           )}
         </AnimatePresence>
