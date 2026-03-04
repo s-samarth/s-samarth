@@ -39,7 +39,7 @@ export const HeroSection = () => {
                 <img
                   src={profilePhoto}
                   alt="Samarth Saraswat"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               {/* Decorative ring */}

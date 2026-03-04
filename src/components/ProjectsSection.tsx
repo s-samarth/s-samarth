@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink, Play, Subtitles, Star, TrendingUp, FileText, Layers } from "lucide-react";
+import { Subtitles, Star, TrendingUp, FileText } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 const projects = [
@@ -114,7 +114,7 @@ export const ProjectsSection = () => {
                   onValueChange={(value) => setActiveTab(prev => ({ ...prev, [project.id]: value }))}
                   className="w-full"
                 >
-                  <TabsList className="grid w-full grid-cols-3 mb-6">
+                  <TabsList className="grid w-full grid-cols-2 mb-6">
                     <TabsTrigger value="overview" className="flex items-center gap-2">
                       <TrendingUp className="w-4 h-4" />
                       <span className="hidden sm:inline">Overview</span>
@@ -122,10 +122,6 @@ export const ProjectsSection = () => {
                     <TabsTrigger value="deck" className="flex items-center gap-2">
                       <FileText className="w-4 h-4" />
                       <span className="hidden sm:inline">Case Study Deck</span>
-                    </TabsTrigger>
-                    <TabsTrigger value="prototype" className="flex items-center gap-2">
-                      <Layers className="w-4 h-4" />
-                      <span className="hidden sm:inline">Solution Prototype</span>
                     </TabsTrigger>
                   </TabsList>
 
@@ -190,34 +186,6 @@ export const ProjectsSection = () => {
                     </div>
                   </TabsContent>
 
-                  {/* Solution Prototype Tab */}
-                  <TabsContent value="prototype">
-                    <div className="space-y-6">
-                      <div className="bg-secondary/30 rounded-xl p-6 border border-border/50">
-                        <h4 className="text-foreground font-semibold mb-4">Prototype Features</h4>
-                        <div className="grid sm:grid-cols-2 gap-3">
-                          {project.prototypeFeatures.map((feature, idx) => (
-                            <div 
-                              key={idx}
-                              className="flex items-center gap-3 bg-background/50 rounded-lg p-3"
-                            >
-                              <div className="w-2 h-2 rounded-full bg-primary" />
-                              <span className="text-muted-foreground text-sm">{feature}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="aspect-video bg-secondary/20 rounded-xl border border-border/50 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                            <Play className="w-8 h-8 text-primary" />
-                          </div>
-                          <p className="text-muted-foreground">Interactive Prototype</p>
-                          <p className="text-muted-foreground/60 text-sm mt-1">Coming Soon</p>
-                        </div>
-                      </div>
-                    </div>
-                  </TabsContent>
                 </Tabs>
               </div>
             </motion.div>
