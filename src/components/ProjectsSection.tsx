@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Subtitles, Star, TrendingUp, FileText } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { useRef } from "react";
+import { Subtitles, Star, TrendingUp } from "lucide-react";
 
 const projects = [
   {
@@ -15,14 +14,7 @@ const projects = [
     solution: "AI-powered subtitle pipeline combining ASR + LLM + human-in-loop quality checks",
     metrics: ["Metrics-driven experimentation strategy", "Scalable to 50+ languages"],
     gradient: "from-red-500/20 to-orange-500/20",
-    deckPdf: "/decks/netflix-case-study.pdf",
-    caseStudyDeck: [
-      { slide: 1, title: "Problem Statement", content: "Regional content lacks subtitles in local languages, limiting accessibility and watch time." },
-      { slide: 2, title: "Market Opportunity", content: "500M+ potential viewers in emerging markets with language barriers." },
-      { slide: 3, title: "Proposed Solution", content: "AI-powered pipeline: ASR → LLM Translation → Human QA → Deployment." },
-      { slide: 4, title: "Technical Architecture", content: "Whisper ASR + GPT-4 Translation + Human-in-loop validation system." },
-      { slide: 5, title: "Success Metrics", content: "Watch time increase, completion rates, user satisfaction scores." },
-    ],
+    deckEmbed: "https://drive.google.com/file/d/1aXb97wNEsIDs4BMuCn00rqBjZd-tFIJx/preview",
   },
   {
     id: "bookmyshow",
@@ -34,23 +26,13 @@ const projects = [
     solution: "Designed ratings & reviews system with AI-driven ranking and recommendations",
     metrics: ["Linked to booking conversion", "Enhanced event discovery"],
     gradient: "from-blue-500/20 to-purple-500/20",
-    deckPdf: "/decks/bookmyshow-case-study.pdf",
-    caseStudyDeck: [
-      { slide: 1, title: "Problem Statement", content: "Users hesitate to book live events due to lack of trust signals and reviews." },
-      { slide: 2, title: "User Research", content: "78% of users want to see reviews before booking live events." },
-      { slide: 3, title: "Proposed Solution", content: "Post-attendance rating system with AI-powered recommendation engine." },
-      { slide: 4, title: "Feature Design", content: "Star ratings, written reviews, photo uploads, helpful votes." },
-      { slide: 5, title: "Expected Impact", content: "15% increase in booking conversion, improved event discovery." },
-    ],
+    deckEmbed: "https://drive.google.com/file/d/1G5-gwpZ5AFGZ81fBUTmFlpB9ELUNbA_y/preview",
   },
 ];
 
 export const ProjectsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeTab, setActiveTab] = useState<Record<string, string>>({});
-
-  const getActiveTab = (projectId: string) => activeTab[projectId] || "overview";
 
   return (
     <section id="projects" className="section-padding relative">
@@ -82,7 +64,6 @@ export const ProjectsSection = () => {
               transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
               className="glass-card-hover rounded-2xl overflow-hidden group"
             >
-              {/* Gradient Header */}
               <div className={`h-2 bg-gradient-to-r ${project.gradient}`} />
               
               <div className="p-8">
@@ -96,10 +77,7 @@ export const ProjectsSection = () => {
                       <h3 className="text-xl md:text-2xl font-bold text-foreground">{project.title}</h3>
                       <div className="flex flex-wrap gap-2 mt-2">
                         {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 text-xs font-medium rounded-full bg-secondary text-muted-foreground"
-                          >
+                          <span key={tag} className="px-3 py-1 text-xs font-medium rounded-full bg-secondary text-muted-foreground">
                             {tag}
                           </span>
                         ))}
@@ -108,90 +86,49 @@ export const ProjectsSection = () => {
                   </div>
                 </div>
 
-                {/* Tabs */}
-                <Tabs 
-                  value={getActiveTab(project.id)} 
-                  onValueChange={(value) => setActiveTab(prev => ({ ...prev, [project.id]: value }))}
-                  className="w-full"
-                >
-                  <TabsList className="grid w-full grid-cols-2 mb-6">
-                    <TabsTrigger value="overview" className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4" />
-                      <span className="hidden sm:inline">Overview</span>
-                    </TabsTrigger>
-                    <TabsTrigger value="deck" className="flex items-center gap-2">
-                      <FileText className="w-4 h-4" />
-                      <span className="hidden sm:inline">Case Study Deck</span>
-                    </TabsTrigger>
-                  </TabsList>
-
-                  {/* Overview Tab */}
-                  <TabsContent value="overview">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <div>
-                          <p className="text-primary text-sm font-medium mb-1">Problem</p>
-                          <p className="text-muted-foreground">{project.problem}</p>
-                        </div>
-                        <div>
-                          <p className="text-primary text-sm font-medium mb-1">Key Insight</p>
-                          <p className="text-muted-foreground">{project.insight}</p>
-                        </div>
-                      </div>
-                      <div className="space-y-4">
-                        <div>
-                          <p className="text-primary text-sm font-medium mb-1">Solution</p>
-                          <p className="text-muted-foreground">{project.solution}</p>
-                        </div>
-                        <div>
-                          <p className="text-primary text-sm font-medium mb-1">Impact</p>
-                          <ul className="space-y-1">
-                            {project.metrics.map((metric, idx) => (
-                              <li key={idx} className="text-muted-foreground flex items-center gap-2">
-                                <TrendingUp className="w-4 h-4 text-primary shrink-0" />
-                                {metric}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
+                {/* Overview */}
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-primary text-sm font-medium mb-1">Problem</p>
+                      <p className="text-muted-foreground">{project.problem}</p>
                     </div>
-                  </TabsContent>
-
-                  {/* Case Study Deck Tab */}
-                  <TabsContent value="deck">
-                    <div className="space-y-4">
-                      <div className="grid gap-3">
-                        {project.caseStudyDeck.map((slide) => (
-                          <div 
-                            key={slide.slide}
-                            className="bg-secondary/50 rounded-lg p-4 border border-border/50"
-                          >
-                            <div className="flex items-center gap-3 mb-2">
-                              <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-sm font-bold">
-                                {slide.slide}
-                              </span>
-                              <h4 className="font-semibold text-foreground">{slide.title}</h4>
-                            </div>
-                            <p className="text-muted-foreground text-sm pl-11">{slide.content}</p>
-                          </div>
+                    <div>
+                      <p className="text-primary text-sm font-medium mb-1">Key Insight</p>
+                      <p className="text-muted-foreground">{project.insight}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-primary text-sm font-medium mb-1">Solution</p>
+                      <p className="text-muted-foreground">{project.solution}</p>
+                    </div>
+                    <div>
+                      <p className="text-primary text-sm font-medium mb-1">Impact</p>
+                      <ul className="space-y-1">
+                        {project.metrics.map((metric, idx) => (
+                          <li key={idx} className="text-muted-foreground flex items-center gap-2">
+                            <TrendingUp className="w-4 h-4 text-primary shrink-0" />
+                            {metric}
+                          </li>
                         ))}
-                      </div>
-                      <div className="flex justify-center pt-4">
-                        <a 
-                          href={project.deckPdf} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="px-6 py-3 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg font-medium transition-colors flex items-center gap-2"
-                        >
-                          <FileText className="w-4 h-4" />
-                          View Full Deck
-                        </a>
-                      </div>
+                      </ul>
                     </div>
-                  </TabsContent>
+                  </div>
+                </div>
 
-                </Tabs>
+                {/* Embedded Deck */}
+                <div>
+                  <p className="text-primary text-sm font-medium mb-3">Case Study Deck</p>
+                  <div className="rounded-lg overflow-hidden border border-border/50">
+                    <iframe
+                      src={project.deckEmbed}
+                      className="w-full aspect-[16/9]"
+                      allow="autoplay"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
