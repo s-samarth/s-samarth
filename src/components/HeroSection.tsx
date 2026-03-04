@@ -1,26 +1,19 @@
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 import { Button } from "./ui/button";
 import profilePhoto from "@/assets/profile-photo.jpg";
 
 export const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Effects */}
+      {/* Background geometric accents */}
       <div className="absolute inset-0 bg-gradient-hero" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-glow animate-glow" />
+      <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-accent/5 blur-3xl" />
+      <div className="absolute top-1/3 right-1/4 w-40 h-40 rounded-full border-2 border-primary/10" />
+      <div className="absolute bottom-1/4 left-1/6 w-24 h-24 rounded-full bg-accent/8" />
       
-      {/* Floating orbs */}
-      <motion.div
-        animate={{ y: [-20, 20, -20] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl"
-      />
-      <motion.div
-        animate={{ y: [20, -20, 20] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-purple-500/5 blur-3xl"
-      />
+      {/* Dot grid */}
+      <div className="absolute inset-0 dot-grid opacity-40" />
 
       <div className="container-narrow relative z-10 pt-20">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -32,24 +25,19 @@ export const HeroSection = () => {
             className="relative flex-shrink-0"
           >
             <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72">
-              {/* Glow effect behind image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-purple-500/30 rounded-full blur-2xl scale-110" />
-              {/* Image container with border */}
-              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-2xl scale-110" />
+              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-card shadow-xl">
                 <img
                   src={profilePhoto}
                   alt="Samarth Saraswat"
                   className="w-full h-full object-cover object-center"
                 />
               </div>
-              {/* Decorative ring */}
-              <div className="absolute -inset-2 rounded-full border border-primary/20 animate-pulse" />
             </div>
           </motion.div>
 
           {/* Text Content */}
           <div className="text-center lg:text-left flex-1">
-            {/* Eyebrow */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -59,7 +47,6 @@ export const HeroSection = () => {
               Welcome to
             </motion.p>
 
-            {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -71,7 +58,6 @@ export const HeroSection = () => {
               <span className="text-gradient">AI Product Manager</span>
             </motion.h1>
 
-            {/* Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -81,17 +67,16 @@ export const HeroSection = () => {
               Building AI-powered products that balance user impact, business outcomes, and flawless execution.
             </motion.p>
 
-            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Button variant="hero" size="xl" asChild>
+              <Button variant="default" size="xl" asChild>
                 <a href="#projects">View Work</a>
               </Button>
-              <Button variant="heroOutline" size="xl" asChild>
+              <Button variant="outline" size="xl" asChild>
                 <a href="#contact">Contact</a>
               </Button>
             </motion.div>
@@ -122,7 +107,6 @@ export const HeroSection = () => {
             </motion.div>
           ))}
         </motion.div>
-
       </div>
     </section>
   );

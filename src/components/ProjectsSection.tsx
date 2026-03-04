@@ -13,7 +13,7 @@ const projects = [
     insight: "Direct impact on watch hours and completion rates for non-English content",
     solution: "AI-powered subtitle pipeline combining ASR + LLM + human-in-loop quality checks",
     metrics: ["Metrics-driven experimentation strategy", "Scalable to 50+ languages"],
-    gradient: "from-red-500/20 to-orange-500/20",
+    accentColor: "bg-red-500",
     deckEmbed: "https://drive.google.com/file/d/1aXb97wNEsIDs4BMuCn00rqBjZd-tFIJx/preview",
   },
   {
@@ -25,7 +25,7 @@ const projects = [
     insight: "Post-attendance reviews could directly increase monthly bookings and discovery",
     solution: "Designed ratings & reviews system with AI-driven ranking and recommendations",
     metrics: ["Linked to booking conversion", "Enhanced event discovery"],
-    gradient: "from-blue-500/20 to-purple-500/20",
+    accentColor: "bg-blue-500",
     deckEmbed: "https://drive.google.com/file/d/1G5-gwpZ5AFGZ81fBUTmFlpB9ELUNbA_y/preview",
   },
 ];
@@ -36,7 +36,8 @@ export const ProjectsSection = () => {
 
   return (
     <section id="projects" className="section-padding relative">
-      <div className="absolute inset-0 bg-gradient-glow opacity-20" />
+      <div className="absolute top-20 right-0 w-80 h-80 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute bottom-20 left-0 w-64 h-64 rounded-full bg-accent/5 blur-3xl" />
       
       <div className="container-narrow relative" ref={ref}>
         <motion.div
@@ -45,7 +46,7 @@ export const ProjectsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-primary text-sm tracking-widest uppercase mb-4">Case Studies</p>
+          <p className="text-primary text-sm tracking-widest uppercase mb-4 font-semibold">Case Studies</p>
           <h2 className="text-3xl md:text-5xl font-bold">
             Featured
             <span className="text-gradient"> Projects</span>
@@ -55,16 +56,16 @@ export const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid gap-8">
+        <div className="grid gap-10">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
-              className="glass-card-hover rounded-2xl overflow-hidden group"
+              className="glass-card rounded-2xl overflow-hidden"
             >
-              <div className={`h-2 bg-gradient-to-r ${project.gradient}`} />
+              <div className={`h-1.5 ${project.accentColor}`} />
               
               <div className="p-8">
                 {/* Header */}
@@ -90,25 +91,25 @@ export const ProjectsSection = () => {
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                   <div className="space-y-4">
                     <div>
-                      <p className="text-primary text-sm font-medium mb-1">Problem</p>
+                      <p className="text-primary text-sm font-semibold mb-1">Problem</p>
                       <p className="text-muted-foreground">{project.problem}</p>
                     </div>
                     <div>
-                      <p className="text-primary text-sm font-medium mb-1">Key Insight</p>
+                      <p className="text-primary text-sm font-semibold mb-1">Key Insight</p>
                       <p className="text-muted-foreground">{project.insight}</p>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <div>
-                      <p className="text-primary text-sm font-medium mb-1">Solution</p>
+                      <p className="text-primary text-sm font-semibold mb-1">Solution</p>
                       <p className="text-muted-foreground">{project.solution}</p>
                     </div>
                     <div>
-                      <p className="text-primary text-sm font-medium mb-1">Impact</p>
+                      <p className="text-primary text-sm font-semibold mb-1">Impact</p>
                       <ul className="space-y-1">
                         {project.metrics.map((metric, idx) => (
                           <li key={idx} className="text-muted-foreground flex items-center gap-2">
-                            <TrendingUp className="w-4 h-4 text-primary shrink-0" />
+                            <TrendingUp className="w-4 h-4 text-accent shrink-0" />
                             {metric}
                           </li>
                         ))}
@@ -117,15 +118,24 @@ export const ProjectsSection = () => {
                   </div>
                 </div>
 
-                {/* Embedded Deck */}
+                {/* Slide Viewer */}
                 <div>
-                  <p className="text-primary text-sm font-medium mb-3">Case Study Deck</p>
-                  <div className="rounded-lg overflow-hidden border border-border/50">
+                  <p className="text-primary text-sm font-semibold mb-3">Case Study Deck</p>
+                  <div className="relative rounded-xl overflow-hidden border-2 border-border bg-secondary/30 shadow-lg">
+                    <div className="bg-secondary/50 px-4 py-2 flex items-center gap-2 border-b border-border">
+                      <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-red-400/60" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-400/60" />
+                        <div className="w-3 h-3 rounded-full bg-green-400/60" />
+                      </div>
+                      <span className="text-xs text-muted-foreground ml-2">Slide Deck — Use arrows to navigate</span>
+                    </div>
                     <iframe
                       src={project.deckEmbed}
                       className="w-full aspect-[16/9]"
                       allow="autoplay"
                       allowFullScreen
+                      title={`${project.title} deck`}
                     />
                   </div>
                 </div>

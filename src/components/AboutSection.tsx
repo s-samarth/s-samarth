@@ -16,7 +16,9 @@ export const AboutSection = () => {
 
   return (
     <section id="about" className="section-padding relative">
-      <div className="absolute inset-0 bg-gradient-glow opacity-30" />
+      {/* Geometric accents */}
+      <div className="absolute top-20 right-0 w-64 h-64 rounded-full bg-accent/5 blur-2xl" />
+      <div className="absolute bottom-10 left-0 w-48 h-48 rounded-full bg-primary/5 blur-2xl" />
       
       <div className="container-narrow relative" ref={ref}>
         <motion.div
@@ -25,7 +27,7 @@ export const AboutSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-primary text-sm tracking-widest uppercase mb-4">About Me</p>
+          <p className="text-primary text-sm tracking-widest uppercase mb-4 font-semibold">README.md</p>
           <h2 className="text-3xl md:text-5xl font-bold">
             Building the Future of
             <span className="text-gradient"> AI Products</span>
@@ -33,7 +35,6 @@ export const AboutSection = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -51,11 +52,10 @@ export const AboutSection = () => {
               combines <span className="text-foreground font-medium">futuristic vision</span> with <span className="text-foreground font-medium">high-precision execution</span>.
             </p>
 
-            {/* Education Card */}
             <div className="glass-card rounded-xl p-5 mt-8">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <GraduationCap className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6 text-accent" />
                 </div>
                 <div>
                   <p className="text-foreground font-semibold">B.Tech in Electronics & Communication Engineering</p>
@@ -65,7 +65,6 @@ export const AboutSection = () => {
             </div>
           </motion.div>
 
-          {/* Highlights Grid */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
