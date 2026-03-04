@@ -4,12 +4,12 @@ import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 
 const navLinks = [
-  { href: "#about", label: "About Me" },
+  { href: "#about", label: "README.md" },
   { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#built", label: "What I Built" },
+  { href: "#projects", label: "Case Studies" },
+  { href: "#built", label: "Prototypes" },
   { href: "#articles", label: "Articles" },
-  { href: "#skills", label: "Skills" },
+  { href: "#skills", label: "Buzzwords I Can Back Up" },
 ];
 
 export const Navigation = () => {
@@ -30,21 +30,19 @@ export const Navigation = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-white/5" : ""
+        isScrolled ? "bg-background/90 backdrop-blur-xl border-b border-border" : ""
       }`}
     >
       <div className="container-narrow">
         <nav className="flex items-center justify-between h-20">
-          {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center text-primary-foreground font-bold text-lg">
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg font-[Poppins]">
               S
             </div>
-            <span className="font-semibold text-lg hidden sm:block">Samarth</span>
+            <span className="font-semibold text-lg hidden sm:block text-foreground">Samarth</span>
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -56,31 +54,28 @@ export const Navigation = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button variant="heroOutline" size="default" asChild>
-              <a href="#contact">Get in Touch</a>
+          <div className="hidden lg:block">
+            <Button variant="default" size="default" asChild>
+              <a href="#contact">Raise A Ticket</a>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="lg:hidden p-2 text-foreground"
           >
             {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </nav>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-white/5"
+            className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border"
           >
             <div className="container-narrow py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -93,9 +88,9 @@ export const Navigation = () => {
                   {link.label}
                 </a>
               ))}
-              <Button variant="hero" size="lg" asChild className="mt-4">
+              <Button variant="default" size="lg" asChild className="mt-4">
                 <a href="#contact" onClick={() => setIsMobileOpen(false)}>
-                  Get in Touch
+                  Raise A Ticket
                 </a>
               </Button>
             </div>

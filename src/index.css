@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,50 +10,45 @@ html {
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
+    --background: 50 33% 97%;
+    --foreground: 220 20% 15%;
 
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 98%;
+    --card: 45 20% 94%;
+    --card-foreground: 220 20% 15%;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 45 20% 94%;
+    --popover-foreground: 220 20% 15%;
 
-    --primary: 250 100% 65%;
+    --primary: 15 80% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 4% 16%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 45 15% 90%;
+    --secondary-foreground: 220 20% 25%;
 
-    --muted: 240 4% 16%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 45 10% 88%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 250 100% 65%;
+    --accent: 175 45% 42%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 250 100% 65%;
+    --border: 45 15% 85%;
+    --input: 45 15% 85%;
+    --ring: 15 80% 55%;
 
     --radius: 0.75rem;
 
-    /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(250, 100%, 65%) 0%, hsl(280, 100%, 60%) 50%, hsl(200, 100%, 60%) 100%);
-    --gradient-hero: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(250, 100%, 40%, 0.3) 0%, transparent 70%);
-    --gradient-card: linear-gradient(135deg, hsl(0, 0%, 10%) 0%, hsl(0, 0%, 7%) 100%);
-    --gradient-glow: radial-gradient(circle at center, hsl(250, 100%, 65%, 0.15) 0%, transparent 70%);
-    
-    /* Shadows */
-    --shadow-glow: 0 0 60px hsl(250, 100%, 65%, 0.2);
-    --shadow-card: 0 4px 24px hsl(0, 0%, 0%, 0.4);
-  }
+    --terracotta: 15 80% 55%;
+    --teal: 175 45% 42%;
+    --blue-gradient: 210 80% 55%;
 
-  .dark {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
+    --gradient-primary: linear-gradient(135deg, hsl(15, 80%, 55%) 0%, hsl(175, 45%, 42%) 100%);
+    --gradient-hero: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(15, 80%, 55%, 0.08) 0%, transparent 70%);
+    --gradient-glow: radial-gradient(circle at center, hsl(175, 45%, 42%, 0.06) 0%, transparent 70%);
+
+    --shadow-card: 0 4px 24px hsl(220, 20%, 15%, 0.06);
   }
 }
 
@@ -67,8 +62,12 @@ html {
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
   }
 }
 
@@ -87,11 +86,11 @@ html {
   }
 
   .glass-card {
-    @apply bg-card/50 backdrop-blur-xl border border-white/5;
+    @apply bg-card border border-border shadow-sm;
   }
 
   .glass-card-hover {
-    @apply glass-card transition-all duration-300 hover:border-white/10 hover:bg-card/70;
+    @apply glass-card transition-all duration-300 hover:shadow-md hover:border-border/80;
   }
 
   .section-padding {
@@ -100,5 +99,10 @@ html {
 
   .container-narrow {
     @apply max-w-6xl mx-auto px-6;
+  }
+
+  .dot-grid {
+    background-image: radial-gradient(circle, hsl(220, 10%, 75%, 0.3) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 }

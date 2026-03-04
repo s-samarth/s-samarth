@@ -9,41 +9,16 @@ import { Label } from "./ui/label";
 import emailjs from "@emailjs/browser";
 
 const contactLinks = [
-  {
-    label: "Email",
-    value: "samarth.iitg@gmail.com",
-    href: "mailto:samarth.iitg@gmail.com",
-    icon: Mail,
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/s-samarth",
-    href: "https://linkedin.com/in/s-samarth",
-    icon: Linkedin,
-  },
-  {
-    label: "GitHub",
-    value: "github.com/s-samarth",
-    href: "https://github.com/s-samarth",
-    icon: Github,
-  },
-  {
-    label: "Phone",
-    value: "+91 7062303003",
-    href: "tel:+917062303003",
-    icon: Phone,
-  },
+  { label: "Email", value: "samarth.iitg@gmail.com", href: "mailto:samarth.iitg@gmail.com", icon: Mail },
+  { label: "LinkedIn", value: "linkedin.com/in/s-samarth", href: "https://linkedin.com/in/s-samarth", icon: Linkedin },
+  { label: "GitHub", value: "github.com/s-samarth", href: "https://github.com/s-samarth", icon: Github },
+  { label: "Phone", value: "+91 7062303003", href: "tel:+917062303003", icon: Phone },
 ];
 
 export const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -54,50 +29,35 @@ export const ContactSection = () => {
     setIsSubmitting(true);
     setShowError(false);
     setShowSuccess(false);
-    
     try {
-      await emailjs.send(
-        "service_eo3ck3c",
-        "template_va2byvf",
-        {
-          to_name: "Samarth",
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        },
-        "tGHLrscykSp5T6HoO"
-      );
-      
+      await emailjs.send("service_eo3ck3c", "template_va2byvf", {
+        to_name: "Samarth",
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      }, "tGHLrscykSp5T6HoO");
       setShowSuccess(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
-      
-      setTimeout(() => {
-        setShowSuccess(false);
-      }, 5000);
+      setTimeout(() => setShowSuccess(false), 5000);
     } catch (error) {
       console.error("EmailJS error:", error);
       setErrorMessage("Failed to send message. Please try again.");
       setShowError(true);
-      
-      setTimeout(() => {
-        setShowError(false);
-      }, 5000);
+      setTimeout(() => setShowError(false), 5000);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
     <section id="contact" className="section-padding relative">
-      <div className="absolute inset-0 bg-gradient-hero rotate-180" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute inset-0 dot-grid opacity-15" />
       
       <div className="container-narrow relative" ref={ref}>
         <motion.div
@@ -106,7 +66,7 @@ export const ContactSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-primary text-sm tracking-widest uppercase mb-4">Get in Touch</p>
+          <p className="text-primary text-sm tracking-widest uppercase mb-4 font-semibold">Raise A Ticket</p>
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
             Let's Build
             <span className="text-gradient"> Something Great</span>
@@ -116,34 +76,30 @@ export const ContactSection = () => {
           </p>
         </motion.div>
 
-        {/* Success Message */}
+        {/* Success/Error Messages */}
         <AnimatePresence>
           {showSuccess && (
             <motion.div
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-green-500/20 border border-green-500/50 backdrop-blur-xl rounded-xl px-6 py-4 flex items-center gap-3"
+              className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-green-50 border border-green-300 rounded-xl px-6 py-4 flex items-center gap-3"
             >
-              <CheckCircle className="w-5 h-5 text-green-400" />
-              <p className="text-green-300 font-medium">Message sent successfully! I'll get back to you soon.</p>
+              <CheckCircle className="w-5 h-5 text-green-600" />
+              <p className="text-green-700 font-medium">Message sent successfully! I'll get back to you soon.</p>
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Error Message */}
         <AnimatePresence>
           {showError && (
             <motion.div
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-red-500/20 border border-red-500/50 backdrop-blur-xl rounded-xl px-6 py-4 flex items-center gap-3"
+              className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-red-50 border border-red-300 rounded-xl px-6 py-4 flex items-center gap-3"
             >
-              <AlertCircle className="w-5 h-5 text-red-400" />
-              <p className="text-red-300 font-medium">{errorMessage}</p>
+              <AlertCircle className="w-5 h-5 text-red-600" />
+              <p className="text-red-700 font-medium">{errorMessage}</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -159,70 +115,23 @@ export const ContactSection = () => {
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-foreground">Name</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  placeholder="Your name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="bg-background/50 border-white/10 focus:border-primary/50"
-                />
+                <Input id="name" name="name" placeholder="Your name" value={formData.name} onChange={handleChange} required className="bg-background border-border focus:border-primary" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-foreground">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="your@email.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="bg-background/50 border-white/10 focus:border-primary/50"
-                />
+                <Input id="email" name="email" type="email" placeholder="your@email.com" value={formData.email} onChange={handleChange} required className="bg-background border-border focus:border-primary" />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="subject" className="text-foreground">Subject</Label>
-              <Input
-                id="subject"
-                name="subject"
-                placeholder="What's this about?"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-                className="bg-background/50 border-white/10 focus:border-primary/50"
-              />
+              <Input id="subject" name="subject" placeholder="What's this about?" value={formData.subject} onChange={handleChange} required className="bg-background border-border focus:border-primary" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="message" className="text-foreground">Message</Label>
-              <Textarea
-                id="message"
-                name="message"
-                placeholder="Your message..."
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                className="bg-background/50 border-white/10 focus:border-primary/50 resize-none"
-              />
+              <Textarea id="message" name="message" placeholder="Your message..." value={formData.message} onChange={handleChange} required rows={5} className="bg-background border-border focus:border-primary resize-none" />
             </div>
-            <Button 
-              type="submit" 
-              variant="hero" 
-              size="lg" 
-              className="w-full"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                "Sending..."
-              ) : (
-                <>
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
-                </>
-              )}
+            <Button type="submit" variant="default" size="lg" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? "Sending..." : (<><Send className="w-4 h-4 mr-2" />Send Message</>)}
             </Button>
           </form>
         </motion.div>
@@ -255,21 +164,6 @@ export const ContactSection = () => {
               <p className="text-foreground font-medium text-sm truncate">{link.value}</p>
             </motion.a>
           ))}
-        </motion.div>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-center mt-12"
-        >
-          <Button variant="hero" size="xl" asChild>
-            <a href="mailto:samarth.iitg@gmail.com">
-              <Mail className="w-5 h-5 mr-2" />
-              Send me an email
-            </a>
-          </Button>
         </motion.div>
       </div>
     </section>
