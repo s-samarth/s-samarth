@@ -15,6 +15,7 @@ const projects = [
     solution: "AI-powered subtitle pipeline combining ASR + LLM + human-in-loop quality checks",
     metrics: ["Metrics-driven experimentation strategy", "Scalable to 50+ languages"],
     gradient: "from-red-500/20 to-orange-500/20",
+    deckPdf: "/decks/netflix-case-study.pdf",
     caseStudyDeck: [
       { slide: 1, title: "Problem Statement", content: "Regional content lacks subtitles in local languages, limiting accessibility and watch time." },
       { slide: 2, title: "Market Opportunity", content: "500M+ potential viewers in emerging markets with language barriers." },
@@ -22,7 +23,6 @@ const projects = [
       { slide: 4, title: "Technical Architecture", content: "Whisper ASR + GPT-4 Translation + Human-in-loop validation system." },
       { slide: 5, title: "Success Metrics", content: "Watch time increase, completion rates, user satisfaction scores." },
     ],
-    prototypeFeatures: ["Real-time subtitle generation", "Multi-language support", "Quality scoring dashboard", "Human review interface"],
   },
   {
     id: "bookmyshow",
@@ -34,6 +34,7 @@ const projects = [
     solution: "Designed ratings & reviews system with AI-driven ranking and recommendations",
     metrics: ["Linked to booking conversion", "Enhanced event discovery"],
     gradient: "from-blue-500/20 to-purple-500/20",
+    deckPdf: "/decks/bookmyshow-case-study.pdf",
     caseStudyDeck: [
       { slide: 1, title: "Problem Statement", content: "Users hesitate to book live events due to lack of trust signals and reviews." },
       { slide: 2, title: "User Research", content: "78% of users want to see reviews before booking live events." },
@@ -41,7 +42,6 @@ const projects = [
       { slide: 4, title: "Feature Design", content: "Star ratings, written reviews, photo uploads, helpful votes." },
       { slide: 5, title: "Expected Impact", content: "15% increase in booking conversion, improved event discovery." },
     ],
-    prototypeFeatures: ["Post-event review prompts", "AI-powered event recommendations", "Trust badges for venues", "Review authenticity verification"],
   },
 ];
 
@@ -178,10 +178,15 @@ export const ProjectsSection = () => {
                         ))}
                       </div>
                       <div className="flex justify-center pt-4">
-                        <button className="px-6 py-3 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg font-medium transition-colors flex items-center gap-2">
+                        <a 
+                          href={project.deckPdf} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="px-6 py-3 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg font-medium transition-colors flex items-center gap-2"
+                        >
                           <FileText className="w-4 h-4" />
-                          View Full Deck (Coming Soon)
-                        </button>
+                          View Full Deck
+                        </a>
                       </div>
                     </div>
                   </TabsContent>
