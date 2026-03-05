@@ -66,11 +66,11 @@ export const ArticlesSection = () => {
             className="glass-card-hover rounded-2xl overflow-hidden flex flex-col group cursor-pointer">
             
               {/* Cover Image */}
-              <div className="aspect-[16/10] overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
                 <img
                 src={article.image}
                 alt={article.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                className="w-full h-full object-contain bg-secondary/30 transition-transform duration-500 group-hover:scale-105" />
               
               </div>
               
