@@ -10,19 +10,19 @@ import articleInstagram from "@/assets/article-instagram.jpg";
 const articles = [
 {
   title: "Your Dashboard Is Lying to You",
-  description: "Why most product dashboards create an illusion of insight — and what to do about it.",
+  description: "There is nothing worse than thinking your product is a hit while every customer out there just hates it, but you don't know it. This article is a guide on how to decide product metrics, so that you have an accurate read.",
   url: "https://open.substack.com/pub/samarthsaraswat/p/your-dashboard-is-lying-to-you-the?r=7ntb71&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
   image: articleDashboard
 },
 {
   title: "Your Product Has 47 Metrics and Zero Direction",
-  description: "The metric overload problem and how to focus on what actually matters.",
+  description: "The metric overload problem and how to focus on what actually matters. An explainer on North Star Metrics.",
   url: "https://open.substack.com/pub/samarthsaraswat/p/your-product-has-47-metrics-and-zero?r=7ntb71&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
   image: articleMetrics
 },
 {
   title: "Instagram Knows You Better Than Your Parents",
-  description: "How recommendation algorithms build intimate user models — and the product implications.",
+  description: "The Product Metrics Instagram is tracking for its users, and why those metrics are the best indicators of active engagement.",
   url: "https://open.substack.com/pub/samarthsaraswat/p/instagram-knows-you-better-than-your?r=7ntb71&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
   image: articleInstagram
 }];

@@ -55,13 +55,13 @@ export const BuiltSection = () => {
                 </div>
               </div>
               <div className="flex gap-3">
-                <Button variant="heroOutline" size="sm" asChild>
+                <Button variant="outline" size="sm" asChild>
                   <a href="https://comedyconnect.in" target="_blank" rel="noopener noreferrer">
                     <ExternalLink className="w-4 h-4" />
                     Live Site
                   </a>
                 </Button>
-                <Button variant="heroOutline" size="sm" asChild>
+                <Button variant="outline" size="sm" asChild>
                   <a href="https://github.com/s-samarth/comedy-connect" target="_blank" rel="noopener noreferrer">
                     <Github className="w-4 h-4" />
                     GitHub
