@@ -66,7 +66,7 @@ export const ArticlesSection = () => {
             className="glass-card-hover rounded-2xl overflow-hidden flex flex-col group cursor-pointer">
             
               {/* Cover Image */}
-              <div className="aspect-[16/9] overflow-hidden bg-secondary/20">
+              <div className="aspect-[3/4] overflow-hidden bg-secondary/20">
                 <img
                 src={article.image}
                 alt={article.title}
