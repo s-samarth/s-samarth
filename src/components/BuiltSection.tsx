@@ -19,9 +19,9 @@ export const BuiltSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16">
           
-          <p className="text-primary text-sm tracking-widest uppercase mb-4">Side Project</p>
-          <h2 className="text-3xl md:text-5xl font-bold">
-            ​VIBE CODING SKILLS
+          <p className="text-primary text-sm tracking-widest uppercase mb-4">Vibe Coding Skills </p>
+          <h2 className="text-3xl md:text-5xl font-bold text-secondary-foreground">
+            ​Prototypes
    
             <span className="text-gradient"> Built</span>
           </h2>
