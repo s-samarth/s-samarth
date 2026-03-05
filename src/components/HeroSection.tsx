@@ -1,6 +1,80 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import profilePhoto from "@/assets/profile-photo.jpg";
+import { User, Briefcase, FolderOpen, Code2, PenLine, Brain, ArrowRight } from "lucide-react";
+
+const snapshotCards = [
+  {
+    title: "ABOUT ME",
+    subtitle: "Quick Background",
+    icon: User,
+    href: "#about",
+    linkText: "Go to About",
+    points: [
+      "3+ years at Microsoft as Data & Applied Scientist",
+      "Expert in LLM copilots & AI agents",
+      "IIT Guwahati (ECE, 2022) Graduate",
+    ],
+  },
+  {
+    title: "EXPERIENCE",
+    subtitle: "Key MSFT Impact (2022–2025)",
+    icon: Briefcase,
+    href: "#experience",
+    linkText: "Go to Experience",
+    points: [
+      "Reduced deal cycle from 15 to 2 days",
+      "Drove adoption across thousands of sellers",
+      "Scalable anomaly detection preventing revenue leakage",
+    ],
+  },
+  {
+    title: "CASE STUDIES",
+    subtitle: "Featured Projects",
+    icon: FolderOpen,
+    href: "#projects",
+    linkText: "Go to Case Studies",
+    points: [
+      "Netflix AI Regional Subtitles — scalable to 50+ languages",
+      "BookMyShow Ratings & Reviews — linked to conversion impact",
+      "Focus: Metrics-driven experimentation",
+    ],
+  },
+  {
+    title: "PROTOTYPES",
+    subtitle: "Vibe Coding & Full-Stack",
+    icon: Code2,
+    href: "#built",
+    linkText: "Go to Prototypes",
+    points: [
+      "Comedy Connect Platform (React / Full-Stack)",
+      "Built for comedy show discovery and booking",
+    ],
+  },
+  {
+    title: "ARTICLES",
+    subtitle: "Metrics & Product Strategy (Substack)",
+    icon: PenLine,
+    href: "#articles",
+    linkText: "Go to Articles",
+    points: [
+      '"Your Dashboard Is Lying to You" — Metric design',
+      '"Your Product Has 47 Metrics" — Metric overload',
+      '"Instagram Knows You Better" — User behavior',
+    ],
+  },
+  {
+    title: "EXPERTISE",
+    subtitle: "Core Competencies",
+    icon: Brain,
+    href: "#skills",
+    linkText: "Go to Expertise",
+    points: [
+      "AI & Product: RAG Systems, OKRs & Metrics, Experimentation",
+      "Tech Stack: Python, PyTorch, LangGraph, Figma",
+    ],
+  },
+];
 
 export const HeroSection = () => {
   return (
@@ -83,29 +157,56 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        {/* Highlight Cards */}
+        {/* Profile Snapshot Grid */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="mt-24"
         >
-          {[
-            { title: "AI Product Thinking", description: "Translating complex problems into scalable AI solutions" },
-            { title: "Generative AI & LLMs", description: "Deep expertise in LLM-powered copilots and agents" },
-            { title: "End-to-End Execution", description: "From 0→1 ideation to scale-ready deployment" },
-          ].map((item, index) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-              className="glass-card-hover rounded-2xl p-6 text-center"
-            >
-              <h3 className="text-foreground font-semibold text-lg mb-2">{item.title}</h3>
-              <p className="text-muted-foreground text-sm">{item.description}</p>
-            </motion.div>
-          ))}
+          <p className="text-muted-foreground text-xs tracking-[0.2em] uppercase font-semibold mb-6">
+            Profile Snapshots
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {snapshotCards.map((card, index) => (
+              <motion.a
+                key={card.title}
+                href={card.href}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 + index * 0.08 }}
+                className="group glass-card rounded-2xl p-5 flex flex-col gap-3 transition-all duration-300 hover:shadow-md hover:border-primary/30 hover:bg-card/80 cursor-pointer"
+              >
+                {/* Card Header */}
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <card.icon className="w-4.5 h-4.5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-foreground font-bold text-sm tracking-wide">{card.title}</h3>
+                    <p className="text-muted-foreground text-xs">{card.subtitle}</p>
+                  </div>
+                </div>
+
+                {/* Bullet Points */}
+                <ul className="flex flex-col gap-1.5 flex-1">
+                  {card.points.map((point, i) => (
+                    <li key={i} className="flex items-start gap-2 text-foreground text-xs leading-relaxed">
+                      <span className="mt-1.5 w-1 h-1 rounded-full bg-primary shrink-0" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mt-1 group-hover:gap-2.5 transition-all duration-300">
+                  {card.linkText}
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
