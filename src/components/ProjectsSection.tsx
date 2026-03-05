@@ -6,7 +6,7 @@ import { Subtitles, Star, TrendingUp } from "lucide-react";
 const projects = [
 {
   id: "netflix",
-  title: "Netflix — AI-Powered Regional Subtitle Expansion",
+  title: "Netflix: AI-Powered Regional Subtitle Expansion",
   tags: ["AI Product", "NLP", "Experimentation"],
   icon: Subtitles,
   problem: "Limited regional subtitles restricting content consumption in emerging markets",
@@ -18,7 +18,7 @@ const projects = [
 },
 {
   id: "bookmyshow",
-  title: "BookMyShow — Ratings & Reviews for Live Events",
+  title: "BookMyShow: Ratings & Reviews for Live Events",
   tags: ["Product Strategy", "Recommendations", "Trust"],
   icon: Star,
   problem: "Trust gap in live event bookings leading to hesitation",
@@ -128,7 +128,7 @@ export const ProjectsSection = () => {
                         <div className="w-3 h-3 rounded-full bg-yellow-400/60" />
                         <div className="w-3 h-3 rounded-full bg-green-400/60" />
                       </div>
-                      <span className="text-xs text-muted-foreground ml-2">Book My Show</span>
+                      <span className="text-xs text-muted-foreground ml-2">{project.title.split(":")[0]}</span>
                     </div>
                     <iframe
                     src={project.deckEmbed}
