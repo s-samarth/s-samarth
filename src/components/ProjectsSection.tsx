@@ -132,7 +132,7 @@ export const ProjectsSection = () => {
                     </div>
                     <iframe
                     src={project.deckEmbed}
-                    className="w-full aspect-[16/9]"
+                    className="w-full aspect-[4/3] max-h-[500px]"
                     allow="autoplay"
                     allowFullScreen
                     title={`${project.title} deck`} />
