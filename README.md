@@ -35,3 +35,4 @@ I write about metrics, product strategy, and AI on Substack, My Most Featured ar
 
 - Portfolio: [samarthsaraswat.com](https://samarthsaraswat.com)
 - LinkedIn: [linkedin.com/in/samarth-saraswat](https://linkedin.com/in/samarth-saraswat)
+- Substack: [samarthsaraswat.substack.com](https://samarthsaraswat.substack.com)

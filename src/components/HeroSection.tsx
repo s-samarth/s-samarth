@@ -35,8 +35,8 @@ const snapshotCards = [
     href: "#projects",
     linkText: "Go to Case Studies",
     points: [
-      "Netflix AI Regional Subtitles — scalable to 50+ languages",
-      "BookMyShow Ratings & Reviews — linked to conversion impact",
+      "Netflix AI Regional Subtitles -> scalable to 50+ languages",
+      "BookMyShow Ratings & Reviews -> linked to conversion impact",
       "Focus: Metrics-driven experimentation",
     ],
   },
@@ -52,15 +52,15 @@ const snapshotCards = [
     ],
   },
   {
-    title: "ARTICLES",
+    title: "ARTICLES WRITTEN BY ME",
     subtitle: "Metrics & Product Strategy (Substack)",
     icon: PenLine,
     href: "#articles",
     linkText: "Go to Articles",
     points: [
-      '"Your Dashboard Is Lying to You" — Metric design',
-      '"Your Product Has 47 Metrics" — Metric overload',
-      '"Instagram Knows You Better" — User behavior',
+      '"Your Dashboard Is Lying to You" -> Metric design',
+      '"Your Product Has 47 Metrics" -> Metric overload',
+      '"Instagram Knows You Better" -> User behavior',
     ],
   },
   {
