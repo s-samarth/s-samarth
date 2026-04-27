@@ -1,6 +1,6 @@
 # Samarth Saraswat
 
-**AI Product Manager** — building AI-powered products that balance user impact, business outcomes, and flawless execution.
+**AI Engineer** — building AI-powered products that balance user impact, business outcomes, and flawless execution.
 
 ---
 
@@ -8,7 +8,7 @@ I spent 3+ years at **Microsoft** as a Data & Applied Scientist, where I built a
 
 I'm an **IIT Guwahati** graduate (B.Tech, Electronics & Communication Engineering, 2022) with a strong foundation in problem-solving and a bias for high-precision execution.
 
-My work sits at the intersection of **AI, product strategy, and data** — translating complex business problems into scalable AI-first solutions.
+My work sits at the intersection of **AI, Engineering, Product Strategy, and data** — translating complex business problems into scalable AI-first solutions.
 
 ---
 
