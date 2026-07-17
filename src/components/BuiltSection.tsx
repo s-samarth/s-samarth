@@ -21,7 +21,7 @@ export const BuiltSection = () => {
           
           <p className="text-primary text-sm tracking-widest uppercase mb-4">Vibe Coding Skills </p>
           <h2 className="text-3xl md:text-5xl font-bold text-secondary-foreground">
-            ​Prototypes
+            Prototypes
    
             <span className="text-gradient"> Built</span>
           </h2>
@@ -75,6 +75,7 @@ export const BuiltSection = () => {
               <iframe
                 src="https://drive.google.com/file/d/1zRDeiJvZ08DP9MxxVgjP9iApVnlrUt9x/preview"
                 className="w-full h-full"
+                loading="lazy"
                 allow="autoplay"
                 allowFullScreen
                 title="Comedy Connect Demo" />
