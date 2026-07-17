@@ -61,6 +61,11 @@ html {
     scroll-behavior: smooth;
   }
 
+  /* Anchor targets must clear the fixed h-20 (5rem) navbar */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
