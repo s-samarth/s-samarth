@@ -7,7 +7,6 @@ const experiences = [
   {
     title: "Data & Applied Scientist",
     company: "Microsoft",
-    period: "June 2022 – Sept 2025",
     icon: Building2,
     highlights: [
       { icon: Clock, text: "Reduced enterprise deal cycle time from 15 days to 2 days via LLM-powered Seller Copilot" },
@@ -59,7 +58,6 @@ export const ExperienceSection = () => {
                 <div>
                   <h3 className="text-xl font-bold text-foreground">{exp.title}</h3>
                   <p className="text-primary font-medium">{exp.company}</p>
-                  <p className="text-muted-foreground text-sm mt-1">{exp.period}</p>
                 </div>
               </div>
               <p className="text-muted-foreground mb-6">{exp.description}</p>

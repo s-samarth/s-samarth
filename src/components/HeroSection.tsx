@@ -18,7 +18,7 @@ const snapshotCards = [
   },
   {
     title: "EXPERIENCE",
-    subtitle: "Key MSFT Impact (2022–2025)",
+    subtitle: "Key MSFT Impact",
     icon: Briefcase,
     href: "#experience",
     linkText: "Go to Experience",
