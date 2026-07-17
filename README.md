@@ -1,6 +1,6 @@
 # Samarth Saraswat
 
-**AI Engineer** — building AI-powered products that balance user impact, business outcomes, and flawless execution.
+**AI Builder** — building AI-powered products that balance user impact, business outcomes, and flawless execution.
 
 ---
 
@@ -34,5 +34,5 @@ I write about metrics, product strategy, and AI on Substack, My Most Featured ar
 ### Links
 
 - Portfolio: [samarthsaraswat.com](https://samarthsaraswat.com)
-- LinkedIn: [linkedin.com/in/samarth-saraswat](https://linkedin.com/in/samarth-saraswat)
+- LinkedIn: [linkedin.com/in/s-samarth](https://linkedin.com/in/s-samarth)
 - Substack: [samarthsaraswat.substack.com](https://samarthsaraswat.substack.com)

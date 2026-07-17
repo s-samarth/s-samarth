@@ -42,7 +42,7 @@ export const AboutSection = () => {
             className="space-y-6"
           >
             <p className="text-muted-foreground text-lg leading-relaxed">
-              I'm an <span className="text-foreground font-medium">AI Product Manager</span> with 3+ years of experience 
+              I'm an <span className="text-foreground font-medium">AI Builder</span> with 3+ years of experience
               as a Data & Applied Scientist at <span className="text-foreground font-medium">Microsoft</span>, where I've 
               built and scaled LLM-powered copilots and AI agents that drive real business outcomes.
             </p>

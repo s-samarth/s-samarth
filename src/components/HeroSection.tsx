@@ -129,7 +129,7 @@ export const HeroSection = () => {
             >
               <span className="text-foreground">Samarth Saraswat,</span>
               <br />
-              <span className="text-gradient">AI Product Manager</span>
+              <span className="text-gradient">AI Builder</span>
             </motion.h1>
 
             <motion.p
