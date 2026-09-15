@@ -3,7 +3,7 @@ import { Reveal } from "./Reveal";
 import { ScrollText } from "./ScrollText";
 
 const manifesto =
-  "I'm Samarth a Product Builder at Heart, Engineer at Core and Sales because I am usually broke. I build AI that has to *work when it matters.* Today that means fraud and anti-money-laundering systems watching money cross borders at Tazapay. Before that, three years at Microsoft shipping LLM copilots to thousands of sellers. On the side, a survival assistant that answers with *no signal,* dictation that understands how Indians actually talks, and a free study hub for anyone breaking into data science. IIT Guwahati made me. Stand-up Comedy keeps me honest.";
+  "I'm Samarth a *Product Builder* at Heart, *Engineer* at Core and *Sales* because I am usually broke. I build AI that has to *work when it matters.* I would be your go to perosn to build *AI Agents, RAG, ML, and more.* IIT Guwahati made me. Stand-up Comedy keeps me honest.";
 
 const facts = [
   { key: "Now", value: "AI Engineer, Tazapay" },
