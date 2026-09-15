@@ -13,20 +13,21 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Bodoni Moda"', "Georgia", '"Times New Roman"', "serif"],
-        sans: ['"Instrument Sans"', "-apple-system", "BlinkMacSystemFont", '"Segoe UI"', "sans-serif"],
+        display: ['"Inter Tight"', "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", '"Segoe UI"', "sans-serif"],
         mono: ['"IBM Plex Mono"', "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
-        // Cinematic grade, lifted from the profile photo's lighting.
-        ink: { DEFAULT: "#0B0D12", 2: "#11141B", 3: "#181C25" },
-        bone: { DEFAULT: "#ECE7DD", dim: "#C9C3B7" },
-        mist: "#8C93A2",
+        // Near-black stage, off-white ink. Chapter accents live in --accent.
+        ink: { DEFAULT: "#050506", 2: "#0F0F12", 3: "#17171C" },
+        bone: { DEFAULT: "#F5F5F7", dim: "#C7C7CC" },
+        mist: "#A1A1A6",
         amber: { DEFAULT: "#F2A33A", deep: "#C77A1A" },
         cyan: { DEFAULT: "#5CC8E8", deep: "#2C93B3" },
-        line: "rgba(236, 231, 221, 0.10)",
+        line: "rgba(245, 245, 247, 0.12)",
+        accent: "var(--accent)",
 
-        // shadcn tokens, mapped onto the same grade so ui/* inherits it.
+        // shadcn tokens, mapped onto the same stage so ui/* inherits it.
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -44,9 +45,6 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-      },
-      letterSpacing: {
-        eyebrow: "0.22em",
       },
       transitionTimingFunction: {
         cinematic: "cubic-bezier(0.22, 1, 0.36, 1)",

@@ -2,38 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
-    --background: 223 24% 6%;
-    --foreground: 40 28% 90%;
+    --background: 240 9% 2%;
+    --foreground: 240 11% 96%;
 
-    --card: 222 23% 9%;
-    --card-foreground: 40 28% 90%;
+    --card: 240 9% 6%;
+    --card-foreground: 240 11% 96%;
 
-    --popover: 222 23% 9%;
-    --popover-foreground: 40 28% 90%;
+    --popover: 240 9% 6%;
+    --popover-foreground: 240 11% 96%;
 
     --primary: 34 88% 59%;
-    --primary-foreground: 223 24% 6%;
+    --primary-foreground: 240 9% 2%;
 
-    --secondary: 222 20% 13%;
-    --secondary-foreground: 40 28% 90%;
+    --secondary: 240 9% 9%;
+    --secondary-foreground: 240 11% 96%;
 
-    --muted: 222 20% 13%;
-    --muted-foreground: 221 11% 59%;
-
-    --accent: 194 76% 64%;
-    --accent-foreground: 223 24% 6%;
+    --muted: 240 9% 9%;
+    --muted-foreground: 240 3% 64%;
 
     --destructive: 0 72% 55%;
-    --destructive-foreground: 40 28% 90%;
+    --destructive-foreground: 240 11% 96%;
 
-    --border: 222 15% 18%;
-    --input: 222 15% 18%;
+    --border: 240 6% 16%;
+    --input: 240 6% 16%;
     --ring: 34 88% 59%;
 
-    --radius: 0.25rem;
+    --radius: 0.75rem;
+
+    /* Chapter accent. The provider updates this as you scroll. */
+    --accent: #f2a33a;
   }
 
   * {
@@ -45,15 +44,16 @@
     color-scheme: dark;
   }
 
-  /* Anchor targets clear the fixed 4.5rem header. */
   section[id] {
-    scroll-margin-top: 4.5rem;
+    scroll-margin-top: 4rem;
   }
 
   body {
     @apply bg-ink text-bone antialiased;
     font-family: theme(fontFamily.sans);
-    font-feature-settings: "ss01", "cv11";
+    font-size: 17px;
+    font-feature-settings: "cv11", "ss01", "ss03";
+    text-rendering: optimizeLegibility;
   }
 
   /* Film grain over the whole frame. Fixed, non-interactive, very quiet. */
@@ -63,50 +63,58 @@
     inset: 0;
     z-index: 70;
     pointer-events: none;
-    opacity: 0.055;
+    opacity: 0.045;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   ::selection {
-    background: rgb(242 163 58 / 0.35);
+    background: color-mix(in srgb, var(--accent) 35%, transparent);
     color: theme(colors.bone.DEFAULT);
   }
 
   :focus-visible {
-    outline: 2px solid theme(colors.amber.DEFAULT);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
   }
 }
 
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-[1200px] px-6 md:px-10;
+    @apply mx-auto w-full max-w-[1180px] px-6 md:px-10;
   }
 
-  .section-y {
-    @apply py-24 md:py-36;
-  }
-
-  /* Small mono label used for section eyebrows and spec keys. */
+  /* Small label above a headline. Sans, not mono, so it stays readable. */
   .eyebrow {
-    @apply font-mono text-[11px] uppercase tracking-eyebrow text-amber;
+    @apply text-[13px] font-medium uppercase tracking-[0.14em];
+    color: var(--accent);
+    transition: color 1.2s ease;
   }
 
-  .rule {
-    @apply h-px w-full bg-line;
-  }
-
-  /* Editorial display headline. Bodoni needs size; keep it >= 2rem. */
+  /* Headline: Inter Tight, heavy, tight. Sized per use. */
   .display {
-    @apply font-display font-normal leading-[0.98] tracking-[-0.01em] text-bone;
+    @apply font-display font-semibold leading-[1.02] tracking-[-0.03em] text-bone;
   }
 
   .display em {
-    @apply not-italic font-display italic text-amber;
+    font-style: normal;
+    color: var(--accent);
+    transition: color 1.2s ease;
   }
 
-  /* Underline that draws in from the left on hover. */
+  .lede {
+    @apply text-lg leading-relaxed text-mist md:text-xl;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold text-ink transition-all duration-300 ease-cinematic hover:bg-bone;
+    background: var(--accent);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-bone/20 px-6 py-3 text-[15px] font-medium text-bone transition-all duration-300 ease-cinematic hover:border-bone/60 hover:bg-bone/5;
+  }
+
   .link-draw {
     @apply relative inline-block;
     background-image: linear-gradient(currentColor, currentColor);
@@ -121,12 +129,8 @@
     background-size: 100% 1px;
   }
 
-  /* Solid amber pill, the one loud button on the page. */
-  .btn-amber {
-    @apply inline-flex items-center gap-2 rounded-full bg-amber px-6 py-3 font-sans text-sm font-semibold text-ink transition-all duration-300 ease-cinematic hover:bg-bone hover:text-ink;
-  }
-
-  .btn-ghost {
-    @apply inline-flex items-center gap-2 rounded-full border border-bone/20 px-6 py-3 font-sans text-sm font-medium text-bone transition-all duration-300 ease-cinematic hover:border-bone/60;
+  /* Soft panel used for facts, specs and the form. */
+  .panel {
+    @apply rounded-2xl border border-line bg-white/[0.035] backdrop-blur-sm;
   }
 }

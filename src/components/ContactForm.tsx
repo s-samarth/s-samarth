@@ -6,9 +6,9 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 
-// Editorial field: no box, just a hairline that turns amber on focus.
 const fieldClass =
-  "h-11 rounded-none border-0 border-b border-bone/20 bg-transparent px-0 text-base text-bone placeholder:text-mist/70 focus:border-amber focus-visible:ring-0 focus-visible:ring-offset-0";
+  "h-12 rounded-xl border-line bg-white/[0.04] px-4 text-[16px] text-bone placeholder:text-mist/70 focus:border-accent focus-visible:ring-0 focus-visible:ring-offset-0";
+const labelClass = "text-[13px] font-medium uppercase tracking-[0.12em] text-mist";
 
 const emptyForm = { name: "", email: "", subject: "", message: "" };
 
@@ -58,40 +58,36 @@ export const ContactForm = () => {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className={`fixed left-1/2 top-24 z-[90] flex -translate-x-1/2 items-center gap-3 rounded-full border px-5 py-3 text-sm ${
-              status === "sent"
-                ? "border-cyan/40 bg-ink-2 text-cyan"
-                : "border-destructive/50 bg-ink-2 text-destructive"
+            className={`fixed left-1/2 top-24 z-[90] flex -translate-x-1/2 items-center gap-3 rounded-full border bg-ink-2 px-5 py-3 text-[15px] ${
+              status === "sent" ? "border-emerald-400/40 text-emerald-300" : "border-destructive/50 text-destructive"
             }`}
           >
             {status === "sent" ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
-            {status === "sent"
-              ? "Ticket raised. I'll get back to you soon."
-              : "Failed to send. Please try again, or email me directly."}
+            {status === "sent" ? "Ticket raised. I'll get back to you soon." : "Failed to send. Please try again, or email me directly."}
           </motion.div>
         )}
       </AnimatePresence>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
-        <div className="grid gap-8 sm:grid-cols-2">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid gap-6 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="name" className="eyebrow">Name</Label>
+            <Label htmlFor="name" className={labelClass}>Name</Label>
             <Input id="name" name="name" placeholder="Your name" value={formData.name} onChange={handleChange} required className={fieldClass} />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email" className="eyebrow">Email</Label>
+            <Label htmlFor="email" className={labelClass}>Email</Label>
             <Input id="email" name="email" type="email" placeholder="you@company.com" value={formData.email} onChange={handleChange} required className={fieldClass} />
           </div>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="subject" className="eyebrow">Subject</Label>
+          <Label htmlFor="subject" className={labelClass}>Subject</Label>
           <Input id="subject" name="subject" placeholder="What's this about?" value={formData.subject} onChange={handleChange} required className={fieldClass} />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="message" className="eyebrow">Message</Label>
-          <Textarea id="message" name="message" placeholder="Your message" value={formData.message} onChange={handleChange} required rows={4} className={`${fieldClass} h-auto resize-none py-2`} />
+          <Label htmlFor="message" className={labelClass}>Message</Label>
+          <Textarea id="message" name="message" placeholder="Your message" value={formData.message} onChange={handleChange} required rows={5} className={`${fieldClass} h-auto resize-none py-3`} />
         </div>
-        <button type="submit" className="btn-amber disabled:opacity-60" disabled={isSubmitting}>
+        <button type="submit" className="btn-accent w-full justify-center disabled:opacity-60 sm:w-auto" disabled={isSubmitting}>
           {isSubmitting ? "Sending…" : (<><Send size={14} /> Raise the ticket</>)}
         </button>
       </form>
