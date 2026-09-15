@@ -81,6 +81,27 @@
   animation-delay: calc(var(--i, 0) * -0.13s);
 }
 
+/* Phones: the sentence wraps, and clip-path can't type across a line break,
+   so the clip is switched off and the words arrive one at a time in the
+   same 56% to 74% window. */
+@keyframes dd-w0 { 0%, 56% { opacity: 0; } 57%, 100% { opacity: 1; } }
+@keyframes dd-w1 { 0%, 58.5% { opacity: 0; } 59.5%, 100% { opacity: 1; } }
+@keyframes dd-w2 { 0%, 61% { opacity: 0; } 62%, 100% { opacity: 1; } }
+@keyframes dd-w3 { 0%, 63.5% { opacity: 0; } 64.5%, 100% { opacity: 1; } }
+@keyframes dd-w4 { 0%, 66% { opacity: 0; } 67%, 100% { opacity: 1; } }
+@keyframes dd-w5 { 0%, 68.5% { opacity: 0; } 69.5%, 100% { opacity: 1; } }
+@keyframes dd-w6 { 0%, 71% { opacity: 0; } 72%, 100% { opacity: 1; } }
+@media (max-width: 639px) {
+  .dd-type { animation-name: none; }
+  .dd-w0 { animation-name: dd-w0; }
+  .dd-w1 { animation-name: dd-w1; }
+  .dd-w2 { animation-name: dd-w2; }
+  .dd-w3 { animation-name: dd-w3; }
+  .dd-w4 { animation-name: dd-w4; }
+  .dd-w5 { animation-name: dd-w5; }
+  .dd-w6 { animation-name: dd-w6; }
+}
+
 /* ---------- Study hub: 12s, seven tracks take turns ---------- */
 @keyframes hub-node {
   0% { opacity: 0.45; } 3% { opacity: 1; } 11% { opacity: 1; } 15%, 100% { opacity: 0.45; }

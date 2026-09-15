@@ -5,6 +5,13 @@
  */
 const bars = [0, 1, 2, 3, 4, 5, 6];
 
+/**
+ * One span per word. On desktop the parent's clip-path types the sentence;
+ * on phones it wraps, clip-path can't type across a line break, and the
+ * words arrive one at a time instead (see scenes.css).
+ */
+const words = ["kal", "meeting", "hai,", "please", "deck", "ready", "rakhna."];
+
 const Mic = () => (
   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
     <rect x="9" y="2" width="6" height="12" rx="3" />
@@ -33,7 +40,14 @@ export const DesiDictationScene = () => (
         </div>
         <div className="dd-loop dd-fade min-h-[92px] px-4 py-4 font-sans text-[14px] leading-6 text-bone">
           <span className="text-mist">Team update: </span>
-          <span className="dd-loop dd-type inline sm:whitespace-nowrap">kal meeting hai, please deck ready rakhna.</span>
+          <span className="dd-loop dd-type inline sm:whitespace-nowrap">
+            {words.map((word, i) => (
+              <span key={word} className={`dd-loop dd-w${i}`}>
+                {word}
+                {i < words.length - 1 ? " " : ""}
+              </span>
+            ))}
+          </span>
           <span className="dd-caret ml-0.5 inline-block h-[15px] w-[1.5px] translate-y-[2px] bg-amber" />
           <div className="dd-loop dd-timing mt-3 inline-flex items-center gap-2 rounded-sm bg-amber/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-amber">
             1.47 s · Apex q5_0 · local
