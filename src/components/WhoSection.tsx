@@ -3,7 +3,7 @@ import { Reveal } from "./Reveal";
 import { ScrollText } from "./ScrollText";
 
 const manifesto =
-  "I'm Samarth. I’ve got the Heart of a *Product Builder*, Brain of an *Engineer* and Greed of a *Salesperson* because I don't plan on ending up broke. Bring me the messy problem. I'll build the *AI agent*, the *RAG*, the *model*, or talk you out of all three. IIT Guwahati taught me to take problems seriously. Stand-up Comedy taught me not to take myself seriously.";
+  "I'm Samarth. I’ve got the Heart of a *Product Builder*, Brain of an *Engineer* and Greed of a *Salesperson* because passion doesn't pay the rent. Bring me the messy problem. I'll build the *AI agent*, the *RAG*, the *model*, or talk you out of all three. IIT Guwahati taught me to take problems seriously. Stand-up Comedy taught me not to take myself seriously.";
 
 const facts = [
   { key: "Now", value: "AI Engineer, Tazapay" },
