@@ -3,7 +3,7 @@ import { Reveal } from "./Reveal";
 import { ScrollText } from "./ScrollText";
 
 const manifesto =
-  "I'm Samarth, A *Product Builder* at Heart, *Engineer* at Core and *Sales* because I am usually broke. Bring me the messy problem. I'll build the *AI agent*, the *RAG*, the *model*, or talk you out of all three. IIT Guwahati made me. Stand-up Comedy keeps me honest.";
+  "I'm Samarth, A *Product Builder* at Heart, *Engineer* at Core and a *Sales* guy because I am usually broke. Bring me the messy problem. I'll build the *AI agent*, the *RAG*, the *model*, or talk you out of all three. IIT Guwahati made me. Stand-up Comedy keeps me honest.";
 
 const facts = [
   { key: "Now", value: "AI Engineer, Tazapay" },
