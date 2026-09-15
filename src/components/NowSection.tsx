@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Chapter } from "./Chapter";
+import { Beats, type BeatCopy } from "./Beats";
 import { CorridorScene } from "./scenes/CorridorScene";
-import { useBeat } from "@/hooks/use-beat";
 
-const beats = [
+const beats: BeatCopy[] = [
   {
     title: "Money crossing borders.",
     body: "Every transaction moves through a corridor: countries, currencies, banks. Each one is a decision. Let it through, hold it, or flag it.",
@@ -18,21 +18,6 @@ const beats = [
     body: "On real money, in real time, where a wrong call costs someone on both sides of the border. That is the job right now.",
   },
 ];
-
-const Beat = ({ progress, index }: { progress: ReturnType<typeof useSpring>; index: number }) => {
-  const span = 1 / beats.length;
-  const { opacity, y } = useBeat(progress, index * span, (index + 1) * span - 0.04);
-  const isLast = index === beats.length - 1;
-  const last = useBeat(progress, index * span, 2);
-  const style = isLast ? last : { opacity, y };
-
-  return (
-    <motion.div style={style} className="absolute inset-x-0 top-0">
-      <h3 className="display text-3xl md:text-4xl">{beats[index].title}</h3>
-      <p className="lede mt-4">{beats[index].body}</p>
-    </motion.div>
-  );
-};
 
 /**
  * Pinned chapter. The section is tall; the panel inside sticks to the
@@ -55,18 +40,7 @@ export const NowSection = () => {
               <h2 className="display mt-3 text-[2.1rem] sm:text-5xl md:text-6xl lg:mt-4">
                 AI for money that <em>crosses borders.</em>
               </h2>
-
-              <div className="relative mt-8 h-[190px] sm:h-[180px] lg:mt-10">
-                {beats.map((_, i) => (
-                  <Beat key={i} progress={progress} index={i} />
-                ))}
-              </div>
-
-              <div className="mt-6 flex gap-2">
-                {beats.map((_, i) => (
-                  <BeatBar key={i} progress={progress} index={i} />
-                ))}
-              </div>
+              <Beats beats={beats} progress={progress} className="mt-8 h-[190px] sm:h-[180px] lg:mt-10" />
             </div>
 
             <motion.div style={{ scale: sceneScale, opacity: sceneOpacity }} className="panel aspect-[16/10] w-full sm:aspect-[3/2]">
@@ -76,15 +50,5 @@ export const NowSection = () => {
         </div>
       </div>
     </Chapter>
-  );
-};
-
-const BeatBar = ({ progress, index }: { progress: ReturnType<typeof useSpring>; index: number }) => {
-  const span = 1 / beats.length;
-  const fill = useTransform(progress, [index * span, (index + 1) * span], ["0%", "100%"]);
-  return (
-    <span className="relative h-[3px] w-10 overflow-hidden rounded-full bg-white/10">
-      <motion.span style={{ width: fill, backgroundColor: "var(--accent)" }} className="absolute inset-y-0 left-0 rounded-full" />
-    </span>
   );
 };
