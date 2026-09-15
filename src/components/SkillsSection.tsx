@@ -1,78 +1,78 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Brain, Code, Wrench } from "lucide-react";
+import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
-const skillCategories = [
+const skillColumns = [
   {
-    title: "AI & Product",
-    icon: Brain,
-    skills: ["AI Product Management", "LLMs & Generative AI", "AI Agents & Copilots", "RAG Systems", "Experimentation", "OKRs & Metrics"],
+    title: "AI systems",
+    skills: [
+      "LLM copilots & agents",
+      "RAG & hybrid retrieval",
+      "On-device inference",
+      "Prompt engineering for small models",
+      "Evals & golden sets",
+      "Fraud & AML detection",
+    ],
   },
   {
-    title: "Machine Learning",
-    icon: Code,
-    skills: ["Natural Language Processing", "Anomaly Detection", "Model Evaluation", "Data Science Pipelines", "Deep Learning", "Statistical Analysis"],
+    title: "Machine learning",
+    skills: [
+      "Natural language processing",
+      "Speech recognition",
+      "Anomaly detection",
+      "Model evaluation",
+      "Deep learning",
+      "Statistical analysis",
+    ],
   },
   {
-    title: "Tools & Tech",
-    icon: Wrench,
-    skills: ["Python", "PyTorch", "LangGraph", "OpenAI APIs", "SQL", "Figma", "Jira", "Google Analytics"],
+    title: "Product",
+    skills: [
+      "AI product management",
+      "Experimentation",
+      "OKRs & North Star metrics",
+      "Metric design",
+      "Data science pipelines",
+    ],
+  },
+  {
+    title: "Tools",
+    skills: [
+      "Python, PyTorch",
+      "LangGraph, OpenAI APIs",
+      "whisper.cpp, ONNX Runtime",
+      "Flutter, Swift",
+      "SQL",
+      "Figma, Jira",
+    ],
   },
 ];
 
-export const SkillsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+export const SkillsSection = () => (
+  <section id="skills" className="section-y border-t border-line">
+    <div className="container-x">
+      <SectionHeading
+        eyebrow="Buzzwords I can back up"
+        title={
+          <>
+            Ask me about <em>any of these</em>
+          </>
+        }
+      />
 
-  return (
-    <section id="skills" className="section-padding relative">
-      <div className="absolute inset-0 dot-grid opacity-15" />
-      <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-accent/5 blur-3xl" />
-
-      <div className="container-narrow relative" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="text-primary text-sm tracking-widest uppercase mb-4 font-semibold">Expertise</p>
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Buzzwords I Can
-            <span className="text-gradient"> Back Up</span>
-          </h2>
-        </motion.div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              className="glass-card-hover rounded-2xl p-6"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <category.icon className="w-5 h-5 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground">{category.title}</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1.5 text-sm font-medium rounded-lg bg-secondary text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+      <div className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        {skillColumns.map((column, i) => (
+          <Reveal key={column.title} delay={0.08 * i}>
+            <p className="eyebrow border-b border-line pb-3">{column.title}</p>
+            <ul className="mt-1">
+              {column.skills.map((skill) => (
+                <li key={skill} className="border-b border-line py-3 text-bone-dim">
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);

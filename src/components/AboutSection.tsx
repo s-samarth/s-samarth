@@ -1,93 +1,69 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { GraduationCap, Sparkles, Target, Zap } from "lucide-react";
+import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
-export const AboutSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+const facts = [
+  { key: "Now", value: "AI Engineer, Tazapay" },
+  { key: "Before", value: "Data & Applied Scientist, Microsoft, 3+ years" },
+  { key: "School", value: "B.Tech, Electronics & Communication, IIT Guwahati, 2022" },
+  { key: "Based in", value: "Bangalore, India" },
+  { key: "Writes at", value: "samarthsaraswat.substack.com", href: "https://samarthsaraswat.substack.com" },
+  { key: "Off hours", value: "Stand-up comedy. The mic is not a prop." },
+];
 
-  const highlights = [
-    { icon: Sparkles, text: "3+ years at Microsoft as Data & Applied Scientist" },
-    { icon: Target, text: "Expert in LLM-powered copilots and AI agents" },
-    { icon: Zap, text: "Passionate about user value and business impact" },
-    { icon: GraduationCap, text: "IIT Guwahati Graduate" },
-  ];
+const Em = ({ children }: { children: React.ReactNode }) => (
+  <span className="font-medium text-bone">{children}</span>
+);
 
-  return (
-    <section id="about" className="section-padding relative">
-      {/* Geometric accents */}
-      <div className="absolute top-20 right-0 w-64 h-64 rounded-full bg-accent/5 blur-2xl" />
-      <div className="absolute bottom-10 left-0 w-48 h-48 rounded-full bg-primary/5 blur-2xl" />
-      
-      <div className="container-narrow relative" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="text-primary text-sm tracking-widest uppercase mb-4 font-semibold">README.md</p>
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Building the Future of
-            <span className="text-gradient"> AI Products</span>
-          </h2>
-        </motion.div>
+export const AboutSection = () => (
+  <section id="about" className="section-y">
+    <div className="container-x">
+      <SectionHeading
+        eyebrow="README.md"
+        title={
+          <>
+            Building the future of <em>AI products</em>
+          </>
+        }
+      />
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
-          >
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              I'm an <span className="text-foreground font-medium">AI Builder</span> with 3+ years of experience
-              as a Data & Applied Scientist at <span className="text-foreground font-medium">Microsoft</span>, where I've 
-              built and scaled LLM-powered copilots and AI agents that drive real business outcomes.
-            </p>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              With a strong problem-solving mindset honed at <span className="text-foreground font-medium">IIT Guwahati</span>, 
-              I specialize in translating complex business problems into scalable AI-first product solutions. My approach 
-              combines <span className="text-foreground font-medium">futuristic vision</span> with <span className="text-foreground font-medium">high-precision execution</span>.
-            </p>
+      <div className="mt-16 grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:gap-24">
+        <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-mist">
+          <p>
+            I'm an <Em>AI Builder</Em>. Today I'm an AI Engineer at <Em>Tazapay</Em>, building AI
+            systems that help with anti-money laundering and fraud detection in cross-border
+            payments, where a wrong call costs real money on both sides of the border.
+          </p>
+          <p>
+            Before that I spent 3+ years at <Em>Microsoft</Em> as a Data &amp; Applied Scientist,
+            where I built and scaled LLM-powered copilots and AI agents that drive real business
+            outcomes.
+          </p>
+          <p>
+            With a strong problem-solving mindset honed at <Em>IIT Guwahati</Em>, I specialize in
+            translating complex business problems into scalable AI-first product solutions. My
+            approach combines <Em>futuristic vision</Em> with <Em>high-precision execution</Em>.
+          </p>
+        </Reveal>
 
-            <div className="glass-card rounded-xl p-5 mt-8">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                  <GraduationCap className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <p className="text-foreground font-semibold">B.Tech in Electronics & Communication Engineering</p>
-                  <p className="text-muted-foreground text-sm">Indian Institute of Technology Guwahati, 2022</p>
-                </div>
+        <Reveal delay={0.2}>
+          <dl className="border-t border-line">
+            {facts.map((fact) => (
+              <div key={fact.key} className="grid grid-cols-[6.5rem_1fr] gap-4 border-b border-line py-4">
+                <dt className="eyebrow pt-1">{fact.key}</dt>
+                <dd className="text-bone-dim">
+                  {fact.href ? (
+                    <a href={fact.href} target="_blank" rel="noopener noreferrer" className="link-draw text-bone">
+                      {fact.value}
+                    </a>
+                  ) : (
+                    fact.value
+                  )}
+                </dd>
               </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-1 gap-4"
-          >
-            {highlights.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="glass-card-hover rounded-xl p-5 flex items-center gap-4"
-              >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                  <item.icon className="w-5 h-5 text-primary" />
-                </div>
-                <p className="text-foreground">{item.text}</p>
-              </motion.div>
             ))}
-          </motion.div>
-        </div>
+          </dl>
+        </Reveal>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);

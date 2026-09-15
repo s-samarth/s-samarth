@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "./ui/button";
 
 const navLinks = [
   { href: "#about", label: "README.md" },
   { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Case Studies" },
-  { href: "#built", label: "Prototypes" },
-  { href: "#articles", label: "Articles Written By Me" },
-  { href: "#skills", label: "Buzzwords I Can Back Up" },
+  { href: "#projects", label: "Projects" },
+  { href: "#articles", label: "Articles" },
+  { href: "#skills", label: "Buzzwords" },
 ];
 
 export const Navigation = () => {
@@ -17,54 +15,59 @@ export const Navigation = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock page scroll while the full-screen menu is open.
+  useEffect(() => {
+    document.body.style.overflow = isMobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileOpen]);
+
+  const close = () => setIsMobileOpen(false);
+
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/90 backdrop-blur-xl border-b border-border" : ""
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 1.2 }}
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
+        isScrolled && !isMobileOpen ? "border-b border-line bg-ink/80 backdrop-blur-xl" : ""
       }`}
     >
-      <div className="container-narrow">
-        <nav className="flex items-center justify-between h-20">
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg font-[Poppins]">
-              S
-            </div>
-            <span className="font-semibold text-lg hidden sm:block text-foreground">Samarth</span>
+      <div className="container-x">
+        <nav className="flex h-[4.5rem] items-center justify-between">
+          <a href="#" className="font-display text-xl italic text-bone" onClick={close}>
+            Samarth Saraswat
           </a>
 
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden items-center gap-8 lg:flex">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium"
+                className="link-draw font-mono text-[11px] uppercase tracking-eyebrow text-bone-dim transition-colors hover:text-bone"
               >
                 {link.label}
               </a>
             ))}
-          </div>
-
-          <div className="hidden lg:block">
-            <Button variant="default" size="default" asChild>
-              <a href="#contact">Raise A Ticket</a>
-            </Button>
+            <a href="#contact" className="btn-amber !px-5 !py-2 text-xs">
+              Raise a ticket
+            </a>
           </div>
 
           <button
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="lg:hidden p-2 text-foreground"
+            onClick={() => setIsMobileOpen((v) => !v)}
+            className="relative z-[60] p-2 text-bone lg:hidden"
+            aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileOpen}
           >
-            {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </nav>
       </div>
@@ -72,28 +75,30 @@ export const Navigation = () => {
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 flex flex-col justify-end bg-ink px-6 pb-12 pt-24 lg:hidden"
           >
-            <div className="container-narrow py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link, i) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  className="text-muted-foreground hover:text-foreground transition-colors py-2 text-lg"
+                  onClick={close}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.08 + i * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="display border-b border-line py-4 text-4xl"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
-              <Button variant="default" size="lg" asChild className="mt-4">
-                <a href="#contact" onClick={() => setIsMobileOpen(false)}>
-                  Raise A Ticket
-                </a>
-              </Button>
             </div>
+            <a href="#contact" onClick={close} className="btn-amber mt-8 self-start">
+              Raise a ticket
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,0 +1,103 @@
+/*
+  Looping project scenes. Every element's *base* state is its finished state,
+  and the keyframes do the hiding, so users with reduced motion see the
+  completed diagram instead of an empty frame.
+*/
+
+/* ---------- Survive AI: 9s ---------- */
+.sv-loop { animation-duration: 9s; animation-iteration-count: infinite; animation-fill-mode: both; }
+
+@keyframes sv-fade {
+  0% { opacity: 0; } 3% { opacity: 1; } 91% { opacity: 1; } 94% { opacity: 0; } 100% { opacity: 0; }
+}
+@keyframes sv-type {
+  0%, 6% { clip-path: inset(0 100% 0 0); animation-timing-function: steps(14, end); }
+  20%, 100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes sv-leg-1 { 0%, 24% { opacity: 0.28; } 27%, 100% { opacity: 1; } }
+@keyframes sv-leg-2 { 0%, 28% { opacity: 0.28; } 31%, 100% { opacity: 1; } }
+@keyframes sv-leg-3 { 0%, 32% { opacity: 0.28; } 35%, 100% { opacity: 1; } }
+@keyframes sv-fuse  { 0%, 38% { opacity: 0.28; } 41%, 100% { opacity: 1; } }
+@keyframes sv-ans-1 {
+  0%, 46% { clip-path: inset(0 100% 0 0); animation-timing-function: steps(32, end); }
+  56%, 100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes sv-ans-2 {
+  0%, 57% { clip-path: inset(0 100% 0 0); animation-timing-function: steps(32, end); }
+  67%, 100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes sv-ans-3 {
+  0%, 68% { clip-path: inset(0 100% 0 0); animation-timing-function: steps(30, end); }
+  78%, 100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes sv-cite { 0%, 80% { opacity: 0; transform: translateY(4px); } 83%, 100% { opacity: 1; transform: none; } }
+
+.sv-fade  { animation-name: sv-fade; }
+.sv-type  { animation-name: sv-type; }
+.sv-leg-1 { animation-name: sv-leg-1; }
+.sv-leg-2 { animation-name: sv-leg-2; }
+.sv-leg-3 { animation-name: sv-leg-3; }
+.sv-fuse  { animation-name: sv-fuse; }
+.sv-ans-1 { animation-name: sv-ans-1; }
+.sv-ans-2 { animation-name: sv-ans-2; }
+.sv-ans-3 { animation-name: sv-ans-3; }
+.sv-cite  { animation-name: sv-cite; }
+
+/* ---------- Desi Dictation: 8s ---------- */
+.dd-loop { animation-duration: 8s; animation-iteration-count: infinite; animation-fill-mode: both; }
+
+@keyframes dd-fade {
+  0% { opacity: 0; } 3% { opacity: 1; } 91% { opacity: 1; } 94% { opacity: 0; } 100% { opacity: 0; }
+}
+@keyframes dd-key {
+  0%, 6% { transform: none; box-shadow: 0 0 0 0 rgba(242, 163, 58, 0); border-color: rgba(236, 231, 221, 0.18); }
+  8%, 44% { transform: translateY(2px); box-shadow: 0 0 0 4px rgba(242, 163, 58, 0.18); border-color: #f2a33a; }
+  46%, 100% { transform: none; box-shadow: 0 0 0 0 rgba(242, 163, 58, 0); border-color: rgba(236, 231, 221, 0.18); }
+}
+@keyframes dd-listen { 0%, 6% { opacity: 0; } 8%, 44% { opacity: 1; } 46%, 100% { opacity: 0; } }
+@keyframes dd-work   { 0%, 45% { opacity: 0; } 47%, 55% { opacity: 1; } 57%, 100% { opacity: 0; } }
+@keyframes dd-done   { 0%, 56% { opacity: 0; } 58%, 100% { opacity: 1; } }
+@keyframes dd-type {
+  0%, 56% { clip-path: inset(0 100% 0 0); animation-timing-function: steps(41, end); }
+  74%, 100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes dd-caret { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes dd-timing { 0%, 76% { opacity: 0; transform: translateY(4px); } 79%, 100% { opacity: 1; transform: none; } }
+@keyframes dd-bar {
+  0% { transform: scaleY(0.25); } 100% { transform: scaleY(1); }
+}
+
+.dd-fade   { animation-name: dd-fade; }
+.dd-key    { animation-name: dd-key; }
+.dd-listen { animation-name: dd-listen; }
+.dd-work   { animation-name: dd-work; }
+.dd-done   { animation-name: dd-done; }
+.dd-type   { animation-name: dd-type; }
+.dd-timing { animation-name: dd-timing; }
+.dd-caret  { animation: dd-caret 1s steps(2, end) infinite; }
+.dd-bar {
+  transform-origin: 50% 100%;
+  animation: dd-bar 0.55s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i, 0) * -0.13s);
+}
+
+/* ---------- Study hub: 12s, seven tracks take turns ---------- */
+@keyframes hub-node {
+  0% { opacity: 0.45; } 3% { opacity: 1; } 11% { opacity: 1; } 15%, 100% { opacity: 0.45; }
+}
+@keyframes hub-edge {
+  0% { stroke-opacity: 0.18; } 3% { stroke-opacity: 0.9; } 11% { stroke-opacity: 0.9; } 15%, 100% { stroke-opacity: 0.18; }
+}
+.hub-node, .hub-edge {
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -1.7143s);
+}
+.hub-node { animation-name: hub-node; }
+.hub-edge { animation-name: hub-edge; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sv-loop, .dd-loop, .dd-caret, .dd-bar, .hub-node, .hub-edge {
+    animation: none !important;
+  }
+}

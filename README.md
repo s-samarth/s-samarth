@@ -4,26 +4,25 @@
 
 ---
 
-I spent 3+ years at **Microsoft** as a Data & Applied Scientist, where I built and scaled LLM-powered copilots and AI agents that drive real business impact — reducing deal cycles from 15 days to 2, driving adoption across thousands of sellers, and designing scalable anomaly detection systems to prevent revenue leakage.
+I'm an **AI Engineer at Tazapay**, building AI systems that help with anti-money laundering and fraud detection in cross-border payments.
 
-I'm an **IIT Guwahati** graduate (B.Tech, Electronics & Communication Engineering, 2022) with a strong foundation in problem-solving and a bias for high-precision execution.
+Before that I spent 3+ years at **Microsoft** as a Data & Applied Scientist, where I built and scaled LLM-powered copilots and AI agents that drive real business impact — reducing deal cycles from 15 days to 2, driving adoption across thousands of sellers, and designing scalable anomaly detection systems to prevent revenue leakage.
 
-My work sits at the intersection of **AI, Engineering, Product Strategy, and data** — translating complex business problems into scalable AI-first solutions.
+I'm an **IIT Guwahati** graduate (B.Tech, Electronics & Communication Engineering, 2022) with a strong foundation in problem-solving and a bias for high-precision execution. Based in Bangalore.
 
 ---
 
-### What I'm interested in
+### Things I built, then gave away
 
-- LLM-powered copilots and AI agents
-- Metrics design and experimentation
-- RAG systems and retrieval-based AI
-- Product-led growth and OKR frameworks
+- [**Survive AI**](https://github.com/s-samarth/survive-ai) — an offline-first survival assistant that runs Gemma 2B and a hybrid retrieval pipeline entirely on an Android phone. Scoped to India, no network at runtime.
+- [**Desi Dictation**](https://github.com/s-samarth/desi-dictation) — local-first Hinglish dictation for macOS on whisper.cpp. Hold a key, speak, release, and Hinglish lands in whatever app you're in.
+- [**Data Science Preparation**](https://s-samarth.github.io/DataSciencePreparation/) — a free study hub of seven MkDocs knowledge bases for anyone preparing for data science and ML roles.
 
 ---
 
 ### Writing
 
-I write about metrics, product strategy, and AI on Substack, My Most Featured articles are:
+I write about metrics, product strategy, and AI on Substack. My most featured articles:
 
 - *Your Dashboard Is Lying to You* — why most product metrics mislead
 - *Your Product Has 47 Metrics* — the problem of metric overload

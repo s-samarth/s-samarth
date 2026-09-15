@@ -1,80 +1,91 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Building2, TrendingUp, Users, Shield, Clock } from "lucide-react";
+import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
-const experiences = [
+interface Role {
+  when: string;
+  company: string;
+  place: string;
+  title: string;
+  description: string;
+  tags: string[];
+  highlights: string[];
+}
+
+const roles: Role[] = [
   {
-    title: "Data & Applied Scientist",
+    when: "Now",
+    company: "Tazapay",
+    place: "Bangalore",
+    title: "AI Engineer",
+    description:
+      "Building AI systems that help with anti-money laundering and fraud detection in cross-border payments.",
+    tags: ["Fintech", "Cross-border payments", "AML", "Fraud detection"],
+    highlights: [],
+  },
+  {
+    when: "Before",
     company: "Microsoft",
-    icon: Building2,
-    highlights: [
-      { icon: Clock, text: "Reduced enterprise deal cycle time from 15 days to 2 days via LLM-powered Seller Copilot" },
-      { icon: Users, text: "Drove adoption across thousands of sellers with strong feedback and evaluation loops" },
-      { icon: TrendingUp, text: "Improved CSAT through multi-metric quality and reliability frameworks" },
-      { icon: Shield, text: "Built an explainable anomaly detection system preventing large-scale revenue leakage" },
-    ],
+    place: "3+ years",
+    title: "Data & Applied Scientist",
     description:
       "Built and scaled AI copilots for enterprise customers and third-party sellers. Focus on translating business problems into scalable AI-first product solutions.",
+    tags: ["LLM copilots", "AI agents", "Anomaly detection"],
+    highlights: [
+      "Reduced enterprise deal cycle time from 15 days to 2 days via an LLM-powered Seller Copilot",
+      "Drove adoption across thousands of sellers with strong feedback and evaluation loops",
+      "Improved CSAT through multi-metric quality and reliability frameworks",
+      "Built an explainable anomaly detection system preventing large-scale revenue leakage",
+    ],
   },
 ];
 
-export const ExperienceSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+export const ExperienceSection = () => (
+  <section id="experience" className="section-y border-t border-line">
+    <div className="container-x">
+      <SectionHeading
+        eyebrow="Experience"
+        title={
+          <>
+            Where I've made <em>impact</em>
+          </>
+        }
+      />
 
-  return (
-    <section id="experience" className="section-padding relative">
-      {/* Geometric accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/3 blur-3xl" />
-      <div className="absolute inset-0 dot-grid opacity-20" />
-
-      <div className="container-narrow relative" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="text-primary text-sm tracking-widest uppercase mb-4 font-semibold">Experience</p>
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Where I've Made
-            <span className="text-gradient"> Impact</span>
-          </h2>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-3xl mx-auto"
-        >
-          {experiences.map((exp) => (
-            <div key={exp.title} className="glass-card-hover rounded-2xl p-8">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-14 h-14 rounded-xl bg-primary flex items-center justify-center shrink-0">
-                  <exp.icon className="w-7 h-7 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-foreground">{exp.title}</h3>
-                  <p className="text-primary font-medium">{exp.company}</p>
-                </div>
+      <div className="mt-16 border-t border-line">
+        {roles.map((role, i) => (
+          <Reveal key={role.company} delay={0.05 * i}>
+            <article className="grid gap-6 border-b border-line py-12 md:grid-cols-[10rem_1fr] md:gap-12">
+              <div className="font-mono text-[11px] uppercase tracking-eyebrow">
+                <p className="text-amber">{role.when}</p>
+                <p className="mt-2 text-bone">{role.company}</p>
+                <p className="mt-1 text-mist">{role.place}</p>
               </div>
-              <p className="text-muted-foreground mb-6">{exp.description}</p>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {exp.highlights.map((highlight, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <highlight.icon className="w-4 h-4 text-accent" />
-                    </div>
-                    <p className="text-foreground text-sm">{highlight.text}</p>
-                  </div>
-                ))}
+
+              <div>
+                <h3 className="display text-3xl md:text-4xl">{role.title}</h3>
+                <p className="mt-4 max-w-2xl text-lg leading-relaxed text-mist">{role.description}</p>
+
+                {role.highlights.length > 0 && (
+                  <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                    {role.highlights.map((h) => (
+                      <li key={h} className="flex gap-3 text-bone-dim">
+                        <span className="mt-2.5 h-1.5 w-1.5 shrink-0 bg-amber" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-eyebrow text-mist">
+                  {role.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          ))}
-        </motion.div>
+            </article>
+          </Reveal>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
