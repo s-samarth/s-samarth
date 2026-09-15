@@ -113,6 +113,31 @@ so flat colour never looks digital.
 4. Two pinned chapters at most. Pinning is expensive attention; spend it on the two
    things the reader most needs to understand (current role, biggest past impact).
 
+**Favicon and touch icon** (`public/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`)
+
+The icon is the hero in miniature: the Inter Tight "S" from the headlines, in bone,
+on the ink tile, lit by the same cyan (`#2C93B3`) top-left and amber bottom-right
+glows. It replaced a serif "S" in orange on a grey box that matched nothing else.
+
+How it was made, so it can be redone for another letter or person:
+
+1. The glyph is the real font outline, not text. Load the 700-weight TTF from
+   Google Fonts in a browser with opentype.js (cdnjs) and read
+   `font.getPath("S", 0, 0, 1000).toPathData(2)`. No font is embedded, so the SVG
+   stays about 2 KB and renders identically everywhere.
+2. Scale the path so the cap height is 40 of the 64-unit tile and centre it on
+   the glyph's bounding box, not on the em square.
+3. The glows are two radial gradients on full-tile rects, not blur filters;
+   filters are unreliable in favicon renderers.
+4. Judge candidates only at 16 and 32 px on both a light and a dark tab strip.
+   Six directions were tried; bone on lit ink was the only one still crisp at
+   16 px. Amber-on-amber lost the letter, a flat amber tile lost the brand.
+5. Export PNGs by rendering the SVG in a browser and screenshotting the element:
+   32 px with rounded corners for the fallback icon, 180 px with square corners
+   for `apple-touch-icon` because iOS applies its own corner mask.
+6. `theme-color` in `index.html` equals the page background so the browser chrome
+   matches the tile.
+
 ## 4. The signature
 
 The single memorable device is **chapter-driven light**: as the reader scrolls,
@@ -137,6 +162,8 @@ To build a page like this for someone else, in order:
    cookbook explains the two recipes (SVG SMIL and CSS keyframes).
 6. Verify at 1280 and 375 widths at several scroll positions, then with reduced
    motion on. Fix overlaps before adding anything new.
+7. Cut the favicon from the same display face and light it like the hero, so the
+   tab and home screen carry the identity too (see "Favicon and touch icon").
 
 ## 6. Constraints that shaped the code
 
