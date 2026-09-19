@@ -50,7 +50,7 @@ export const DayJobNotes = () => (
       <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-redpen underline decoration-2 underline-offset-4 hover:text-graphite">
         LinkedIn
       </a>{" "}
-      if you care about my job so much.
+      if you care about my job.
     </p>
   </motion.div>
 );

@@ -26,9 +26,9 @@ const NoSignal = () => (
 );
 
 export const SurviveAiScene = () => (
-  <div className="flex h-full w-full items-center justify-center p-6" aria-hidden="true">
-    <div className="relative w-[272px] rounded-[28px] border border-graphite/15 bg-white p-2.5 shadow-[0_24px_50px_-24px_rgba(29,36,48,0.45)]">
-      <div className="rounded-[20px] border border-graphite/10 bg-[#FBFCFD] px-4 pb-4 pt-3">
+  <div className="flex h-full w-full items-center justify-center p-4" aria-hidden="true">
+    <div className="relative w-[258px] shrink-0 rounded-[28px] border border-graphite/15 bg-white p-2.5 shadow-[0_24px_50px_-24px_rgba(29,36,48,0.45)]">
+      <div className="rounded-[20px] border border-graphite/10 bg-[#FBFCFD] px-3.5 pb-3 pt-2.5">
         {/* status bar */}
         <div className="flex items-center justify-between font-mono text-[10px] text-graphite-dim">
           <span>03:12</span>
@@ -38,7 +38,7 @@ export const SurviveAiScene = () => (
           </span>
         </div>
 
-        <div className="sv-loop sv-fade mt-5 space-y-3">
+        <div className="sv-loop sv-fade mt-3 space-y-2.5">
           {/* user query */}
           <div className="flex justify-end">
             <div className="rounded-2xl rounded-br-sm bg-[#2B5BA8] px-3 py-2 text-[12px] text-white">
@@ -66,7 +66,7 @@ export const SurviveAiScene = () => (
           </div>
 
           {/* answer */}
-          <div className="rounded-2xl rounded-bl-sm bg-[#EEF1F5] px-3 py-2 text-[12px] leading-5 text-graphite">
+          <div className="rounded-2xl rounded-bl-sm bg-[#EEF1F5] px-3 py-2 text-[11.5px] leading-[18px] text-graphite">
             {answerLines.map((line) => (
               <div key={line.cls} className={`sv-loop ${line.cls} whitespace-nowrap`}>
                 {line.text}
@@ -78,7 +78,7 @@ export const SurviveAiScene = () => (
           </div>
         </div>
 
-        <div className="mt-5 flex items-center justify-between font-mono text-[9px] uppercase tracking-wider text-graphite-soft">
+        <div className="mt-3 flex items-center justify-between font-mono text-[9px] uppercase tracking-wider text-graphite-soft">
           <span>Gemma 2B · on device</span>
           <span>0 bytes sent</span>
         </div>

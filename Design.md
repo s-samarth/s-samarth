@@ -96,7 +96,7 @@ What the notebook fixes, point by point:
 those lines are useless") in favour of their own intro. The intro's first
 sentence sits under the name; a red italic "What can I do for you?" introduces
 the rest. The day job is not a page: it is two sticky notes under the photo and
-the line "Go to my LinkedIn if you care about my job so much." Edgy on purpose.
+the line "Go to my LinkedIn if you care about my job." Edgy on purpose.
 
 **Layout**
 
@@ -125,9 +125,24 @@ the line "Go to my LinkedIn if you care about my job so much." Edgy on purpose.
 then compressed with `cwebp` to 45 KB. The white die-cut border is four stacked
 CSS `drop-shadow`s, which follow the alpha edge rather than the box.
 
-**Favicon** (`public/favicon.svg` and PNGs). Still the lit "S" monogram from
-pass two. It works on light tab strips too; redo it as a notebook mark only if
-the owner asks. The method is in git history at `fad6212`.
+**Favicon** (`public/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`).
+A page of the notebook in miniature: paper tile, faint biro grid, the red
+margin rule, a marker stroke, and a Newsreader 500 italic "S" in graphite.
+How it was made:
+
+1. Glyph outline, not text: fetch the font with `css2?family=Newsreader:ital,opsz,wght@1,72,500&text=S`
+   (the `text=S` subset guarantees the glyph is in the file; the plain CSS
+   returns a non-Latin subset first), read it with opentype.js in node, and
+   take `getPath("S", 0, 0, 1000).toPathData(2)`.
+2. Scale to a 44-unit cap height in the 64 tile, centred on the glyph's box
+   and nudged right of the margin rule.
+3. Keep the grid at 9 percent and the marker thin and low (8 units at y 43),
+   or both turn to mush at 16 px.
+4. Render with `qlmanage -t -s 512` (WebKit, built into macOS), then `sips`
+   down to 32 px. The 180 px touch icon uses a square-cornered copy because
+   iOS masks corners itself.
+
+The previous lit "S" monogram from pass two is in git history at `fad6212`.
 
 ## 4. The signature
 

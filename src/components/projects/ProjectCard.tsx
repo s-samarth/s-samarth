@@ -43,9 +43,10 @@ const Print = ({ project, index }: ProjectCardProps) => {
           fig. {index + 2} · {project.kind}
         </p>
       </div>
-      <div className="absolute -bottom-14 right-2 z-10 flex items-end md:-right-4">
-        <Scribble shape="arrow-up" className="mb-5 h-10 w-12 text-biro" delay={0.3} />
-        <span className="hand -rotate-3 text-[24px]">{project.note}</span>
+      {/* The arrow's head touches the print; its tail sits on the note's baseline. */}
+      <div className="absolute left-[12%] top-full z-10 mt-1 flex items-end whitespace-nowrap">
+        <Scribble shape="hook-up" className="h-10 w-[100px] shrink-0 text-biro" delay={0.3} />
+        <span className="hand -mb-1 ml-1 -rotate-2 text-[24px]">{project.note}</span>
       </div>
     </Reveal>
   );

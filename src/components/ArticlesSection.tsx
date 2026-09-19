@@ -65,7 +65,7 @@ export const ArticlesSection = () => (
             lede="Product thinking, AI strategy, and metric design."
           />
           <span className="absolute -top-2 right-0 hidden items-center lg:-right-44 lg:flex">
-            <Scribble shape="arrow-left" className="h-8 w-14 text-biro" delay={0.4} />
+            <Scribble shape="arrow-left" className="h-8 w-20 shrink-0 text-biro" delay={0.4} />
             <span className="hand ml-1 -rotate-6">the fun part</span>
           </span>
         </div>

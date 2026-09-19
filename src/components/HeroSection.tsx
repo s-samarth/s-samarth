@@ -63,7 +63,7 @@ export const HeroSection = () => (
             </a>
           </motion.div>
           <span className="mt-4 hidden items-center sm:flex">
-            <Scribble shape="arrow-left" className="h-8 w-14 text-biro" delay={1.6} />
+            <Scribble shape="arrow-left" className="h-8 w-20 shrink-0 text-biro" delay={1.6} />
             <span className="hand ml-1 -rotate-3">it actually emails me</span>
           </span>
         </div>

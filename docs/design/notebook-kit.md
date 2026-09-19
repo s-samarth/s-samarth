@@ -56,7 +56,8 @@ ones, so the notebook stays one material.
   `box-decoration-break: clone` gives each wrapped line its own stroke. Stagger
   several with `delay={0.15 * i}` so they read in order.
 - **`Scribble`** draws a pen path with framer-motion `pathLength` 0 to 1. Shapes
-  share a 100 by 40 viewBox: `arrow-left`, `arrow-up`, `arrow-down`, `underline`,
+  share a 100 by 40 viewBox, so size the element at 5:2 (`w-20 h-8`,
+  `w-[100px] h-10`) or the stroke stretches and drifts off its note: `arrow-left`, `hook-up`, `arrow-down`, `underline`,
   `circle`. Arrow heads draw 0.45 s after their shaft. `vectorEffect:
   non-scaling-stroke` keeps the line 2 px however the box is sized.
 - **Prints never move.** `ProjectCard` fades a print in once with `Reveal`
