@@ -1,9 +1,13 @@
 # Scene cookbook
 
 Every project on the site has a "scene": a small, looping, illustrative animation
-on a dark stage, taped into the notebook inside a `.print`. This file explains how
+in bright light colours, taped into the notebook inside a flat `.print`. This file explains how
 the scenes were designed and gives two recipes so another agent can make a new one.
 
+> Colours: the live scenes are white app UI on a pastel wash, with graphite
+> text and bright accents (biro `#2B5BA8`, teal `#0FA37F`, coral `#E5533D`,
+> marigold `#F2A33A`). The dark-stage colour rules below are from pass two.
+>
 > Status: the three live scenes are the project ones (Survive AI, Desi Dictation,
 > Study Hub), built with Recipe B. The Corridor, Copilot and Leakage scenes that
 > Recipe A describes were removed with the day-job chapters in the notebook
@@ -137,6 +141,7 @@ Building blocks:
 3. Keep constants at the top: `W`, `H`, positions, `LOOP`. Derive paths from them.
 4. Use only the shared colours. Put `illustrative` in a corner.
 5. Register it in the `scenes` map in `projects/ProjectCard.tsx`; the card puts it
-   in a `.print` with `aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/3]` on a dark stage.
+   in a `.print` with `aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/3]`, and add a
+   pastel wash for it to the `washes` map.
 6. Screenshot at 1280 and 375 at two different moments in the loop.
 7. Stay under 200 lines; move sub-shapes into tiny components (`Invoice`).

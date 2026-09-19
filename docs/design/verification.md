@@ -30,7 +30,7 @@ Take screenshots at two widths and several scroll positions:
 
 | Width | Positions |
 | --- | --- |
-| 1440 by 900 | hero; Who; each project; Writes; Day job; Ticket |
+| 1440 by 900 | hero; Who; each project (pause the loop at two moments); Writes; Ticket |
 | 375 by 812 | the same, plus the open menu |
 
 At each position confirm: margin page numbers sit in the margin (tablet and up)

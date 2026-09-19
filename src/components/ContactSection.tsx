@@ -16,7 +16,7 @@ export const ContactSection = () => (
     <div className="page-x grid gap-14 py-24 md:py-32 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
       <div>
         <PageHead
-          page="06"
+          page="05"
           name="Talk · Raise a ticket"
           title={
             <>

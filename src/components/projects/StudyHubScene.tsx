@@ -1,15 +1,15 @@
 /**
  * Scene for the study hub: one landing node routing to seven independent
- * sites. Each track brightens in turn (styles/scenes.css, 12 s loop).
+ * sites. Each track lights up in turn (styles/scenes.css, 12 s loop).
  */
 const tracks = [
-  "Mathematics",
-  "Classical ML",
-  "Deep Learning",
-  "LLMs",
-  "Agentic AI",
-  "Case Studies",
-  "Production ML",
+  { label: "Mathematics", color: "#2B5BA8" },
+  { label: "Classical ML", color: "#0FA37F" },
+  { label: "Deep Learning", color: "#E5533D" },
+  { label: "LLMs", color: "#7C4DDB" },
+  { label: "Agentic AI", color: "#D9468A" },
+  { label: "Case Studies", color: "#0B8FC7" },
+  { label: "Production ML", color: "#C77A1A" },
 ];
 
 const W = 400;
@@ -17,16 +17,18 @@ const H = 300;
 const CX = W / 2;
 const CY = H / 2;
 const R = 112;
+const FONT = "Inter, system-ui, sans-serif";
+const MONO = "IBM Plex Mono, monospace";
 
 /** Positions on an ellipse so the labels have breathing room horizontally. */
-const positions = tracks.map((label, i) => {
+const positions = tracks.map((track, i) => {
   const angle = -Math.PI / 2 + (i * 2 * Math.PI) / tracks.length;
-  return { label, x: CX + Math.cos(angle) * R * 1.5, y: CY + Math.sin(angle) * R };
+  return { ...track, x: CX + Math.cos(angle) * R * 1.28, y: CY + Math.sin(angle) * R };
 });
 
 export const StudyHubScene = () => (
   <div className="flex h-full w-full items-center justify-center p-4" aria-hidden="true">
-    <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full max-w-[440px]" role="img">
+    <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full max-w-[440px]" role="img" shapeRendering="geometricPrecision">
       {positions.map((p, i) => (
         <line
           key={p.label}
@@ -34,60 +36,28 @@ export const StudyHubScene = () => (
           y1={CY}
           x2={p.x}
           y2={p.y}
-          stroke="#5CC8E8"
-          strokeWidth="1"
+          stroke={p.color}
+          strokeWidth="1.5"
+          strokeLinecap="round"
           className="hub-edge"
           style={{ "--i": i } as React.CSSProperties}
         />
       ))}
 
-      {/* hub */}
-      <g>
-        <circle cx={CX} cy={CY} r="30" fill="#11141B" stroke="#F2A33A" strokeWidth="1.25" />
-        <text
-          x={CX}
-          y={CY - 3}
-          textAnchor="middle"
-          fill="#ECE7DD"
-          fontFamily="IBM Plex Mono, monospace"
-          fontSize="10"
-          letterSpacing="1.5"
-        >
-          STUDY
-        </text>
-        <text
-          x={CX}
-          y={CY + 10}
-          textAnchor="middle"
-          fill="#F2A33A"
-          fontFamily="IBM Plex Mono, monospace"
-          fontSize="10"
-          letterSpacing="1.5"
-        >
-          HUB
-        </text>
-      </g>
+      <circle cx={CX} cy={CY} r="31" fill="#F2A33A" />
+      <circle cx={CX} cy={CY} r="31" fill="none" stroke="#1D2430" strokeWidth="1.5" />
+      <text x={CX} y={CY - 2} textAnchor="middle" fill="#1D2430" fontFamily={MONO} fontSize="10" fontWeight="500" letterSpacing="1.5">
+        STUDY
+      </text>
+      <text x={CX} y={CY + 11} textAnchor="middle" fill="#1D2430" fontFamily={MONO} fontSize="10" fontWeight="500" letterSpacing="1.5">
+        HUB
+      </text>
 
       {positions.map((p, i) => (
         <g key={p.label} className="hub-node" style={{ "--i": i } as React.CSSProperties}>
-          <rect
-            x={p.x - 46}
-            y={p.y - 13}
-            width="92"
-            height="26"
-            rx="4"
-            fill="#11141B"
-            stroke="#ECE7DD"
-            strokeOpacity="0.25"
-          />
-          <text
-            x={p.x}
-            y={p.y + 4}
-            textAnchor="middle"
-            fill="#ECE7DD"
-            fontFamily="Instrument Sans, sans-serif"
-            fontSize="11"
-          >
+          <rect x={p.x - 47} y={p.y - 14} width="94" height="28" rx="6" fill="#FFFFFF" stroke={p.color} strokeWidth="1.5" />
+          <rect x={p.x - 47} y={p.y - 14} width="6" height="28" rx="3" fill={p.color} />
+          <text x={p.x + 3} y={p.y + 4} textAnchor="middle" fill="#1D2430" fontFamily={FONT} fontSize="11" fontWeight="500">
             {p.label}
           </text>
         </g>

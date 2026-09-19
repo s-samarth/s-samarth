@@ -1,11 +1,5 @@
-import { Fragment } from "react";
 import { Reveal } from "./Reveal";
-import { Highlight } from "./notebook/Highlight";
 import { PageHead } from "./notebook/PageHead";
-
-/** Wrap a run in *asterisks* to put the highlighter over it. */
-const manifesto =
-  "I'm Samarth. I’ve got the Heart of a *Product Builder*, Brain of an *Engineer* and Greed of a *Salesperson* because passion doesn't pay the rent. Bring me the messy problem. I'll build the *AI agent*, the *RAG*, the *model*, or talk you out of all three. IIT Guwahati taught me to take problems seriously. Stand-up Comedy taught me not to take myself seriously.";
 
 const facts = [
   { key: "Now", value: "AI Engineer, Tazapay" },
@@ -23,19 +17,6 @@ const skillGroups = [
   { title: "Product", skills: ["AI product management", "Experimentation", "OKRs & North Star metrics", "Metric design"] },
   { title: "Tools", skills: ["Python", "PyTorch", "LangGraph", "Claude Code", "Codex", "SQL"] },
 ];
-
-/** Splits the manifesto into plain and highlighted runs; odd indexes sat inside asterisks. */
-const Manifesto = () => {
-  const runs = manifesto.split("*");
-  let marked = 0;
-  return (
-    <p className="headline mt-6 max-w-5xl text-[1.85rem] !font-normal leading-[1.32] sm:text-[2.3rem] md:text-[2.75rem] md:leading-[1.28]">
-      {runs.map((run, i) =>
-        i % 2 === 1 ? <Highlight key={i} delay={0.15 * marked++}>{run}</Highlight> : <Fragment key={i}>{run}</Fragment>,
-      )}
-    </p>
-  );
-};
 
 const FactsCard = () => (
   <dl className="card -rotate-[0.6deg] px-6 pb-4 pt-5 md:px-8">
@@ -81,9 +62,8 @@ const SkillsCard = () => (
 export const WhoSection = () => (
   <section id="who">
     <div className="page-x py-24 md:py-32">
-      <PageHead page="02" name="Who · the intro, unfiltered" />
-      <Manifesto />
-      <div className="mt-20 grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+      <PageHead page="02" name="Who" title="The fine print." />
+      <div className="mt-14 grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
         <Reveal>
           <FactsCard />
         </Reveal>

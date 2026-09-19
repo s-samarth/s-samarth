@@ -36,7 +36,8 @@ ones, so the notebook stays one material.
   (`clip-path`). Place it absolutely at the top edge, rotated 2 to 6 degrees.
 - **`.print`**: a photo print (white border, deep soft shadow). Every dark,
   UI-like animation goes inside one, with a `fig. N` label under it.
-- **Sticky notes** (day job): `bg-[#FCE58A]` or `bg-paper-card`, a shadow, tape.
+- **Sticky notes** (day job, in `hero/DayJobNotes.tsx`): `bg-[#FCE58A]` or
+  `bg-paper-card`, a shadow, tape, tilted 1.5 to 2 degrees.
 
 ## Actions
 
@@ -47,6 +48,9 @@ ones, so the notebook stays one material.
 
 ## Hand-made motion
 
+- **`Marked`** renders a string with `*starred*` runs as `Highlight`s in
+  reading order. The hero uses it for the owner's intro.
+
 - **`Highlight`** animates `backgroundSize` from `0% 100%` to `100% 100%` on the
   `.hl` gradient (amber 45 percent, from 42 to 88 percent of the line box).
   `box-decoration-break: clone` gives each wrapped line its own stroke. Stagger
@@ -55,9 +59,10 @@ ones, so the notebook stays one material.
   share a 100 by 40 viewBox: `arrow-left`, `arrow-up`, `arrow-down`, `underline`,
   `circle`. Arrow heads draw 0.45 s after their shaft. `vectorEffect:
   non-scaling-stroke` keeps the line 2 px however the box is sized.
-- **Print settle** (`ProjectCard`): `useScroll` on the print from `start end` to
-  `center center` maps rotate from plus or minus 5 to 1.2 degrees and y from 40
-  to 0, so the print looks taped down as it arrives.
+- **Prints never move.** `ProjectCard` fades a print in once with `Reveal`
+  and leaves it flat. Scroll-linked rotation of a print was tried and removed:
+  it re-rasterises the looping animation inside every frame, which blurs text.
+  Each print gets a pastel radial wash (`washes` map in `ProjectCard.tsx`).
 - **Sticker drop** (hero): the cut-out enters at rotate 9, scale 1.08, y -20 and
   lands at rotate 3.
 - **Ticket stamp** (`ContactForm`): on success a red "Received" box springs in

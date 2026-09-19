@@ -15,19 +15,18 @@ Deep dives (read in this order once you have read this file):
 A personal site for an AI engineer who does stand-up comedy, built as **a
 working notebook**: graph paper, a red margin rule, page numbers in the margin,
 a highlighter over the words that matter, taped-in prints of the projects, blue
-biro asides, sticky notes for the day job, and a support ticket to get in touch.
+biro asides, two sticky notes for the day job, and a support ticket to get in touch.
 
 The page has one job: by the bottom, a reader should feel they have met Samarth
 and seen what Samarth builds for fun, not skimmed a CV. So the fun parts come first.
 
 | Page | Section id | Job |
 | --- | --- | --- |
-| p.01 | `top` | Name, "AI builder", a two-line day-job summary, the cut-out photo as a sticker |
-| p.02 | `who` | The manifesto, word for word, with highlighter; facts card; skills card |
+| p.01 | `top` | Name and "AI builder"; the owner's intro, then "What can I do for you?" and the rest of it, verbatim; on the right the cut-out photo, two day-job sticky notes and a shove to LinkedIn |
+| p.02 | `who` | "The fine print": facts card and skills card |
 | p.03 | `built` | Three open-source projects as experiments, each with its looping animation |
 | p.04 | `writes` | Substack articles as index cards with the cover taped on |
-| p.05 | `day-job` | Two sticky notes: AI Engineer at Tazapay now, Data Scientist at Microsoft before |
-| p.06 | `ticket` | Contact links and the "raise a ticket" form (EmailJS) |
+| p.05 | `ticket` | Contact links and the "raise a ticket" form (EmailJS) |
 
 Page data lives in `src/content/pages.ts`; the order is set in `src/pages/Index.tsx`.
 
@@ -81,7 +80,7 @@ What the notebook fixes, point by point:
 | biro | `#2B5BA8` | handwriting, secondary links, focus ring |
 | redpen | `#C8412B` | margin rule, page numbers, one emphasised phrase per headline |
 | marker | `#F2A33A` | highlighter and the stamp-button shadow (the old brand amber) |
-| ink, bone, mist | dark stage | only inside project animations |
+| scene brights | teal `#0FA37F`, coral `#E5533D`, violet `#7C4DDB`, pink `#D9468A`, sky `#0B8FC7` | project animations only, on white UI over a pastel wash |
 
 **Type**
 
@@ -92,6 +91,12 @@ What the notebook fixes, point by point:
 - Handwriting: Caveat in biro (`.hand`). Asides only, never information a
   reader must have. Everything in handwriting is also true.
 - Inter survives only inside the project animations, which depict app UI.
+
+**Hero copy.** The owner rejected a written summary under the name ("all of
+those lines are useless") in favour of their own intro. The intro's first
+sentence sits under the name; a red italic "What can I do for you?" introduces
+the rest. The day job is not a page: it is two sticky notes under the photo and
+the line "Go to my LinkedIn if you care about my job so much." Edgy on purpose.
 
 **Layout**
 
@@ -107,8 +112,13 @@ What the notebook fixes, point by point:
 1. Every animation is something a hand does: highlight, draw, tape, stamp.
 2. Each plays once, when it first scrolls into view (`once: true`).
 3. The resting state is the finished state, so reduced motion loses nothing.
-4. The project animations keep their own loops; the notebook never competes
-   with them. Only their frame moves (rotate 5 to 1.2 degrees while scrolling in).
+4. The project animations keep their own loops, and their frame never moves.
+   An earlier version rotated each print while scrolling; rotating a layer that
+   animates inside forces a re-raster every frame, and the owner saw it as
+   choppy, blurry text. Prints now only fade in once, flat.
+5. Animations are light: white app UI on a pastel wash per project, bright
+   accents. The first notebook version kept them on a black stage; the owner
+   found that out of place on paper.
 
 **The photo.** The background was removed with macOS Vision subject lifting
 (`VNGenerateForegroundInstanceMaskRequest`, a 20-line Swift script, no install),
@@ -133,7 +143,7 @@ It ties the whole page together: the hero's "AI builder." gets the same stroke.
    writing code. Let them pick; build only the chosen one.
 3. Set paper, ink and three typefaces first. Check a paragraph at 375 px.
 4. Build the primitives (notebook-kit.md), then pages top to bottom.
-5. Wrap any dark, UI-like animation in a `.print` so it reads as a photo.
+5. Put each animation in a flat `.print` with a pastel wash; keep its UI light.
 6. Verify at 1440 and 375 px, test the form with the network intercepted (see
    verification.md), and check that nothing scrolls sideways on a phone.
 
