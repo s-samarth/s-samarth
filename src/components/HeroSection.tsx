@@ -62,9 +62,10 @@ export const HeroSection = () => (
               See what I built
             </a>
           </motion.div>
-          <span className="mt-4 hidden items-center sm:flex">
-            <Scribble shape="arrow-left" className="h-8 w-20 shrink-0 text-biro" delay={1.6} />
-            <span className="hand ml-1 -rotate-3">it actually emails me</span>
+          {/* Hook arrow: head points up at the middle of "Raise a ticket", tail meets the note. */}
+          <span className="ml-20 mt-1 hidden items-end sm:flex">
+            <Scribble shape="hook-up" className="h-10 w-[100px] shrink-0 text-biro" delay={1.6} />
+            <span className="hand -mb-1 ml-1 -rotate-2">it actually emails me</span>
           </span>
         </div>
 
