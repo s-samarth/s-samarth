@@ -14,7 +14,7 @@ const jobs = [
     when: "Before · 3+ years",
     role: "Data Scientist",
     where: "Microsoft",
-    what: "Deals closed in 2 days, not 15. Stopped $100M+ a year in revenue leakage.",
+    what: "Built Seller Copilot, an AI for enterprise sales. Stopped $100M+ a year in revenue leakage.",
     note: "bg-paper-card rotate-[1.5deg]",
   },
 ];
