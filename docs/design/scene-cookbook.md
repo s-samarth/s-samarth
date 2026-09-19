@@ -1,8 +1,14 @@
 # Scene cookbook
 
-Every diagram on the site is a "scene": a small, looping, illustrative animation
-inside a `.panel`. This file explains how each was designed and gives two recipes
-so another agent can make a new one.
+Every project on the site has a "scene": a small, looping, illustrative animation
+on a dark stage, taped into the notebook inside a `.print`. This file explains how
+the scenes were designed and gives two recipes so another agent can make a new one.
+
+> Status: the three live scenes are the project ones (Survive AI, Desi Dictation,
+> Study Hub), built with Recipe B. The Corridor, Copilot and Leakage scenes that
+> Recipe A describes were removed with the day-job chapters in the notebook
+> redesign. They are kept here as worked examples and can be restored from
+> commit `76937de`.
 
 ## What a scene is for
 
@@ -15,7 +21,7 @@ reader who never reads the paragraph still gets the gist in three seconds. Rules
 2. Label it `illustrative` in the corner. Never imply it is a real screenshot.
 3. Resting state equals finished state, so reduced motion shows a complete picture.
 4. Use the shared vocabulary: green `#34D399` means cleared or done, amber `#F2A33A`
-   means flagged or held, `var(--accent)` means "the system". Grey `#F5F5F7` at
+   means flagged or held, amber or cyan means "the system" (the old `var(--accent)` no longer exists). Grey `#F5F5F7` at
    0.14 to 0.3 opacity is structure (wires, belts, unlit nodes).
 5. Inter at 11 px for labels; `#0F0F12` fills for nodes on the panel.
 6. Loop length 7 to 14 s. Fade everything out in the last 6 percent of the loop
@@ -126,10 +132,11 @@ Building blocks:
 ## Adding a new scene, step by step
 
 1. Write the one-sentence story and the keyTime table.
-2. Copy `CorridorScene.tsx` (SMIL) or `SurviveAiScene.tsx` (CSS) as a template.
+2. Copy `SurviveAiScene.tsx` (CSS) as a template, or `CorridorScene.tsx` from
+   commit `76937de` for SMIL.
 3. Keep constants at the top: `W`, `H`, positions, `LOOP`. Derive paths from them.
 4. Use only the shared colours. Put `illustrative` in a corner.
-5. Drop it into a `.panel` with `aspect-[16/10] sm:aspect-[3/2]` (pinned chapters)
-   or `aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/3]` (project cards).
+5. Register it in the `scenes` map in `projects/ProjectCard.tsx`; the card puts it
+   in a `.print` with `aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/3]` on a dark stage.
 6. Screenshot at 1280 and 375 at two different moments in the loop.
 7. Stay under 200 lines; move sub-shapes into tiny components (`Invoice`).

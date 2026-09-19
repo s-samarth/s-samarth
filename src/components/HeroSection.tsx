@@ -1,98 +1,83 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown } from "lucide-react";
-import profilePhoto from "@/assets/profile-photo.jpg";
-import { Chapter } from "./Chapter";
+import { motion } from "framer-motion";
+import cutout from "@/assets/samarth-cutout.webp";
+import { Highlight } from "./notebook/Highlight";
+import { Scribble } from "./notebook/Scribble";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const rise = (delay: number) => ({
-  initial: { opacity: 0, y: 28 },
+  initial: { opacity: 0, y: 18 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.9, delay, ease: EASE },
+  transition: { duration: 0.8, delay, ease: EASE },
 });
 
-/** A headline line that rises out of a clipping mask, like a title card. */
-const TitleLine = ({ children, delay }: { children: React.ReactNode; delay: number }) => (
-  <span className="block overflow-hidden pb-[0.06em]">
-    <motion.span
-      className="block"
-      initial={{ y: "105%" }}
-      animate={{ y: 0 }}
-      transition={{ duration: 1.1, delay, ease: EASE }}
-    >
-      {children}
-    </motion.span>
-  </span>
+/**
+ * The photo as a die-cut sticker: the background was removed with macOS
+ * subject lifting, and the white border comes from stacked drop-shadows,
+ * which follow the image's transparent edge instead of its box.
+ */
+const stickerOutline =
+  "drop-shadow(3px 0 0 #fffdf7) drop-shadow(-3px 0 0 #fffdf7) drop-shadow(0 3px 0 #fffdf7) drop-shadow(0 -3px 0 #fffdf7) drop-shadow(0 14px 18px rgba(29,36,48,0.28))";
+
+const Sticker = () => (
+  <motion.figure
+    initial={{ opacity: 0, rotate: 9, scale: 1.08, y: -20 }}
+    animate={{ opacity: 1, rotate: 3, scale: 1, y: 0 }}
+    transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
+    className="relative mx-auto w-[78%] max-w-[420px] lg:w-full"
+  >
+    <span className="tape -top-2 left-[38%] rotate-[-4deg]" />
+    <img
+      src={cutout}
+      alt="Samarth Saraswat holding a microphone, lit blue on one side and amber on the other"
+      width={792}
+      height={675}
+      className="w-full"
+      style={{ filter: stickerOutline }}
+    />
+    <figcaption className="hand mt-3 -rotate-2 text-center text-[21px]">fig. 1: the mic is not a prop</figcaption>
+  </motion.figure>
 );
 
-export const HeroSection = () => {
-  // Camera move on exit: the photo pushes in and fades, the copy drifts up.
-  const { scrollY } = useScroll();
-  const photoScale = useTransform(scrollY, [0, 900], [1, 1.12]);
-  const photoOpacity = useTransform(scrollY, [0, 700], [1, 0]);
-  const copyY = useTransform(scrollY, [0, 900], [0, -120]);
-  const copyOpacity = useTransform(scrollY, [0, 550], [1, 0]);
+export const HeroSection = () => (
+  <section id="top" className="relative">
+    <div className="page-x flex min-h-[100svh] flex-col justify-center pb-16 pt-24 md:pt-28">
+      <motion.p {...rise(0.1)} className="label">
+        <span className="!text-redpen">p.01 · </span>Notebook Nº 03 · Bangalore · If found, raise a ticket
+      </motion.p>
 
-  return (
-    <Chapter id="hero" className="min-h-[100svh] overflow-hidden">
-      <motion.div style={{ scale: photoScale, opacity: photoOpacity }} className="absolute inset-y-0 right-0 w-full origin-center lg:w-[62%]">
-        <motion.div
-          className="h-full w-full"
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, delay: 0.5, ease: EASE }}
-        >
-          <img
-            src={profilePhoto}
-            alt="Samarth Saraswat holding a microphone, lit blue on one side and amber on the other"
-            className="h-full w-full object-cover object-[68%_20%] lg:object-[62%_center]"
-          />
-          <div className="absolute inset-0 bg-ink/25" />
-          <div className="absolute inset-0 hidden bg-gradient-to-r from-ink via-ink/75 to-transparent to-60% lg:block" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-transparent to-75% lg:via-ink/40 lg:to-45%" />
-          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/80 to-transparent" />
-        </motion.div>
-      </motion.div>
+      <div className="mt-10 grid items-center gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-10">
+        <div className="order-2 lg:order-1">
+          <motion.h1 {...rise(0.2)} className="headline text-[3.3rem] sm:text-7xl md:text-[5.4rem] lg:text-[5.8rem]">
+            Samarth Saraswat,
+            <br />
+            <em className="font-medium">
+              <Highlight delay={0.9}>AI builder.</Highlight>
+            </em>
+          </motion.h1>
 
-      <motion.div
-        style={{ y: copyY, opacity: copyOpacity }}
-        className="container-x relative flex min-h-[100svh] flex-col justify-end pb-14 pt-32 lg:justify-center lg:pb-0"
-      >
-        <motion.p {...rise(0.9)} className="eyebrow !text-amber">
-          AI Engineer @ Tazapay · Bangalore
-        </motion.p>
+          <motion.p {...rise(0.4)} className="lede mt-8 max-w-xl">
+            I build AI agents, RAG and ML systems that people actually use. By day I'm an AI engineer at Tazapay. Before
+            that, a data scientist at Microsoft. Off hours, stand-up comedy.
+          </motion.p>
 
-        <h1 className="display mt-5 text-[3.4rem] leading-[0.98] sm:text-7xl md:text-8xl lg:text-[6.6rem]">
-          <TitleLine delay={0.95}>Samarth Saraswat,</TitleLine>
-          <TitleLine delay={1.08}>
-            <span className="text-amber">AI Builder</span>
-          </TitleLine>
-        </h1>
+          <motion.div {...rise(0.55)} className="mt-10 flex flex-wrap items-center gap-6">
+            <a href="#ticket" className="btn-stamp">
+              Raise a ticket
+            </a>
+            <a href="#built" className="btn-pen">
+              See what I built
+            </a>
+            <span className="relative hidden items-center sm:inline-flex">
+              <Scribble shape="arrow-left" className="h-8 w-14 text-biro" delay={1.4} />
+              <span className="hand ml-1 -rotate-3">it actually emails me</span>
+            </span>
+          </motion.div>
+        </div>
 
-        <motion.p {...rise(1.3)} className="mt-8 max-w-xl text-lg leading-relaxed text-bone-dim md:text-xl">
-          Building AI-powered products that balance user impact, business outcomes, and flawless
-          execution. Right now, that means AI systems for anti-money laundering and fraud detection
-          in cross-border payments.
-        </motion.p>
-
-        <motion.div {...rise(1.45)} className="mt-10 flex flex-wrap items-center gap-4">
-          <a href="#who" className="btn-accent !bg-amber">
-            Get to know me
-          </a>
-          <a href="#talk" className="btn-ghost">
-            Raise a ticket
-          </a>
-        </motion.div>
-
-        <motion.div
-          {...rise(1.7)}
-          className="mt-16 flex items-center justify-between text-[13px] font-medium uppercase tracking-[0.14em] text-mist lg:mt-24"
-        >
-          <span>Formerly Microsoft · IIT Guwahati</span>
-          <a href="#who" className="hidden items-center gap-2 hover:text-bone sm:flex">
-            Scroll <ArrowDown size={12} />
-          </a>
-        </motion.div>
-      </motion.div>
-    </Chapter>
-  );
-};
+        <div className="order-1 lg:order-2">
+          <Sticker />
+        </div>
+      </div>
+    </div>
+  </section>
+);

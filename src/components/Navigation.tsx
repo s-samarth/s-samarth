@@ -1,13 +1,35 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { navChapters } from "@/chapters/chapters";
-import { useChapter } from "@/chapters/ChapterContext";
+import { pages, type NotebookPage } from "@/content/pages";
+
+/**
+ * Which page is under the middle of the screen.
+ *
+ * Frontend note: an IntersectionObserver with a thin band in the middle of
+ * the viewport (the rootMargin) fires only when a section crosses that band,
+ * so the browser does the work instead of a scroll listener.
+ */
+const useActivePage = () => {
+  const [active, setActive] = useState<NotebookPage["id"] | null>(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id as NotebookPage["id"])),
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    pages.forEach((p) => {
+      const el = document.getElementById(p.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+  return active;
+};
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const { current } = useChapter();
+  const active = useActivePage();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
@@ -26,47 +48,42 @@ export const Navigation = () => {
   const close = () => setIsMobileOpen(false);
 
   return (
-    <motion.header
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, delay: 1.2 }}
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        isScrolled && !isMobileOpen ? "border-b border-line bg-ink/70 backdrop-blur-xl" : ""
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        isScrolled && !isMobileOpen ? "border-b border-graphite/15 bg-paper/90 backdrop-blur-md" : ""
       }`}
     >
-      <div className="container-x">
-        <nav className="flex h-16 items-center justify-between">
-          <a href="#" className="font-display text-[17px] font-semibold tracking-tight text-bone" onClick={close}>
-            Samarth Saraswat
-          </a>
+      <nav className="mx-auto flex h-14 w-full max-w-[1180px] items-center justify-between px-5 md:pl-24 md:pr-10">
+        <a href="#top" className="font-serif text-[20px] font-medium tracking-tight text-graphite" onClick={close}>
+          Samarth Saraswat
+        </a>
 
-          <div className="hidden items-center gap-7 lg:flex">
-            {navChapters.map((chapter) => (
-              <a
-                key={chapter.id}
-                href={`#${chapter.id}`}
-                className={`text-[14px] font-medium transition-colors hover:text-bone ${
-                  current === chapter.id ? "text-bone" : "text-mist"
-                }`}
-              >
-                {chapter.label}
-              </a>
-            ))}
-            <a href="#talk" className="btn-accent !px-4 !py-2 !text-[13px]">
-              Raise a ticket
+        <div className="hidden items-center gap-6 lg:flex">
+          {pages.map((page) => (
+            <a
+              key={page.id}
+              href={`#${page.id}`}
+              className={`font-mono text-[12px] font-medium uppercase tracking-[0.12em] transition-colors hover:text-graphite ${
+                active === page.id ? "text-graphite underline decoration-marker decoration-[3px] underline-offset-[6px]" : "text-graphite-soft"
+              }`}
+            >
+              {page.label}
             </a>
-          </div>
+          ))}
+          <a href="#ticket" className="btn-stamp !px-3.5 !py-1.5 !text-[11px]">
+            Raise a ticket
+          </a>
+        </div>
 
-          <button
-            onClick={() => setIsMobileOpen((v) => !v)}
-            className="relative z-[60] p-2 text-bone lg:hidden"
-            aria-label={isMobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMobileOpen}
-          >
-            {isMobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </nav>
-      </div>
+        <button
+          onClick={() => setIsMobileOpen((v) => !v)}
+          className="relative z-[60] p-2 text-graphite lg:hidden"
+          aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMobileOpen}
+        >
+          {isMobileOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </nav>
 
       <AnimatePresence>
         {isMobileOpen && (
@@ -74,30 +91,31 @@ export const Navigation = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 flex flex-col justify-end bg-ink px-6 pb-12 pt-24 lg:hidden"
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 flex flex-col justify-end bg-paper px-6 pb-12 pt-24 lg:hidden"
           >
             <div className="flex flex-col">
-              {navChapters.map((chapter, i) => (
+              {pages.map((page, i) => (
                 <motion.a
-                  key={chapter.id}
-                  href={`#${chapter.id}`}
+                  key={page.id}
+                  href={`#${page.id}`}
                   onClick={close}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.08 + i * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="display border-b border-line py-4 text-4xl"
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 + i * 0.05, duration: 0.4 }}
+                  className="flex items-baseline gap-4 border-b border-graphite/15 py-4"
                 >
-                  {chapter.label}
+                  <span className="label !text-redpen">p.{page.page}</span>
+                  <span className="headline text-4xl">{page.label}</span>
                 </motion.a>
               ))}
             </div>
-            <a href="#talk" onClick={close} className="btn-accent mt-8 self-start">
+            <a href="#ticket" onClick={close} className="btn-stamp mt-8 self-start">
               Raise a ticket
             </a>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 };

@@ -5,62 +5,68 @@ reproduce the approach. Written for a human or an AI agent picking this up cold.
 
 Deep dives (read in this order once you have read this file):
 
-1. [docs/design/scroll-mechanics.md](docs/design/scroll-mechanics.md) — chapters, atmosphere, pinned sections, beats.
-2. [docs/design/scene-cookbook.md](docs/design/scene-cookbook.md) — how every animation was built, with recipes.
-3. [docs/design/voice-and-copy.md](docs/design/voice-and-copy.md) — turning the owner's raw words into beats.
+1. [docs/design/notebook-kit.md](docs/design/notebook-kit.md) — the notebook primitives: paper, margin, highlighter, tape, prints, stamps.
+2. [docs/design/scene-cookbook.md](docs/design/scene-cookbook.md) — how the project animations were built, with recipes.
+3. [docs/design/voice-and-copy.md](docs/design/voice-and-copy.md) — keeping the owner's voice, not polishing it away.
 4. [docs/design/verification.md](docs/design/verification.md) — how to check the result, and the traps.
 
 ## 1. What this design is
 
-A personal site for an AI engineer, built as a **scroll-driven story in chapters**.
-The page has one job: by the bottom, a reader should feel they have met Samarth,
-not skimmed a CV. Every decision below serves that.
+A personal site for an AI engineer who does stand-up comedy, built as **a
+working notebook**: graph paper, a red margin rule, page numbers in the margin,
+a highlighter over the words that matter, taped-in prints of the projects, blue
+biro asides, sticky notes for the day job, and a support ticket to get in touch.
 
-The metaphor is a **film**. The page opens on a portrait with a letterbox, the
-lighting changes colour as each chapter takes the screen, some chapters *pin* the
-screen while a short sequence plays, and diagrams are called "scenes". It stays
-a metaphor: no parallax gimmicks, no scroll-jacking, native scrolling throughout.
+The page has one job: by the bottom, a reader should feel they have met Samarth
+and seen what Samarth builds for fun, not skimmed a CV. So the fun parts come first.
 
-The reader meets the person in this order (see `src/pages/Index.tsx`):
+| Page | Section id | Job |
+| --- | --- | --- |
+| p.01 | `top` | Name, "AI builder", a two-line day-job summary, the cut-out photo as a sticker |
+| p.02 | `who` | The manifesto, word for word, with highlighter; facts card; skills card |
+| p.03 | `built` | Three open-source projects as experiments, each with its looping animation |
+| p.04 | `writes` | Substack articles as index cards with the cover taped on |
+| p.05 | `day-job` | Two sticky notes: AI Engineer at Tazapay now, Data Scientist at Microsoft before |
+| p.06 | `ticket` | Contact links and the "raise a ticket" form (EmailJS) |
 
-| Chapter | Section id | Job | Accent |
-| --- | --- | --- | --- |
-| Start | `hero` | Portrait, name, "AI Builder", two calls to action | amber |
-| Who | `who` | A manifesto that lights up as you read, then facts and skills | amber |
-| Now | `now` | Pinned. Tazapay: three beats and a payments-corridor scene | violet |
-| Before | `before` | Pinned. Microsoft: two impact beats, two scenes that cross-fade | blue |
-| Built | `built` | Three open-source projects, each with a looping scene | green |
-| Writes | `writes` | Featured Substack articles | rose |
-| Talk | `talk` | Contact links and the "raise a ticket" form | amber |
-
-Chapter data lives in `src/chapters/chapters.ts`. Adding a chapter means one row
-there and one `<Chapter id="...">` section. Nothing else needs to know.
+Page data lives in `src/content/pages.ts`; the order is set in `src/pages/Index.tsx`.
 
 ## 2. How the design was arrived at
 
-Two full passes were built. The first was rejected; understanding why is the most
-useful thing in this document.
+Three passes. The first two were rejected; why they failed is the most useful
+thing in this document.
 
-**Pass one** used a high-contrast serif (Bodoni), tiny monospace labels, hairline
-rules and a single amber accent on black. The owner's verdict: "vibe coded slop",
-"readability is shit", "not immersive". Only the hero (photo plus gradient) and the
-project animations survived. Lesson: the serif-on-black-with-mono-labels look is
-the default an AI reaches for on any "cinematic" brief. It was a default, not a
-choice, and it hurt legibility, which the owner cared about most.
+**Pass one** was serif on black with tiny mono labels and one amber accent. The
+owner called it "vibe coded slop" with poor readability.
 
-**Pass two** (this design) started from three constraints the owner stated:
+**Pass two** was a cinematic dark site: scroll-driven chapters, colour that
+re-lit per chapter, two pinned chapters for Tazapay and Microsoft. It was well
+made, and the owner liked it at first, but it read as the standard 2025–26 AI
+portfolio: dark page, warm glow, big sans headlines, rounded glass panels, pill
+tags. Worse, two long chapters on the day job put the "LinkedIn part" above the
+projects and writing, which are the parts the owner actually enjoys. The last commit with
+that design is `76937de`; its scenes and docs can be recovered from there.
 
-- Reading must be effortless. Big, heavy, sans headlines; body text at 17 to 20 px.
-- Scrolling should feel like an experience, Apple-inspired: content that arrives
-  in time with the scroll, not a wall of cards.
-- The page should feel like getting to know a person. So the structure is a
-  narrative (Who, Now, Before, Built, Writes, Talk), not a resume outline.
+**Pass three** (this design) came from mocking four whole-site directions rooted
+in the owner's own world rather than in portfolio templates: a stand-up gig
+night, a personal support desk, Indian truck art, and an engineer's lab
+notebook. The owner chose the notebook. Research that informed it: Awwwards portfolio
+winners, an "AI slop web design" guide (tells: default Inter, one gradient
+accent, identical rounded cards, purposeless fades), and a 2026 aesthetics
+round-up (texture, collage, "type plus objects", scrapbook).
 
-Research consulted before building: Awwwards portfolio winners, a 2026 juror's
-list of award-winning sites, an "immersive website examples" roundup, and the
-Framer Motion scroll documentation. The takeaways applied here: one continuous
-background surface instead of sectioned bands, colour that shifts with position,
-pinned sequences used sparingly (two of seven chapters), and restraint elsewhere.
+What the notebook fixes, point by point:
+
+- **Default type** becomes Newsreader (a warm editorial serif) plus Caveat for
+  handwriting and IBM Plex Mono for typewritten labels.
+- **Dark stage with a glow** becomes paper with a printed grid.
+- **Identical rounded cards** become objects with different materials: index
+  cards, sticky notes, photo prints, a ticket. Each has zero or near-zero radius.
+- **Decorative motion** becomes motion that mimics a hand: highlighter swipes,
+  pen strokes drawing themselves, prints settling as they are taped down, a
+  rubber stamp landing when a ticket is sent.
+- **Structure** encodes something real: page numbers and experiment numbers in
+  the margin, figure numbers under the prints.
 
 ## 3. The system
 
@@ -68,107 +74,71 @@ pinned sequences used sparingly (two of seven chapters), and restraint elsewhere
 
 | Token | Value | Use |
 | --- | --- | --- |
-| ink | `#050506` | page background |
-| bone | `#F5F5F7` | primary text |
-| mist | `#A1A1A6` | secondary text |
-| line | `rgba(245,245,247,0.12)` | borders, rules |
-| amber | `#F2A33A` | the owner's brand colour; hero and fallback accent |
-| `--accent` | CSS variable | the *current chapter's* colour; eyebrows, `em`, buttons |
-
-Only `--accent` changes with scroll. Everything coloured in the UI reads it, so a
-chapter change re-tints labels, emphasised words, buttons and the rail dot at once,
-with a 1.2 s CSS colour transition to make the handover feel like lighting, not a swap.
+| paper | `#F6F3EA` | page; grid lines are biro blue at 6 and 10 percent |
+| paper-card | `#FFFDF7` | index cards, prints, the ticket |
+| graphite | `#1D2430` | all body and headline text (ink, not black) |
+| graphite-dim / soft | `#4A5263` / `#7A8292` | secondary text / labels |
+| biro | `#2B5BA8` | handwriting, secondary links, focus ring |
+| redpen | `#C8412B` | margin rule, page numbers, one emphasised phrase per headline |
+| marker | `#F2A33A` | highlighter and the stamp-button shadow (the old brand amber) |
+| ink, bone, mist | dark stage | only inside project animations |
 
 **Type**
 
-- Display: Inter Tight 600, `leading 1.02`, `tracking -0.03em`. Utility class `.display`.
-  One emphasised phrase per headline uses `<em>`, which renders upright in the accent.
-- Body: Inter, 17 px base, `.lede` at 18 to 20 px in mist for standfirsts.
-- Eyebrow: 13 px uppercase sans, `tracking 0.14em`, in the accent. Utility `.eyebrow`.
-- Mono (IBM Plex Mono) appears only *inside* scene mockups where it depicts UI.
+- Headlines: Newsreader 500, `leading 1.02`, `tracking -0.02em` (`.headline`).
+  Emphasis is Newsreader italic; one phrase per headline may be red pen.
+- Body: Newsreader 17 to 21 px. Ledes use `.lede` in graphite-dim.
+- Labels: IBM Plex Mono 11 to 12 px uppercase, `tracking 0.14em` (`.label`).
+- Handwriting: Caveat in biro (`.hand`). Asides only, never information a
+  reader must have. Everything in handwriting is also true.
+- Inter survives only inside the project animations, which depict app UI.
 
 **Layout**
 
-- `.container-x`: max width 1180 px, side padding 24/40 px.
-- Pinned chapters use a two-column grid on `lg`: copy left, scene right (`1fr 1.1fr`).
-- `.panel`: rounded 2xl, `line` border, 3.5 percent white fill, slight blur. Used for
-  scene frames, fact lists, specs and the form. It is the only "card" style.
-
-**Atmosphere** (`src/components/Atmosphere.tsx`)
-
-Two blurred circles fixed behind the page, each a plain `background-color` with a
-90 to 140 px blur, opacity 0.13 to 0.16. Their colours come from the active chapter's
-`glow` pair and transition over 1.6 s; they drift by 20 to 30 vh across the full
-scroll. A film-grain overlay (`body::after`, 4.5 percent opacity) sits above everything
-so flat colour never looks digital.
+- `.page-x`: max width 1180 px; on `md` and up the left padding is 6 rem and a
+  1 px red rule sits at 3.75 rem. Page numbers hang in that margin.
+- Each section is one `.page-x` with vertical padding inside it, so the margin
+  rule runs unbroken from page to page.
+- Objects are tilted by hand-picked angles (-1.4 to 1.2 degrees), never random,
+  so screenshots are stable and nothing looks accidental twice.
 
 **Motion principles**
 
-1. Scroll drives the story; time drives the scenes. Chapter transitions, beats and
-   reveals are tied to scroll position. Diagrams loop on their own clock.
-2. Every scroll-linked value passes through `useSpring` (stiffness 120, damping 28)
-   so it never snaps, and easing is `[0.22, 1, 0.36, 1]` everywhere else.
-3. Nothing important is only available mid-animation. Scenes' resting state is the
-   finished diagram, so reduced-motion users see a complete picture.
-4. Two pinned chapters at most. Pinning is expensive attention; spend it on the two
-   things the reader most needs to understand (current role, biggest past impact).
+1. Every animation is something a hand does: highlight, draw, tape, stamp.
+2. Each plays once, when it first scrolls into view (`once: true`).
+3. The resting state is the finished state, so reduced motion loses nothing.
+4. The project animations keep their own loops; the notebook never competes
+   with them. Only their frame moves (rotate 5 to 1.2 degrees while scrolling in).
 
-**Favicon and touch icon** (`public/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`)
+**The photo.** The background was removed with macOS Vision subject lifting
+(`VNGenerateForegroundInstanceMaskRequest`, a 20-line Swift script, no install),
+then compressed with `cwebp` to 45 KB. The white die-cut border is four stacked
+CSS `drop-shadow`s, which follow the alpha edge rather than the box.
 
-The icon is the hero in miniature: the Inter Tight "S" from the headlines, in bone,
-on the ink tile, lit by the same cyan (`#2C93B3`) top-left and amber bottom-right
-glows. It replaced a serif "S" in orange on a grey box that matched nothing else.
-
-How it was made, so it can be redone for another letter or person:
-
-1. The glyph is the real font outline, not text. Load the 700-weight TTF from
-   Google Fonts in a browser with opentype.js (cdnjs) and read
-   `font.getPath("S", 0, 0, 1000).toPathData(2)`. No font is embedded, so the SVG
-   stays about 2 KB and renders identically everywhere.
-2. Scale the path so the cap height is 40 of the 64-unit tile and centre it on
-   the glyph's bounding box, not on the em square.
-3. The glows are two radial gradients on full-tile rects, not blur filters;
-   filters are unreliable in favicon renderers.
-4. Judge candidates only at 16 and 32 px on both a light and a dark tab strip.
-   Six directions were tried; bone on lit ink was the only one still crisp at
-   16 px. Amber-on-amber lost the letter, a flat amber tile lost the brand.
-5. Export PNGs by rendering the SVG in a browser and screenshotting the element:
-   32 px with rounded corners for the fallback icon, 180 px with square corners
-   for `apple-touch-icon` because iOS applies its own corner mask.
-6. `theme-color` in `index.html` equals the page background so the browser chrome
-   matches the tile.
+**Favicon** (`public/favicon.svg` and PNGs). Still the lit "S" monogram from
+pass two. It works on light tab strips too; redo it as a notebook mark only if
+the owner asks. The method is in git history at `fad6212`.
 
 ## 4. The signature
 
-The single memorable device is **chapter-driven light**: as the reader scrolls,
-the whole page re-lights (accent, glows, rail) to the chapter they are in, and the
-two pinned chapters play a short animated scene beside copy that arrives in beats.
-Everything else is deliberately quiet so that device carries the page.
+**The highlighter.** The owner's manifesto is kept exactly as written, and
+the phrases they emphasised get a marker stroke that swipes across as you read.
+It ties the whole page together: the hero's "AI builder." gets the same stroke.
 
 ## 5. Reproduction checklist
 
-To build a page like this for someone else, in order:
-
-1. Get the raw material in the owner's own words: what they do now, what they did,
-   what they made, how they talk. Keep their phrasing; do not "polish" it into
-   marketing copy. See voice-and-copy.md.
-2. Decide the chapter order as a story (who, now, before, built, writes, talk) and
-   give each chapter one accent and two glow colours. Adjacent chapters should differ
-   in hue so the change is visible.
-3. Set the type first: a heavy tight sans for headlines, a readable sans for body,
-   17 px minimum. Check a paragraph at phone width before doing anything else.
-4. Build the shell: ChapterProvider, Atmosphere, Chapter sections, ChapterRail, nav.
-5. Build the hero last-but-one and the scenes last. Scenes take the most time; the
-   cookbook explains the two recipes (SVG SMIL and CSS keyframes).
-6. Verify at 1280 and 375 widths at several scroll positions, then with reduced
-   motion on. Fix overlaps before adding anything new.
-7. Cut the favicon from the same display face and light it like the hero, so the
-   tab and home screen carry the identity too (see "Favicon and touch icon").
+1. Get the owner's raw words and keep them. Ask which sections are fun and
+   which are obligation; order the page by fun.
+2. Mock three or four whole-site directions from the owner's own world before
+   writing code. Let them pick; build only the chosen one.
+3. Set paper, ink and three typefaces first. Check a paragraph at 375 px.
+4. Build the primitives (notebook-kit.md), then pages top to bottom.
+5. Wrap any dark, UI-like animation in a `.print` so it reads as a photo.
+6. Verify at 1440 and 375 px, test the form with the network intercepted (see
+   verification.md), and check that nothing scrolls sideways on a phone.
 
 ## 6. Constraints that shaped the code
 
-- Source files stay under 200 lines. Large components were split (Beats, scenes).
-- No new dependencies without asking. No smooth-scroll library: `useSpring` gives
-  the same feel on scroll-linked values, and native scroll stays accessible.
-- Framer Motion v12 is the only animation library. CSS and SVG SMIL do the loops.
+- Source files stay under 200 lines. No new dependencies without asking.
+- Framer Motion v12 is the only animation library; CSS keyframes run the loops.
 - `MotionConfig reducedMotion="user"` and a CSS media query honour reduced motion.

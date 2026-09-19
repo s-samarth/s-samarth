@@ -4,35 +4,27 @@
 
 @layer base {
   :root {
-    --background: 240 9% 2%;
-    --foreground: 240 11% 96%;
-
-    --card: 240 9% 6%;
-    --card-foreground: 240 11% 96%;
-
-    --popover: 240 9% 6%;
-    --popover-foreground: 240 11% 96%;
-
-    --primary: 34 88% 59%;
-    --primary-foreground: 240 9% 2%;
-
-    --secondary: 240 9% 9%;
-    --secondary-foreground: 240 11% 96%;
-
-    --muted: 240 9% 9%;
-    --muted-foreground: 240 3% 64%;
-
-    --destructive: 0 72% 55%;
-    --destructive-foreground: 240 11% 96%;
-
-    --border: 240 6% 16%;
-    --input: 240 6% 16%;
-    --ring: 34 88% 59%;
-
-    --radius: 0.75rem;
-
-    /* Chapter accent. The provider updates this as you scroll. */
-    --accent: #f2a33a;
+    /* shadcn tokens, mapped onto the paper so ui/* inherits it. */
+    --background: 44 38% 94%;
+    --foreground: 218 25% 15%;
+    --card: 45 100% 98%;
+    --card-foreground: 218 25% 15%;
+    --popover: 45 100% 98%;
+    --popover-foreground: 218 25% 15%;
+    --primary: 218 25% 15%;
+    --primary-foreground: 44 38% 94%;
+    --secondary: 42 30% 90%;
+    --secondary-foreground: 218 25% 15%;
+    --muted: 42 30% 90%;
+    --muted-foreground: 219 14% 35%;
+    --accent: 34 88% 59%;
+    --accent-foreground: 218 25% 15%;
+    --destructive: 8 65% 48%;
+    --destructive-foreground: 44 38% 94%;
+    --border: 40 18% 80%;
+    --input: 40 18% 80%;
+    --ring: 216 59% 41%;
+    --radius: 0.25rem;
   }
 
   * {
@@ -41,96 +33,132 @@
 
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   section[id] {
-    scroll-margin-top: 4rem;
+    scroll-margin-top: 3.5rem;
   }
 
+  /* Graph paper: two faint blue grids, a fine one and a heavier one every 5 squares. */
   body {
-    @apply bg-ink text-bone antialiased;
-    font-family: theme(fontFamily.sans);
-    font-size: 17px;
-    font-feature-settings: "cv11", "ss01", "ss03";
+    @apply bg-paper text-graphite antialiased;
+    font-family: theme(fontFamily.serif);
+    font-size: 18px;
     text-rendering: optimizeLegibility;
+    background-image:
+      linear-gradient(rgba(43, 91, 168, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(43, 91, 168, 0.1) 1px, transparent 1px),
+      linear-gradient(rgba(43, 91, 168, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(43, 91, 168, 0.06) 1px, transparent 1px);
+    background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
   }
 
-  /* Film grain over the whole frame. Fixed, non-interactive, very quiet. */
+  /* Paper tooth. Fixed, non-interactive, barely there. */
   body::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 70;
     pointer-events: none;
-    opacity: 0.045;
-    mix-blend-mode: overlay;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--accent) 35%, transparent);
-    color: theme(colors.bone.DEFAULT);
+    background: rgba(242, 163, 58, 0.45);
+    color: theme(colors.graphite.DEFAULT);
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid theme(colors.biro);
     outline-offset: 3px;
   }
 }
 
 @layer components {
-  .container-x {
-    @apply mx-auto w-full max-w-[1180px] px-6 md:px-10;
+  /* A notebook page. The red margin rule runs down the left on tablets and up. */
+  .page-x {
+    @apply relative mx-auto w-full max-w-[1180px] px-5 md:pl-24 md:pr-10;
+  }
+  .page-x::before {
+    content: "";
+    @apply absolute inset-y-0 left-[3.75rem] hidden w-px md:block;
+    background: rgba(200, 65, 43, 0.55);
   }
 
-  /* Small label above a headline. Sans, not mono, so it stays readable. */
-  .eyebrow {
-    @apply text-[13px] font-medium uppercase tracking-[0.14em];
-    color: var(--accent);
-    transition: color 1.2s ease;
+  /* Typewritten label: page numbers, section names, small metadata. */
+  .label {
+    @apply font-mono text-[12px] font-medium uppercase tracking-[0.14em] text-graphite-soft;
   }
 
-  /* Headline: Inter Tight, heavy, tight. Sized per use. */
-  .display {
-    @apply font-display font-semibold leading-[1.02] tracking-[-0.03em] text-bone;
+  /* Handwriting in blue biro. Only for asides, never for anything you must read. */
+  .hand {
+    @apply font-hand text-[22px] leading-[1.05] text-biro;
   }
 
-  .display em {
-    font-style: normal;
-    color: var(--accent);
-    transition: color 1.2s ease;
+  .headline {
+    @apply font-serif font-medium leading-[1.02] tracking-[-0.02em] text-graphite;
   }
 
   .lede {
-    @apply text-lg leading-relaxed text-mist md:text-xl;
+    @apply text-[19px] leading-relaxed text-graphite-dim md:text-[21px];
   }
 
-  .btn-accent {
-    @apply inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold text-ink transition-all duration-300 ease-cinematic hover:bg-bone;
-    background: var(--accent);
-  }
-
-  .btn-ghost {
-    @apply inline-flex items-center gap-2 rounded-full border border-bone/20 px-6 py-3 text-[15px] font-medium text-bone transition-all duration-300 ease-cinematic hover:border-bone/60 hover:bg-bone/5;
-  }
-
-  .link-draw {
-    @apply relative inline-block;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-size: 0% 1px;
+  /* Highlighter stroke. Width is animated by <Highlight/>; this is the finished state. */
+  .hl {
+    background-image: linear-gradient(transparent 42%, rgba(242, 163, 58, 0.45) 42%, rgba(242, 163, 58, 0.45) 88%, transparent 88%);
     background-repeat: no-repeat;
-    background-position: 0 100%;
-    transition: background-size 0.45s theme(transitionTimingFunction.cinematic);
+    background-size: 100% 100%;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
-  .link-draw:hover,
-  .link-draw:focus-visible {
-    background-size: 100% 1px;
+  /* Masking tape. Put it inside a relative parent. */
+  .tape {
+    @apply pointer-events-none absolute z-10 h-6 w-24;
+    background: rgba(236, 214, 150, 0.72);
+    box-shadow: 0 1px 2px rgba(29, 36, 48, 0.12);
+    clip-path: polygon(2% 0, 98% 4%, 100% 96%, 0 100%);
   }
 
-  /* Soft panel used for facts, specs and the form. */
-  .panel {
-    @apply rounded-2xl border border-line bg-white/[0.035] backdrop-blur-sm;
+  /* An index card: warm white, one red header rule, faint blue lines. */
+  .card {
+    @apply relative bg-paper-card;
+    box-shadow: 0 1px 2px rgba(29, 36, 48, 0.08), 0 12px 30px -18px rgba(29, 36, 48, 0.35);
+  }
+  .card-ruled {
+    background-image: linear-gradient(transparent 31px, rgba(43, 91, 168, 0.16) 31px);
+    background-size: 100% 32px;
+  }
+
+  /* A printed photo taped into the notebook. The dark inside hosts the animations. */
+  .print {
+    @apply relative bg-paper-card p-2.5 pb-3;
+    box-shadow: 0 2px 4px rgba(29, 36, 48, 0.1), 0 24px 40px -24px rgba(29, 36, 48, 0.5);
+  }
+
+  /* Primary action: an ink stamp. */
+  .btn-stamp {
+    @apply inline-flex items-center gap-2 border-2 border-graphite bg-graphite px-5 py-2.5 font-mono text-[13px] font-medium uppercase tracking-[0.12em] text-paper transition-all duration-200;
+    box-shadow: 3px 3px 0 theme(colors.marker);
+  }
+  .btn-stamp:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 theme(colors.marker);
+  }
+  .btn-stamp:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 theme(colors.marker);
+  }
+
+  /* Secondary action: plain text with a pen underline. */
+  .btn-pen {
+    @apply inline-flex items-center gap-1.5 border-b-2 border-biro/60 pb-0.5 font-mono text-[13px] font-medium uppercase tracking-[0.12em] text-biro transition-colors hover:border-biro;
+  }
+
+  .link-ink {
+    @apply underline decoration-biro/40 decoration-1 underline-offset-4 transition-colors hover:decoration-biro;
   }
 }

@@ -1,26 +1,25 @@
 import { projects } from "@/data/projects";
-import { Chapter } from "./Chapter";
-import { ChapterIntro } from "./ChapterIntro";
+import { PageHead } from "./notebook/PageHead";
 import { ProjectCard } from "./projects/ProjectCard";
 
 export const ProjectsSection = () => (
-  <Chapter id="built" className="py-28 md:py-40">
-    <div className="container-x">
-      <ChapterIntro
-        eyebrow="Built · Open source"
+  <section id="built">
+    <div className="page-x py-24 md:py-32">
+      <PageHead
+        page="03"
+        name="Built · Open source"
         title={
           <>
-            Things I built, then <em>gave away.</em>
+            Things I built, then <em className="text-redpen">gave away.</em>
           </>
         }
         lede="Two of these run entirely on the device in your hand or on your desk, with nothing sent anywhere. The third is a free study hub. All three are on GitHub."
       />
-
-      <div className="mt-8 divide-y divide-line">
+      <div className="mt-8 divide-y divide-dashed divide-graphite-soft/50">
         {projects.map((project, i) => (
-          <ProjectCard key={project.id} project={project} flip={i % 2 === 1} />
+          <ProjectCard key={project.id} project={project} index={i} />
         ))}
       </div>
     </div>
-  </Chapter>
+  </section>
 );

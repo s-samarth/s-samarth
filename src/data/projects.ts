@@ -16,6 +16,8 @@ export interface Project {
   specs: ProjectSpec[];
   github: string;
   live?: { href: string; label: string };
+  /** Handwritten margin note next to the animation. Keep it short and true. */
+  note: string;
 }
 
 export const projects: Project[] = [
@@ -36,6 +38,7 @@ export const projects: Project[] = [
       { key: "Stack", value: "Flutter, SQLite FTS5, ONNX Runtime, Python build step" },
     ],
     github: "https://github.com/s-samarth/survive-ai",
+    note: "works with zero bars!",
   },
   {
     id: "desi-dictation",
@@ -54,6 +57,7 @@ export const projects: Project[] = [
       { key: "Stack", value: "Swift, SwiftUI, whisper.cpp, Metal, Silero VAD" },
     ],
     github: "https://github.com/s-samarth/desi-dictation",
+    note: "1.47 s on an M3 Air",
   },
   {
     id: "study-hub",
@@ -71,5 +75,6 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/s-samarth/DataSciencePreparation",
     live: { href: "https://s-samarth.github.io/DataSciencePreparation/", label: "Open the hub" },
+    note: "free. no sign-up. ever.",
   },
 ];

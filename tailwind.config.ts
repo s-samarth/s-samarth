@@ -13,19 +13,26 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Inter Tight"', "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        serif: ["Newsreader", "Georgia", '"Times New Roman"', "serif"],
+        hand: ["Caveat", '"Bradley Hand"', '"Segoe Print"', "cursive"],
         sans: ["Inter", "-apple-system", "BlinkMacSystemFont", '"Segoe UI"', "sans-serif"],
         mono: ['"IBM Plex Mono"', "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
-        // Near-black stage, off-white ink. Chapter accents live in --accent.
+        // The notebook: paper, pen inks and a highlighter.
+        paper: { DEFAULT: "#F6F3EA", 2: "#EFEADD", card: "#FFFDF7" },
+        graphite: { DEFAULT: "#1D2430", dim: "#4A5263", soft: "#7A8292" },
+        biro: "#2B5BA8",
+        redpen: "#C8412B",
+        marker: "#F2A33A",
+        rule: "rgba(43, 91, 168, 0.14)",
+        // Dark stage colours, still used inside the project animations.
         ink: { DEFAULT: "#050506", 2: "#0F0F12", 3: "#17171C" },
         bone: { DEFAULT: "#F5F5F7", dim: "#C7C7CC" },
         mist: "#A1A1A6",
         amber: { DEFAULT: "#F2A33A", deep: "#C77A1A" },
         cyan: { DEFAULT: "#5CC8E8", deep: "#2C93B3" },
         line: "rgba(245, 245, 247, 0.12)",
-        accent: "var(--accent)",
 
         // shadcn tokens, mapped onto the same stage so ui/* inherits it.
         border: "hsl(var(--border))",
