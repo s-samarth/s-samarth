@@ -1,16 +1,23 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# Everyone is welcome to read this notebook: search engines and AI assistants alike.
+# A plain-Markdown summary for AI assistants lives at /llms.txt
 
 User-agent: *
 Allow: /
 
-Sitemap: https://samarthsaraswat.com/sitemap.xml
+# AI search and assistant crawlers, named so it is explicit they are allowed.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: meta-externalagent
+User-agent: DuckAssistBot
+Allow: /
+
+Sitemap: https://www.samarthsaraswat.com/sitemap.xml

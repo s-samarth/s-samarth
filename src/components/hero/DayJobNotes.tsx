@@ -1,23 +1,8 @@
 import { motion } from "framer-motion";
+import { jobs, links } from "@/data/profile";
 
-const LINKEDIN = "https://linkedin.com/in/s-samarth";
-
-const jobs = [
-  {
-    when: "Now",
-    role: "AI Engineer",
-    where: "Tazapay",
-    what: "AI for fraud detection and anti-money laundering in cross-border payments.",
-    note: "bg-[#FCE58A] -rotate-[2deg]",
-  },
-  {
-    when: "Before · 3+ years",
-    role: "Data Scientist",
-    where: "Microsoft",
-    what: "Built Seller Copilot, an AI for enterprise sales. Stopped $100M+ a year in revenue leakage.",
-    note: "bg-paper-card rotate-[1.5deg]",
-  },
-];
+/** Sticky-note colour and tilt, one per job, in order. */
+const noteStyles = ["bg-[#FCE58A] -rotate-[2deg]", "bg-paper-card rotate-[1.5deg]"];
 
 /**
  * The day job, as two sticky notes under the photo, and a shove toward
@@ -31,10 +16,10 @@ export const DayJobNotes = () => (
   >
     <p className="label mb-4">The day job, briefly</p>
     <div className="grid grid-cols-2 gap-4">
-      {jobs.map((job) => (
+      {jobs.map((job, i) => (
         <article
           key={job.where}
-          className={`relative px-4 pb-4 pt-4 shadow-[0_1px_2px_rgba(29,36,48,0.1),0_14px_24px_-16px_rgba(29,36,48,0.45)] ${job.note}`}
+          className={`relative px-4 pb-4 pt-4 shadow-[0_1px_2px_rgba(29,36,48,0.1),0_14px_24px_-16px_rgba(29,36,48,0.45)] ${noteStyles[i]}`}
         >
           <span className="tape -top-3 left-4 !h-5 !w-16 -rotate-3" />
           <p className="label !text-[10px]">{job.when}</p>
@@ -47,7 +32,7 @@ export const DayJobNotes = () => (
     </div>
     <p className="hand mt-6 -rotate-1 text-[24px]">
       Go to my{" "}
-      <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-redpen underline decoration-2 underline-offset-4 hover:text-graphite">
+      <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="text-redpen underline decoration-2 underline-offset-4 hover:text-graphite">
         LinkedIn
       </a>{" "}
       if you care about my job.

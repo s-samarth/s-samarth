@@ -2,31 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { PageHead } from "./notebook/PageHead";
 import { Scribble } from "./notebook/Scribble";
-import articleDashboard from "@/assets/article-dashboard.jpg";
-import articleMetrics from "@/assets/article-metrics.jpg";
-import articleInstagram from "@/assets/article-instagram.jpg";
-
-const articles = [
-  {
-    title: "Your Dashboard Is Lying to You",
-    description:
-      "There is nothing worse than thinking your product is a hit while every customer out there just hates it, but you don't know it. A guide on how to decide product metrics, so that you have an accurate read.",
-    url: "https://open.substack.com/pub/samarthsaraswat/p/your-dashboard-is-lying-to-you-the?r=7ntb71&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
-    image: articleDashboard,
-  },
-  {
-    title: "Your Product Has 47 Metrics and Zero Direction",
-    description: "The metric overload problem and how to focus on what actually matters. An explainer on North Star Metrics.",
-    url: "https://open.substack.com/pub/samarthsaraswat/p/your-product-has-47-metrics-and-zero?r=7ntb71&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
-    image: articleMetrics,
-  },
-  {
-    title: "Instagram Knows You Better Than Your Parents",
-    description: "The product metrics Instagram is tracking for its users, and why those metrics are the best indicators of active engagement.",
-    url: "https://open.substack.com/pub/samarthsaraswat/p/instagram-knows-you-better-than-your?r=7ntb71&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
-    image: articleInstagram,
-  },
-];
+import { articles } from "@/data/articles";
 
 /** Resting tilt per card, so the row looks placed by hand. Hover straightens it. */
 const tilts = ["-rotate-[1.4deg]", "rotate-[0.9deg]", "-rotate-[0.5deg]"];

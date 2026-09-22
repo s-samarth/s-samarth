@@ -1,22 +1,6 @@
 import { Reveal } from "./Reveal";
 import { PageHead } from "./notebook/PageHead";
-
-const facts = [
-  { key: "Now", value: "AI Engineer, Tazapay" },
-  { key: "Before", value: "Data Scientist, Microsoft · 3+ years" },
-  { key: "School", value: "B.Tech, Electronics & Communication, IIT Guwahati, 2022" },
-  { key: "Also", value: "YC Startup School, Bangalore · the first edition there, April 2026" },
-  { key: "Based in", value: "Bangalore, India" },
-  { key: "Writes at", value: "samarthsaraswat.substack.com", href: "https://samarthsaraswat.substack.com" },
-  { key: "Off hours", value: "Stand-up comedy. The mic is not a prop." },
-];
-
-const skillGroups = [
-  { title: "AI systems", skills: ["LLM copilots & agents", "RAG & hybrid retrieval", "On-device inference", "Evals & golden sets", "Fraud & AML detection"] },
-  { title: "Machine learning", skills: ["NLP", "Speech recognition", "Anomaly detection", "Model evaluation", "Deep learning"] },
-  { title: "Product", skills: ["AI product management", "Experimentation", "OKRs & North Star metrics", "Metric design"] },
-  { title: "Tools", skills: ["Python", "PyTorch", "LangGraph", "Claude Code", "Codex", "SQL"] },
-];
+import { facts, skillGroups } from "@/data/profile";
 
 const FactsCard = () => (
   <dl className="card -rotate-[0.6deg] px-6 pb-4 pt-5 md:px-8">
