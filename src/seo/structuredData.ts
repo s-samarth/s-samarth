@@ -55,7 +55,7 @@ export const structuredData = (photoUrl: string) => {
         name: `${profile.name}, ${profile.headline}`,
         isPartOf: { "@id": `${SITE_URL}/#website` },
         mainEntity: { "@id": PERSON_ID },
-        dateModified: new Date().toISOString().slice(0, 10),
+        dateModified: new Date().toISOString(),
       },
       ...projects.map((p) => ({
         "@type": "SoftwareSourceCode",
