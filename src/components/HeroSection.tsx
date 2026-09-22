@@ -36,7 +36,7 @@ export const HeroSection = () => (
       <div className="mt-10 grid gap-x-14 gap-y-12 lg:grid-cols-[1.2fr_1fr]">
         <div className="order-2 lg:order-none lg:col-start-1 lg:row-span-2 lg:row-start-1">
           <motion.h1 {...rise(0.2)} className="headline text-[3.3rem] sm:text-7xl md:text-[5.2rem] lg:text-[5.4rem]">
-            Samarth Saraswat,
+            Samarth Saraswat,{" "}
             <br />
             <em className="font-medium">
               <Highlight delay={0.9}>AI builder.</Highlight>
