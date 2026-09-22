@@ -18,7 +18,7 @@ const ArticleCard = ({ article, index }: { article: (typeof articles)[number]; i
       <p className="label pt-1">No. {index + 1} · Substack</p>
       <div className="print -mr-2 -mt-9 w-[42%] shrink-0 rotate-[4deg] !p-1.5 transition-transform duration-300 group-hover:rotate-[1deg]">
         <span className="tape -top-3 left-1/2 !h-5 !w-14 -translate-x-1/2 -rotate-6" />
-        <img src={article.image} alt="" loading="lazy" className="aspect-[4/5] w-full object-cover" />
+        <img src={article.image} alt={article.imageAlt} loading="lazy" className="aspect-[4/5] w-full object-cover" />
       </div>
     </div>
     <h3 className="headline mt-4 text-[1.75rem] leading-[1.1] group-hover:text-biro">{article.title}</h3>
