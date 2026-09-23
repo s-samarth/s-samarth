@@ -7,20 +7,12 @@
  * `products` and give every row a cell for it. `tone` colours the cell:
  * "yes" is a win for the reader, "no" a gap, "meh" in between, undefined neutral.
  */
-export type Tone = "yes" | "no" | "meh";
-
-export interface Cell {
-  text: string;
-  tone?: Tone;
-}
+import type { CompareRow } from "@/components/product/CompareTable";
 
 export const products = ["Desi Dictation", "Wispr Flow", "MacWhisper", "Superwhisper"] as const;
 export type Product = (typeof products)[number];
 
-export interface Row {
-  label: string;
-  cells: Record<Product, Cell>;
-}
+export type Row = CompareRow<Product>;
 
 export const checked = "July 2026";
 

@@ -1,5 +1,5 @@
 import { Footer } from "@/components/Footer";
-import { ProductNav } from "@/components/desi/ProductNav";
+import { ProductNav } from "@/components/product/ProductNav";
 import { DdHero } from "@/components/desi/DdHero";
 import { LanguagesSection } from "@/components/desi/LanguagesSection";
 import { FeaturesSection } from "@/components/desi/FeaturesSection";
@@ -7,6 +7,7 @@ import { PrivacySection } from "@/components/desi/PrivacySection";
 import { CompareSection } from "@/components/desi/CompareSection";
 import { FaqSection, PricingSection } from "@/components/desi/PricingFaqSection";
 import { DdCta } from "@/components/desi/DdCta";
+import { ddNav } from "@/data/desiDictation";
 import { useRouteTitle } from "@/seo/useRouteTitle";
 
 /**
@@ -18,7 +19,7 @@ const DesiDictation = () => {
   useRouteTitle("/desi-dictation");
   return (
     <div className="min-h-screen">
-      <ProductNav />
+      <ProductNav config={ddNav} />
       <main className="relative z-10">
         <DdHero />
         <LanguagesSection />

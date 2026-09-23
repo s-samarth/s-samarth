@@ -97,3 +97,17 @@ export const fixes: Fix[] = [
     fix: "Run the one-line installer again; it quits the old copy and swaps in the newest. By hand: quit from the menu bar, drag the new app into Applications and choose Replace. Either way, don’t uninstall first: settings, history, dictionary and models are kept.",
   },
 ];
+
+/** The product header on both Desi Dictation pages. */
+export const ddNav = {
+  name: "Desi Dictation",
+  productPath: PRODUCT_PATH,
+  installPath: INSTALL_PATH,
+  sections: [
+    { id: "features", label: "Features" },
+    { id: "compare", label: "Compare" },
+    { id: "pricing", label: "Pricing" },
+    { id: "faq", label: "FAQ" },
+  ],
+  download: { href: release.url, label: "Download" },
+};

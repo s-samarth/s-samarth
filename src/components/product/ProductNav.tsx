@@ -1,24 +1,30 @@
 import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import { INSTALL_PATH, PRODUCT_PATH, release } from "@/data/desiDictation";
 
-const sections = [
-  { id: "features", label: "Features" },
-  { id: "compare", label: "Compare" },
-  { id: "pricing", label: "Pricing" },
-  { id: "faq", label: "FAQ" },
-];
+/** What a product page's header needs to know. Each product keeps one in its data file. */
+export interface ProductNavConfig {
+  name: string;
+  productPath: string;
+  installPath: string;
+  /** In-page anchors on the product page, left to right. */
+  sections: { id: string; label: string }[];
+  download: { href: string; label: string };
+}
 
 /**
- * The product's own header: its name, a quiet "by Samarth Saraswat" back to
+ * A product's own header: its name, a quiet "by Samarth Saraswat" back to
  * the home notebook, the product's sections, and the download. Same paper
  * and type as the site's nav, so it reads as a page of the same notebook.
+ *
+ * Frontend note: the product pages share this one component and differ only
+ * in the config object they pass. That keeps two headers from drifting apart.
  */
-export const ProductNav = () => {
+export const ProductNav = ({ config }: { config: ProductNavConfig }) => {
+  const { name, productPath, installPath, sections, download } = config;
   const [isScrolled, setIsScrolled] = useState(false);
   // On the install page, section links point back to the product page.
-  const base = useLocation().pathname === PRODUCT_PATH ? "" : PRODUCT_PATH;
+  const base = useLocation().pathname === productPath ? "" : productPath;
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 40);
@@ -39,7 +45,7 @@ export const ProductNav = () => {
             href={base || "#top"}
             className="whitespace-nowrap font-serif text-[20px] font-medium tracking-tight text-graphite"
           >
-            Desi Dictation
+            {name}
           </a>
           <a href="/" className="label hidden !text-[10.5px] transition-colors hover:!text-redpen sm:inline">
             by Samarth Saraswat
@@ -57,13 +63,13 @@ export const ProductNav = () => {
             </a>
           ))}
           <a
-            href={INSTALL_PATH}
+            href={installPath}
             className="hidden font-mono text-[12px] font-medium uppercase tracking-[0.12em] text-graphite-soft transition-colors hover:text-graphite md:inline"
           >
             Install
           </a>
-          <a href={release.url} className="btn-stamp !gap-1.5 !px-3.5 !py-1.5 !text-[11px]">
-            <Download size={13} /> Download
+          <a href={download.href} className="btn-stamp !gap-1.5 !px-3.5 !py-1.5 !text-[11px]">
+            <Download size={13} /> {download.label}
           </a>
         </div>
       </nav>

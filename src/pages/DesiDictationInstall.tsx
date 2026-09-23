@@ -1,11 +1,11 @@
 import { Footer } from "@/components/Footer";
-import { ProductNav } from "@/components/desi/ProductNav";
+import { ProductNav } from "@/components/product/ProductNav";
 import { DownloadStamp } from "@/components/desi/DdHero";
 import { InstallSection } from "@/components/desi/InstallSection";
 import { StuckSection } from "@/components/desi/StuckSection";
 import { DdCta } from "@/components/desi/DdCta";
 import { OneLineInstall } from "@/components/desi/OneLineInstall";
-import { release, requirements } from "@/data/desiDictation";
+import { ddNav, release, requirements } from "@/data/desiDictation";
 import { riseDelay } from "@/lib/rise";
 import { useRouteTitle } from "@/seo/useRouteTitle";
 
@@ -58,7 +58,7 @@ const DesiDictationInstall = () => {
   useRouteTitle("/desi-dictation/install");
   return (
     <div className="min-h-screen">
-      <ProductNav />
+      <ProductNav config={ddNav} />
       <main className="relative z-10">
         <InstallHero />
         <InstallSection />
