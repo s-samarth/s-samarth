@@ -11,7 +11,7 @@ export const SA_PATH = "/survive-ai";
 export const SA_INSTALL_PATH = "/survive-ai/install";
 
 const REPO = "https://github.com/s-samarth/survive-ai";
-const VERSION = "2.1.0";
+const VERSION = "2.1.1";
 const FILE = `survive-ai-v${VERSION}-arm64.apk`;
 
 /** The APK is served straight from the GitHub release, so the repo stays the one source of builds. */
@@ -19,7 +19,7 @@ export const saRelease = {
   version: VERSION,
   file: FILE,
   size: "173 MB",
-  sha256: "3140782ae83743f59a5a464d6810e09f08d916dfdc12d887209576916f5818d5",
+  sha256: "0425cf08211699a35af3693a98fee056dea8fbdbbd49acab19ca9e2c041a6fa1",
   url: `${REPO}/releases/download/v${VERSION}/${FILE}`,
   checksumUrl: `${REPO}/releases/download/v${VERSION}/${FILE}.sha256`,
   notes: `${REPO}/releases`,
