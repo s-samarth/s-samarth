@@ -57,9 +57,9 @@ getting the APK by download, USB, Bluetooth or local network, and checking it.
 - Copy: `src/data/surviveAi.ts` (release, nav, install, fixes),
   `src/data/saProduct.ts` (examples, features, numbers, FAQ),
   `src/data/saCompare.ts` (the comparison).
-- New app version: change `VERSION`, `FILE`, `size` and `sha256` in
-  surviveAi.ts. From the next tag, release.yml names the asset
-  `survive-ai-v<version>-arm64.apk`.
+- New app version: change `VERSION`, `size` and `sha256` in surviveAi.ts.
+  The APK (`survive-ai-v<version>-arm64.apk`) is linked straight from the
+  GitHub release.
 - Shared by both products (`src/components/product/`): `ProductNav` (takes a
   config from each data file), `CompareTable`, `FaqSection`.
 

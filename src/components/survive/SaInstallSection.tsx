@@ -26,7 +26,7 @@ export const SaInstallSection = () => (
         name="Install · One time"
         title={
           <>
-            Ten minutes on Wi-Fi, <em className="text-redpen">then never again.</em>
+            Once on Wi-Fi, <em className="text-redpen">then never again.</em>
           </>
         }
         lede="Do this on a normal day, not during the emergency. The one download that needs the internet is the model, and it happens once."
@@ -62,13 +62,17 @@ export const SaInstallSection = () => (
 
         <InstallStep n={4} title="Open it on Wi-Fi, once.">
           <p>
-            Accept the safety note, then let it download the model: about 500 MB, with a progress bar. If the Wi-Fi
-            drops, tap <span className={strong}>Retry</span>; it picks up where it stopped and checks the file at the
+            Accept the safety note, then let it download the model: about 1.3 GB, over Wi-Fi only, with a progress
+            bar. If the Wi-Fi drops, tap <span className={strong}>Retry</span>; it picks up where it stopped and checks the file at the
             end.
           </p>
           <p>
             Then the real test: <span className={strong}>turn on airplane mode</span> and ask it something. From here on
             it never needs the internet. When Wi-Fi is around, it quietly fetches any updated guides.
+          </p>
+          <p>
+            Optional: <span className={strong}>Settings</span> offers a 175 MB search model that helps with questions
+            phrased in your own words. Without it, the app searches by keywords alone.
           </p>
         </InstallStep>
       </ol>

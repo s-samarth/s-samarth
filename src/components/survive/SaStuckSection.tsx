@@ -41,7 +41,11 @@ export const SaStuckSection = () => (
           <p className="label">Check a file someone handed you</p>
           <p className="mt-2 text-[17px] leading-relaxed text-graphite-dim">
             An app that spreads hand to hand is an app nobody checks. On a laptop, run this and compare it with the
-            fingerprint below. If they match, it’s exactly the file on GitHub.
+            fingerprint below, which is also in the{" "}
+            <a href={saRelease.checksumUrl} className="text-biro underline decoration-1 underline-offset-2">
+              .sha256 file
+            </a>{" "}
+            beside the APK. If they match, it’s exactly the file I released.
           </p>
           <div className="mt-5">
             <TerminalCommand command={saCommands.checksumMac} caption="Mac · on Linux, sha256sum" />

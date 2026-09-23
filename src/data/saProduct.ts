@@ -117,7 +117,7 @@ export const saPrivacy = [
   "No account, no sign-in, no email.",
   "No telemetry, no analytics, no location tracking.",
   "Your questions never leave the phone.",
-  "It only goes online on Wi-Fi, to fetch the model or updated guides.",
+  "It only goes online on Wi-Fi, never mobile data, to fetch the model or updated guides.",
 ];
 
 /** From the README's “What we will not build”. */
@@ -133,7 +133,7 @@ export const neverBuild = [
 export const saFaqs: FaqItem[] = [
   {
     q: "Does it really work with no signal?",
-    a: "Yes. It needs Wi-Fi once, to download the model (about 500 MB). After that, airplane mode is fine: the model, the guides and the search all live on the phone.",
+    a: "Yes. It needs Wi-Fi once, to download the model (about 1.3 GB). After that, airplane mode is fine: the model, the guides and the search all live on the phone.",
   },
   {
     q: "Is it a replacement for a doctor or 112?",
@@ -145,7 +145,7 @@ export const saFaqs: FaqItem[] = [
   },
   {
     q: "Will it run on my phone?",
-    a: "It needs a 64-bit Android phone on Android 7 or later with at least 6 GB of RAM; 8 GB is better. Budget about 1 GB of storage for the app and the model.",
+    a: "It needs a 64-bit Android phone on Android 7 or later with at least 6 GB of RAM; 8 GB is better. Budget about 2 GB of free storage for the app and the model.",
   },
   {
     q: "Why isn’t it on the Play Store?",
