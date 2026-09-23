@@ -5,6 +5,8 @@
 export interface ProjectSpec {
   key: string;
   value: string;
+  /** The part of `value` that gets the highlighter: the one number to remember. */
+  mark?: string;
 }
 
 export interface Project {
@@ -34,7 +36,7 @@ export const projects: Project[] = [
     specs: [
       { key: "Runs on", value: "Android, 6 GB RAM, zero bytes sent at runtime" },
       { key: "Model", value: "Gemma 2B IT, INT4, CPU backend" },
-      { key: "Retrieval", value: "Recall@5 89.7% hybrid vs 81.5% keyword-only" },
+      { key: "Retrieval", value: "Recall@5 89.7% hybrid vs 81.5% keyword-only", mark: "Recall@5 89.7%" },
       { key: "Stack", value: "Flutter, SQLite FTS5, ONNX Runtime, Python build step" },
     ],
     github: "https://github.com/s-samarth/survive-ai",
@@ -52,7 +54,7 @@ export const projects: Project[] = [
     ],
     specs: [
       { key: "Runs on", value: "macOS, Apple Silicon, fully local" },
-      { key: "Latency", value: "0.21 s English, 1.47 s Hinglish per dictation (M3 Air)" },
+      { key: "Latency", value: "0.21 s English, 1.47 s Hinglish per dictation (M3 Air)", mark: "1.47 s Hinglish" },
       { key: "Models", value: "Oriserve Whisper-Hindi2Hinglish, Parakeet TDT, Vaani" },
       { key: "Stack", value: "Swift, SwiftUI, whisper.cpp, Metal, Silero VAD" },
     ],
@@ -70,7 +72,7 @@ export const projects: Project[] = [
     ],
     specs: [
       { key: "Lives at", value: "GitHub Pages, rebuilt on every push" },
-      { key: "Format", value: "7 MkDocs Material sites, one hub" },
+      { key: "Format", value: "7 MkDocs Material sites, one hub", mark: "7 MkDocs Material sites" },
       { key: "For", value: "Anyone. No sign-up, no paywall" },
     ],
     github: "https://github.com/s-samarth/DataSciencePreparation",

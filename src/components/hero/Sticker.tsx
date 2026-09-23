@@ -1,21 +1,18 @@
-import { motion } from "framer-motion";
 import cutout from "@/assets/samarth-cutout.webp";
 
 /**
  * The photo as a die-cut sticker: the background was removed with macOS
  * subject lifting, and the white border comes from stacked drop-shadows,
  * which follow the image's transparent edge instead of its box.
+ *
+ * The drop-in is a CSS animation (`.sticker-drop` in styles/hero.css), not
+ * framer-motion, so the prerendered page never ships the photo invisible.
  */
 const stickerOutline =
   "drop-shadow(3px 0 0 #fffdf7) drop-shadow(-3px 0 0 #fffdf7) drop-shadow(0 3px 0 #fffdf7) drop-shadow(0 -3px 0 #fffdf7) drop-shadow(0 14px 18px rgba(29,36,48,0.28))";
 
 export const Sticker = () => (
-  <motion.figure
-    initial={{ opacity: 0, rotate: 9, scale: 1.08, y: -20 }}
-    animate={{ opacity: 1, rotate: 3, scale: 1, y: 0 }}
-    transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-    className="relative mx-auto w-[78%] max-w-[400px] lg:w-full"
-  >
+  <figure className="sticker-drop relative mx-auto w-[78%] max-w-[380px] rotate-3 lg:w-[92%]">
     <span className="tape -top-2 left-[38%] rotate-[-4deg]" />
     <img
       src={cutout}
@@ -26,5 +23,5 @@ export const Sticker = () => (
       style={{ filter: stickerOutline }}
     />
     <figcaption className="hand mt-3 -rotate-2 text-center text-[21px]">fig. 1: the only good photo I have</figcaption>
-  </motion.figure>
+  </figure>
 );

@@ -1,0 +1,52 @@
+/*
+  Page one: the sticker drop and the set list. Plain CSS rather than Tailwind
+  because these lean on things utilities express badly: a torn edge
+  (clip-path polygon), list counters, and a strike drawn by a pseudo-element.
+*/
+
+/* The cut-out lands like a sticker slapped onto the page. */
+@keyframes sticker-drop {
+  from { opacity: 0; transform: rotate(9deg) scale(1.08) translateY(-20px); }
+}
+.sticker-drop { animation: sticker-drop 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both; }
+
+/* The set list: torn off a pad, taped down, written in marker. */
+.set-wrap {
+  position: relative; max-width: 410px; margin: 0 auto; transform: rotate(-2deg);
+  filter: drop-shadow(0 1px 1px rgba(29, 36, 48, 0.12)) drop-shadow(0 16px 22px rgba(29, 36, 48, 0.22));
+}
+.setlist {
+  overflow: hidden; background-color: #fffef9; padding: 26px 22px 18px 44px;
+  /* a red margin line at 30px, then blue rules every 40px */
+  background-image:
+    linear-gradient(90deg, transparent 30px, rgba(200, 65, 43, 0.4) 30px, rgba(200, 65, 43, 0.4) 31px, transparent 31px),
+    linear-gradient(transparent 39px, rgba(43, 91, 168, 0.15) 39px);
+  background-size: 100% 100%, 100% 40px;
+  background-position: 0 0, 0 14px;
+  /* the ragged top where it was torn off the pad */
+  clip-path: polygon(0 5px, 4% 1px, 9% 6px, 14% 2px, 19% 7px, 25% 1px, 31% 5px, 37% 0, 43% 6px, 49% 2px, 55% 7px, 61% 1px, 67% 5px, 73% 0, 79% 6px, 85% 2px, 91% 6px, 96% 1px, 100% 4px, 100% 100%, 0 100%);
+}
+.set-items { counter-reset: bit; }
+.set-items li { counter-increment: bit; }
+.set-items a {
+  display: flex; align-items: baseline; gap: 10px; white-space: nowrap;
+  font: 700 23px/40px theme(fontFamily.hand); color: theme(colors.graphite.DEFAULT);
+}
+@media (min-width: 400px) { .set-items a { font-size: 26px; } }
+.set-items a::before { content: counter(bit) "."; width: 18px; font-size: 22px; color: theme(colors.graphite.soft); }
+
+/* Crossing a bit off: a red marker line that draws left to right. */
+.set-text { position: relative; transition: color 0.3s; }
+.set-text::after {
+  content: ""; position: absolute; left: -4px; right: -6px; top: 55%; height: 3px; border-radius: 2px;
+  background: theme(colors.redpen); transform: scaleX(0) rotate(-1.5deg); transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.set-done .set-text { color: theme(colors.graphite.soft); }
+.set-done .set-text::after { transform: scaleX(1) rotate(-1.5deg); }
+.set-now { animation: rise 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sticker-drop, .set-now { animation: none; }
+  .set-text::after { transition: none; }
+}

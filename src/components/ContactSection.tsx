@@ -13,11 +13,11 @@ const contactLinks = [
 
 export const ContactSection = () => (
   <section id="ticket">
-    <div className="page-x grid gap-14 py-24 md:py-32 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+    <div className="page-x grid gap-14 py-24 md:py-32 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
       <div>
         <PageHead
           page="05"
-          name="Talk · Raise a ticket"
+          name="Crowd work · Raise a ticket"
           title={
             <>
               Got a messy problem? <em className="text-redpen">Raise a ticket.</em>

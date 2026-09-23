@@ -11,12 +11,12 @@ interface PageHeadProps {
 }
 
 /**
- * Opens a notebook page: the page number sits in the red-ruled margin on
- * tablets and up, and inline above the headline on phones.
+ * Opens a notebook page: the page number sits wholly left of the red margin
+ * rule on tablets and up, and inline above the headline on phones.
  */
 export const PageHead = ({ page, name, title, lede }: PageHeadProps) => (
   <Reveal className="relative max-w-3xl">
-    <span className="label absolute -left-[4.6rem] top-1 hidden w-12 text-right !text-redpen md:block">p.{page}</span>
+    <span className="margin-no top-1">p.{page}</span>
     <p className="label">
       <span className="!text-redpen md:hidden">p.{page} · </span>
       {name}

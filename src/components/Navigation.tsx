@@ -1,35 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { pages, type NotebookPage } from "@/content/pages";
+import { pages } from "@/content/pages";
+import { useActivePage } from "@/hooks/use-active-page";
 
-/**
- * Which page is under the middle of the screen.
- *
- * Frontend note: an IntersectionObserver with a thin band in the middle of
- * the viewport (the rootMargin) fires only when a section crosses that band,
- * so the browser does the work instead of a scroll listener.
- */
-const useActivePage = () => {
-  const [active, setActive] = useState<NotebookPage["id"] | null>(null);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id as NotebookPage["id"])),
-      { rootMargin: "-45% 0px -50% 0px" },
-    );
-    pages.forEach((p) => {
-      const el = document.getElementById(p.id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
-  return active;
-};
+const pageIds = pages.map((p) => p.id);
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const active = useActivePage();
+  const active = useActivePage(pageIds);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);

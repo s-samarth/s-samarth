@@ -162,3 +162,29 @@
     @apply underline decoration-biro/40 decoration-1 underline-offset-4 transition-colors hover:decoration-biro;
   }
 }
+
+@layer components {
+  /* Margin numbers (p.02, Exp.01) hang wholly left of the red rule, never through it. */
+  .margin-no {
+    @apply label absolute hidden whitespace-nowrap !text-[10.5px] !tracking-[0.1em] !text-redpen md:block;
+    right: calc(100% + 2.25rem + 7px);
+  }
+
+  /*
+   * Page-one entrance. Pure CSS, so it plays in the prerendered HTML before
+   * any JavaScript arrives; `both` holds the hidden first frame during the
+   * delay. Set the delay per element with style={{ "--d": "0.4s" }}.
+   */
+  .rise {
+    animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both;
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise { animation: none; }
+}

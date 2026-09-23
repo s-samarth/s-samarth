@@ -1,31 +1,36 @@
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { PageHead } from "./notebook/PageHead";
-import { Scribble } from "./notebook/Scribble";
 import { articles } from "@/data/articles";
 
-/** Resting tilt per card, so the row looks placed by hand. Hover straightens it. */
-const tilts = ["-rotate-[1.4deg]", "rotate-[0.9deg]", "-rotate-[0.5deg]"];
+/** Resting tilts per article: the cover print, its tape, and the card over it. Hover straightens the print. */
+const tilts = [
+  { print: "-rotate-3", tape: "-rotate-[5deg]", card: "rotate-[0.6deg]" },
+  { print: "rotate-[2.5deg]", tape: "rotate-[4deg]", card: "-rotate-[0.5deg]" },
+  { print: "-rotate-[1.5deg]", tape: "-rotate-3", card: "rotate-[0.4deg]" },
+];
 
+/**
+ * The covers are the fun part, so they're big: a taped print with the index
+ * card slid over its bottom edge. `flex-1` on the card makes every card in a
+ * row stretch to the same height.
+ */
 const ArticleCard = ({ article, index }: { article: (typeof articles)[number]; index: number }) => (
-  <a
-    href={article.url}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={`card group flex h-full flex-col px-6 pb-6 pt-5 transition-transform duration-300 ease-cinematic hover:-translate-y-1.5 hover:rotate-0 ${tilts[index]}`}
-  >
-    <div className="flex items-start justify-between gap-4">
-      <p className="label pt-1">No. {index + 1} · Substack</p>
-      <div className="print -mr-2 -mt-9 w-[42%] shrink-0 rotate-[4deg] !p-1.5 transition-transform duration-300 group-hover:rotate-[1deg]">
-        <span className="tape -top-3 left-1/2 !h-5 !w-14 -translate-x-1/2 -rotate-6" />
-        <img src={article.image} alt={article.imageAlt} loading="lazy" className="aspect-[4/5] w-full object-cover" />
-      </div>
+  <a href={article.url} target="_blank" rel="noopener noreferrer" className="group flex h-full flex-col">
+    <div
+      className={`print ml-[11%] w-[78%] !p-[7px] !pb-[9px] transition-transform duration-300 ease-cinematic group-hover:-translate-y-2 group-hover:rotate-0 ${tilts[index].print}`}
+    >
+      <span className={`tape -top-3 left-1/2 !h-5 !w-16 -translate-x-1/2 ${tilts[index].tape}`} />
+      <img src={article.image} alt={article.imageAlt} loading="lazy" className="block aspect-[4/5] w-full object-cover" />
     </div>
-    <h3 className="headline mt-4 text-[1.75rem] leading-[1.1] group-hover:text-biro">{article.title}</h3>
-    <p className="mt-3 flex-1 text-[16.5px] leading-relaxed text-graphite-dim">{article.description}</p>
-    <span className="btn-pen mt-6 self-start">
-      Read it <ArrowUpRight size={14} />
-    </span>
+    <div className={`card relative z-[2] -mt-14 flex flex-1 flex-col items-start px-6 pb-[22px] pt-5 ${tilts[index].card}`}>
+      <p className="label">No. {index + 1} · Substack</p>
+      <h3 className="headline mt-2.5 text-[1.7rem] leading-[1.1] transition-colors group-hover:text-biro">{article.title}</h3>
+      <p className="mt-2.5 flex-1 text-[16.5px] leading-relaxed text-graphite-dim">{article.description}</p>
+      <span className="btn-pen mt-[18px]">
+        Read it <ArrowUpRight size={14} />
+      </span>
+    </div>
   </a>
 );
 
@@ -33,18 +38,7 @@ export const ArticlesSection = () => (
   <section id="writes">
     <div className="page-x py-24 md:py-32">
       <div className="flex flex-wrap items-end justify-between gap-6">
-        <div className="relative">
-          <PageHead
-            page="04"
-            name="Writes · Substack"
-            title="Things I wrote down."
-            lede="Product thinking, AI strategy, and metric design."
-          />
-          <span className="absolute -top-2 right-0 hidden items-center lg:-right-44 lg:flex">
-            <Scribble shape="arrow-left" className="h-8 w-20 shrink-0 text-biro" delay={0.4} />
-            <span className="hand ml-1 -rotate-6">the fun part</span>
-          </span>
-        </div>
+        <PageHead page="04" name="Writes · Substack" title="Things I wrote down." lede="Product thinking, AI strategy, and metric design." />
         <Reveal delay={0.2}>
           <a href="https://samarthsaraswat.substack.com/" target="_blank" rel="noopener noreferrer" className="btn-pen">
             Everything on Substack <ArrowUpRight size={14} />
@@ -52,7 +46,7 @@ export const ArticlesSection = () => (
         </Reveal>
       </div>
 
-      <div className="mt-20 grid gap-14 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      <div className="mt-[72px] grid gap-16 md:grid-cols-2 md:gap-x-8 md:gap-y-12 lg:grid-cols-3">
         {articles.map((article, i) => (
           <Reveal key={article.title} delay={0.1 * i} className="h-full">
             <ArticleCard article={article} index={i} />

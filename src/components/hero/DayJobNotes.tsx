@@ -1,19 +1,16 @@
-import { motion } from "framer-motion";
 import { jobs, links } from "@/data/profile";
+import { riseDelay } from "@/lib/rise";
 
 /** Sticky-note colour and tilt, one per job, in order. */
 const noteStyles = ["bg-[#FCE58A] -rotate-[2deg]", "bg-paper-card rotate-[1.5deg]"];
 
 /**
  * The day job, as two sticky notes under the photo, and a shove toward
- * LinkedIn for anyone who wants more. Kept small on purpose.
+ * LinkedIn for anyone who wants more. Kept small on purpose. `#dayjob` is
+ * the set list's second bit.
  */
 export const DayJobNotes = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 16 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-  >
+  <div id="dayjob" className="rise scroll-mt-20" style={riseDelay(0.8)}>
     <p className="label mb-4">The day job, briefly</p>
     <div className="grid grid-cols-2 gap-4">
       {jobs.map((job, i) => (
@@ -37,5 +34,5 @@ export const DayJobNotes = () => (
       </a>{" "}
       if you care about my job.
     </p>
-  </motion.div>
+  </div>
 );

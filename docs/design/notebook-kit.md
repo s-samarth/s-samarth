@@ -12,9 +12,9 @@ ones, so the notebook stays one material.
 - **`.page-x`** is the page container. On `md` and up it pads 6 rem on the left
   and draws the red margin rule with `::before` at 3.75 rem. Put section padding
   *inside* `.page-x`, never on the `<section>`, or the rule breaks between pages.
-- **`PageHead`** (`notebook/PageHead.tsx`) opens a page. The red `p.NN` hangs in
-  the margin at `-left-[4.6rem]` on tablets and up, and moves inline before the
-  label on phones. `title` is optional; the Who page uses the manifesto instead.
+- **`PageHead`** (`notebook/PageHead.tsx`) opens a page. The red `p.NN` uses
+  `.margin-no`, which right-anchors it wholly left of the red rule on tablets
+  and up (the rule never runs through it), and moves inline on phones. `title` is optional; the Who page uses the manifesto instead.
 
 ## Ink
 
@@ -64,8 +64,21 @@ ones, so the notebook stays one material.
   and leaves it flat. Scroll-linked rotation of a print was tried and removed:
   it re-rasterises the looping animation inside every frame, which blurs text.
   Each print gets a pastel radial wash (`washes` map in `ProjectCard.tsx`).
+- **Page one enters with CSS, not framer-motion.** `.rise` (index.css) and
+  `.sticker-drop` (styles/hero.css) play from the prerendered HTML, so the hero
+  is never shipped at `opacity: 0`. main.tsx hydrates that HTML instead of
+  replacing it, so the entrance plays once. Set delays with `riseDelay()`.
 - **Sticker drop** (hero): the cut-out enters at rotate 9, scale 1.08, y -20 and
   lands at rotate 3.
+- **The bit** (`hero/TheBit.tsx`): the intro as setup, setup, setup, punchline,
+  with SETUP / PUNCH / TAG in the margin and a red pen underline under the punch.
+- **Set list** (`hero/SetList.tsx`, styles/hero.css): a torn, taped sheet that is
+  also the table of contents. Bits are crossed off in red as the reader scrolls
+  past their section; timings are real reading times at 220 wpm; a sent ticket
+  crosses off "crowd work" (lib/ticket-sent.ts) and the footer signs off louder.
+- **Lab notes** (`projects/LabNotes.tsx`): a project leads with its lab results
+  (one number highlighted via `mark` in data/projects.ts); the long story sits
+  in a native `<details>`.
 - **Ticket stamp** (`ContactForm`): on success a red "Received" box springs in
   (stiffness 420, damping 18) from scale 1.8 to 1 and rotate -2 to -12, with
   `mix-blend-mode: multiply` so it looks inked onto the paper.
