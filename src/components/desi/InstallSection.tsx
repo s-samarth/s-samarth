@@ -6,7 +6,7 @@ import { TerminalCommand } from "./TerminalCommand";
 
 const strong = "font-medium text-graphite";
 
-/** Step 2 gets two routes side by side: clicks for most people, one command for the rest. */
+/** Step 2 gets two routes side by side: clicks, or one command to clear the quarantine flag. */
 const UnblockRoutes = () => (
   <div className="!mt-8 grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-10">
     <div className="card -rotate-[0.6deg] px-5 pb-5 pt-4">
@@ -26,7 +26,7 @@ const UnblockRoutes = () => (
       </ol>
     </div>
     <div>
-      <p className="label">The Terminal way</p>
+      <p className="label">Or clear it in Terminal</p>
       <p className="mt-2 text-[16.5px] leading-snug">
         After dragging the app into Applications, paste this into Terminal. It removes the quarantine flag macOS puts on
         downloaded apps, so it opens like any other.
@@ -54,14 +54,14 @@ export const InstallSection = () => (
       />
 
       <ol className="mt-6 divide-y divide-dashed divide-graphite-soft/50">
-        <InstallStep n={1} title="Download it and drag it into Applications.">
+        <InstallStep n={1} tag="DMG route only" title="Download it and drag it into Applications.">
           <p>
             Open the DMG and drag <span className={strong}>Desi Dictation</span> onto the Applications folder. It lives
             in your menu bar as a mic icon; there is no Dock icon, by design.
           </p>
         </InstallStep>
 
-        <InstallStep n={2} title={<>Get past Apple’s “could not verify”.</>}>
+        <InstallStep n={2} tag="DMG route only" title={<>Get past Apple’s “could not verify”.</>}>
           <p>
             The beta is signed with my own certificate but not notarised by Apple yet. That costs $99 a year and comes
             before the public launch. Until then macOS blocks the first open. This is expected, not malware, and you

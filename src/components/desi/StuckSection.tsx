@@ -1,4 +1,4 @@
-import { commands, fixes, release } from "@/data/desiDictation";
+import { commands, fixes } from "@/data/desiDictation";
 import { PageHead } from "../notebook/PageHead";
 import { Reveal } from "../Reveal";
 import { TerminalCommand } from "./TerminalCommand";
@@ -41,16 +41,13 @@ export const StuckSection = () => (
       <Reveal className="mt-16 max-w-2xl">
         <p className="label">Check the download is mine</p>
         <p className="mt-2 text-[17px] leading-relaxed text-graphite-dim">
-          Run this and compare it with the fingerprint below. If they match, the file is exactly the one I built and put
-          on GitHub.
+          Downloaded the DMG by hand? The first line fingerprints your file, the second prints the fingerprint published
+          with the release. If they match, it is exactly the file I built and put on GitHub. The one-line installer does
+          this check for you.
         </p>
         <div className="mt-5">
           <TerminalCommand command={commands.checksum} caption="Terminal · optional" />
         </div>
-        <p className="mt-4 break-all font-mono text-[12.5px] leading-relaxed text-graphite">
-          <span className="label !text-[10.5px]">SHA-256 · </span>
-          {release.sha256}
-        </p>
       </Reveal>
     </div>
   </section>

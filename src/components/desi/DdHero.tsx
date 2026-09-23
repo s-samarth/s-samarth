@@ -3,6 +3,7 @@ import { INSTALL_PATH, release, requirements } from "@/data/desiDictation";
 import { riseDelay } from "@/lib/rise";
 import { Highlight } from "../notebook/Highlight";
 import { DesiDictationScene } from "../projects/DesiDictationScene";
+import { OneLineInstall } from "./OneLineInstall";
 import { washes } from "../projects/washes";
 
 /** The primary action, reused at the foot of the page. One per view. */
@@ -48,7 +49,10 @@ export const DdHero = () => (
             <p className="label mt-4 !text-[11px]">
               v{release.version} · {release.size} DMG · {requirements.slice(0, 2).join(" · ")}
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-6">
+            <div className="mt-8 max-w-xl">
+              <OneLineInstall compact />
+            </div>
+            <div className="mt-7 flex flex-wrap items-center gap-6">
               <a href={INSTALL_PATH} className="btn-pen">
                 Install guide <ArrowRight size={14} />
               </a>
@@ -59,7 +63,7 @@ export const DdHero = () => (
           </div>
 
           <p className="rise hand mt-8 -rotate-1 text-[24px]" style={riseDelay(0.7)}>
-            not notarised by Apple yet. the install guide has the fix
+            the Terminal way skips Apple’s “could not verify” warning
           </p>
         </div>
 

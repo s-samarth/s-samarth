@@ -103,7 +103,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "Why does macOS say it can’t verify the app?",
-    a: "The beta is signed with my own certificate but not notarised by Apple yet; that comes before the public launch. The install guide shows the one-time fix, by clicks or one Terminal command.",
+    a: "The beta is signed with my own certificate but not notarised by Apple yet; that comes before the public launch. Install with the one-line Terminal command and you never see the warning. From the DMG, the install guide shows the one-time fix.",
+  },
+  {
+    q: "How do I update?",
+    a: "Run the one-line installer again: it quits the running copy and installs the newest release. Your settings, history, dictionary and models are kept.",
   },
   {
     q: "Will it run on my Mac?",

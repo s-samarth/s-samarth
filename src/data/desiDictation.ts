@@ -1,32 +1,45 @@
 /**
- * Everything the /desi-dictation page says, lifted from the app repo's
- * docs/SETUP_GUIDE.md, docs/TROUBLESHOOTING.md and the GitHub release.
- * To ship a new version, update `release` and nothing else.
+ * Everything the /desi-dictation pages say, lifted from the app repo's
+ * install.sh, docs/SETUP_GUIDE.md, docs/TROUBLESHOOTING.md and its releases.
+ *
+ * Every release publishes a stable-named DesiDictation.dmg (plus .sha256),
+ * so the download link and the installer always fetch the newest build.
+ * Only `version` and `size` are display text: bump them when a release ships.
  */
 /** Where the product and its install guide live on this site. */
 export const PRODUCT_PATH = "/desi-dictation";
 export const INSTALL_PATH = "/desi-dictation/install";
 
 const REPO = "https://github.com/s-samarth/desi-dictation";
-const VERSION = "0.6.2";
-const FILE = `DesiDictation-${VERSION}.dmg`;
+const LATEST = `${REPO}/releases/latest/download`;
 
-/** The DMG is served straight from the GitHub release, so the repo stays the one source of builds. */
 export const release = {
-  version: VERSION,
-  file: FILE,
+  version: "0.6.2",
   size: "1.8 MB",
-  sha256: "54840a77a46fa918a7ed90ac0c59254999dd016b1f25b69daf39887df450a2fe",
-  url: `${REPO}/releases/download/v${VERSION}/${FILE}`,
+  file: "DesiDictation.dmg",
+  url: `${LATEST}/DesiDictation.dmg`,
+  checksumUrl: `${LATEST}/DesiDictation.dmg.sha256`,
   notes: `${REPO}/releases`,
   repo: REPO,
 };
 
 export const requirements = ["macOS 14+", "Apple Silicon", "Free beta"];
 
+/** The one-line installer from the app repo. curl sets no quarantine flag, so Gatekeeper never asks. */
+export const installer = {
+  command: "curl -fsSL https://raw.githubusercontent.com/s-samarth/desi-dictation/main/install.sh | bash",
+  source: `${REPO}/blob/main/install.sh`,
+  does: [
+    "Checks for an Apple Silicon Mac on macOS 14 or newer",
+    "Downloads the newest release from GitHub",
+    "Verifies its SHA-256 against the published checksum",
+    "Puts the app in Applications and opens it",
+  ],
+};
+
 export const commands = {
   unblock: `xattr -dr com.apple.quarantine "/Applications/Desi Dictation.app"`,
-  checksum: `shasum -a 256 ~/Downloads/${release.file}`,
+  checksum: `shasum -a 256 ~/Downloads/${release.file}\ncurl -fsSL ${release.checksumUrl}`,
   resetGrants: "tccutil reset Accessibility com.desi.dictation\ntccutil reset ListenEvent com.desi.dictation",
 };
 
@@ -81,6 +94,6 @@ export const fixes: Fix[] = [
   },
   {
     symptom: "Updating to a new version",
-    fix: "Quit from the menu bar, drag the new app into Applications and choose Replace. Don’t uninstall first: your settings, history, dictionary and models are kept.",
+    fix: "Run the one-line installer again; it quits the old copy and swaps in the newest. By hand: quit from the menu bar, drag the new app into Applications and choose Replace. Either way, don’t uninstall first: settings, history, dictionary and models are kept.",
   },
 ];

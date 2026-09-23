@@ -40,8 +40,9 @@ Gatekeeper workaround and its `xattr` command) and troubleshooting.
 - Copy: `src/data/desiDictation.ts` (release, commands, install),
   `src/data/ddProduct.ts` (features, FAQ), `src/data/ddCompare.ts` (the
   comparison; add a row or a product there, the table follows).
-- New app version: change `VERSION`, `size` and `sha256` in desiDictation.ts.
-  The DMG is linked straight from the GitHub release.
+- Downloads use the app repo's stable `releases/latest/download/DesiDictation.dmg`
+  and its one-line `install.sh`, so a new release needs no site change except
+  the `version` and `size` labels in desiDictation.ts.
 - Prerendered routes, each with its own title, description and JSON-LD, are
   listed in `src/seo/routes.ts`; `scripts/prerender.mjs` writes one HTML file
   per route and `vercel.json` rewrites each path to it.
