@@ -1,5 +1,6 @@
 import { SITE_URL } from "@/data/profile";
 import { release, requirements } from "@/data/desiDictation";
+import { saRelease, saRequirements } from "@/data/surviveAi";
 
 /**
  * Pages that are prerendered at build time, and the head tags each one needs.
@@ -33,6 +34,24 @@ export const prerenderedRoutes: RouteMeta[] = [
         "Download the Desi Dictation DMG, get past Apple's unverified-developer warning, grant three permissions and pick your models. Five minutes, once.",
     },
   },
+  {
+    path: "/survive-ai",
+    file: "survive-ai/index.html",
+    meta: {
+      title: "Survive AI | Offline emergency answers for Android",
+      description:
+        "An offline survival assistant for India. Ask in English or Hinglish with no signal and get the first thing to do, cited from 18 guides. Free Android APK.",
+    },
+  },
+  {
+    path: "/survive-ai/install",
+    file: "survive-ai/install/index.html",
+    meta: {
+      title: "Install Survive AI | Android APK setup guide",
+      description:
+        "Get the Survive AI APK by download, USB or Bluetooth, allow the install, and download the model once on Wi-Fi. After that it works with no internet.",
+    },
+  },
 ];
 
 /** Normalises "/desi-dictation/" and "/desi-dictation" to one key. */
@@ -50,8 +69,26 @@ export const desiDictationLd = () => ({
   downloadUrl: release.url,
   fileSize: release.size,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  description: prerenderedRoutes[1].meta?.description,
+  description: prerenderedRoutes.find((r) => r.path === "/desi-dictation")?.meta?.description,
   softwareRequirements: requirements.slice(0, 2).join(", "),
   codeRepository: release.repo,
+  author: { "@id": `${SITE_URL}/#person` },
+});
+
+/** Schema.org MobileApplication for /survive-ai. */
+export const surviveAiLd = () => ({
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  name: "Survive AI",
+  url: `${SITE_URL}/survive-ai`,
+  applicationCategory: "HealthApplication",
+  operatingSystem: "Android 7 or later",
+  softwareVersion: saRelease.version,
+  downloadUrl: saRelease.url,
+  fileSize: saRelease.size,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  description: prerenderedRoutes.find((r) => r.path === "/survive-ai")?.meta?.description,
+  softwareRequirements: saRequirements.slice(0, 2).join(", "),
+  codeRepository: saRelease.repo,
   author: { "@id": `${SITE_URL}/#person` },
 });

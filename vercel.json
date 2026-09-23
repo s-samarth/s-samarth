@@ -9,6 +9,14 @@
       "destination": "/desi-dictation/install/index.html"
     },
     {
+      "source": "/survive-ai",
+      "destination": "/survive-ai/index.html"
+    },
+    {
+      "source": "/survive-ai/install",
+      "destination": "/survive-ai/install/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }

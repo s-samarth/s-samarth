@@ -40,6 +40,7 @@ export const projects: Project[] = [
       { key: "Stack", value: "Flutter, SQLite FTS5, ONNX Runtime, Python build step" },
     ],
     github: "https://github.com/s-samarth/survive-ai",
+    live: { href: "/survive-ai", label: "Get it for Android" },
     note: "works with zero bars!",
   },
   {

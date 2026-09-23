@@ -4,7 +4,7 @@ import { AppShell, AppRoutes } from "./App";
 import cutout from "@/assets/samarth-cutout.webp";
 import { structuredData } from "./seo/structuredData";
 import { llmsTxt } from "./seo/llmsTxt";
-import { prerenderedRoutes, desiDictationLd } from "./seo/routes";
+import { prerenderedRoutes, desiDictationLd, surviveAiLd } from "./seo/routes";
 
 /**
  * Build-time entry, never shipped to the browser. scripts/prerender.mjs
@@ -24,9 +24,12 @@ export const render = (location: string) =>
     </AppShell>,
   );
 
-/** JSON-LD per page: the person graph on home, the app on its own page. */
-export const jsonLd = (path: string) =>
-  JSON.stringify(path.startsWith("/desi-dictation") ? desiDictationLd() : structuredData(cutout));
+/** JSON-LD per page: the person graph on home, each app on its own pages. */
+export const jsonLd = (path: string) => {
+  if (path.startsWith("/desi-dictation")) return JSON.stringify(desiDictationLd());
+  if (path.startsWith("/survive-ai")) return JSON.stringify(surviveAiLd());
+  return JSON.stringify(structuredData(cutout));
+};
 
 export { prerenderedRoutes };
 

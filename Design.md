@@ -47,6 +47,22 @@ Gatekeeper workaround and its `xattr` command) and troubleshooting.
   listed in `src/seo/routes.ts`; `scripts/prerender.mjs` writes one HTML file
   per route and `vercel.json` rewrites each path to it.
 
+**`/survive-ai`** and **`/survive-ai/install`** follow the same shape for the
+Android app. Eight pages: hero, why offline (the book vs the answer), the 18
+situations as a contents page, how it works, privacy and measured numbers
+(including the ones that fail), a comparison against a printed guide, offline
+apps and cloud chatbots, price and non-goals, FAQ. The install page covers
+getting the APK by download, USB, Bluetooth or local network, and checking it.
+
+- Copy: `src/data/surviveAi.ts` (release, nav, install, fixes),
+  `src/data/saProduct.ts` (examples, features, numbers, FAQ),
+  `src/data/saCompare.ts` (the comparison).
+- New app version: change `VERSION`, `FILE`, `size` and `sha256` in
+  surviveAi.ts. From the next tag, release.yml names the asset
+  `survive-ai-v<version>-arm64.apk`.
+- Shared by both products (`src/components/product/`): `ProductNav` (takes a
+  config from each data file), `CompareTable`, `FaqSection`.
+
 ## 2. How the design was arrived at
 
 Three passes. The first two were rejected; why they failed is the most useful

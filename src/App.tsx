@@ -8,6 +8,8 @@ import { MotionConfig } from "framer-motion";
 import Index from "./pages/Index";
 import DesiDictation from "./pages/DesiDictation";
 import DesiDictationInstall from "./pages/DesiDictationInstall";
+import SurviveAi from "./pages/SurviveAi";
+import SurviveAiInstall from "./pages/SurviveAiInstall";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +37,8 @@ export const AppRoutes = () => (
     <Route path="/" element={<Index />} />
     <Route path="/desi-dictation" element={<DesiDictation />} />
     <Route path="/desi-dictation/install" element={<DesiDictationInstall />} />
+    <Route path="/survive-ai" element={<SurviveAi />} />
+    <Route path="/survive-ai/install" element={<SurviveAiInstall />} />
     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
     <Route path="*" element={<NotFound />} />
   </Routes>
