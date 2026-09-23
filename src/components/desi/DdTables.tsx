@@ -53,7 +53,9 @@ export const ModelsTable = () => (
             {m.pick && <span className="sr-only"> (recommended)</span>}
           </td>
           <td className={td}>{m.forWhat}</td>
-          <td className={`${td} font-mono text-[13px] text-graphite-soft md:whitespace-nowrap md:text-right`}>{m.size}</td>
+          <td className={`${td} font-mono text-[13px] text-graphite-soft md:whitespace-nowrap md:text-right`}>
+            {m.size}
+          </td>
         </tr>
       ))}
     </tbody>

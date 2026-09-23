@@ -30,13 +30,21 @@ and seen what Samarth builds for fun, not skimmed a CV. So the fun parts come fi
 
 Page data lives in `src/content/pages.ts`; the order is set in `src/pages/Index.tsx`.
 
-**`/desi-dictation`** is a second notebook with its own three pages (the product
-and its download, a five-step install, troubleshooting). It reuses the same kit
-and the looping scene from the home page. Its copy lives in
-`src/data/desiDictation.ts`; to ship a new app version, change `VERSION`, `size`
-and `sha256` there. The DMG is linked straight from the GitHub release. Each
-prerendered route, with its own title, description and JSON-LD, is listed in
-`src/seo/routes.ts`, and `scripts/prerender.mjs` writes one HTML file per route.
+**`/desi-dictation`** is the product page for the Mac app, in the same
+notebook but with its own header (`ProductNav`: the product's sections, a
+Download stamp, and "by Samarth Saraswat" back home). Seven pages: hero,
+languages, features, privacy and speed, comparison, pricing, FAQ.
+**`/desi-dictation/install`** holds the five install steps (including the
+Gatekeeper workaround and its `xattr` command) and troubleshooting.
+
+- Copy: `src/data/desiDictation.ts` (release, commands, install),
+  `src/data/ddProduct.ts` (features, FAQ), `src/data/ddCompare.ts` (the
+  comparison; add a row or a product there, the table follows).
+- New app version: change `VERSION`, `size` and `sha256` in desiDictation.ts.
+  The DMG is linked straight from the GitHub release.
+- Prerendered routes, each with its own title, description and JSON-LD, are
+  listed in `src/seo/routes.ts`; `scripts/prerender.mjs` writes one HTML file
+  per route and `vercel.json` rewrites each path to it.
 
 ## 2. How the design was arrived at
 

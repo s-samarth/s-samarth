@@ -14,7 +14,8 @@ const UnblockRoutes = () => (
       <p className="label border-b-2 border-redpen/50 pb-2">The click way</p>
       <ol className="mt-3 list-decimal space-y-2.5 pl-5 text-[16.5px] leading-snug text-graphite-dim marker:font-mono marker:text-[13px] marker:text-redpen">
         <li>
-          Double-click the app. macOS says it can’t verify it. Click <span className={strong}>Done</span>, not Move to Trash.
+          Double-click the app. macOS says it can’t verify it. Click <span className={strong}>Done</span>, not Move to
+          Trash.
         </li>
         <li>
           Open <span className={strong}>System Settings → Privacy &amp; Security</span> and scroll down.
@@ -55,16 +56,16 @@ export const InstallSection = () => (
       <ol className="mt-6 divide-y divide-dashed divide-graphite-soft/50">
         <InstallStep n={1} title="Download it and drag it into Applications.">
           <p>
-            Open the DMG and drag <span className={strong}>Desi Dictation</span> onto the Applications folder. It lives in your
-            menu bar as a mic icon; there is no Dock icon, by design.
+            Open the DMG and drag <span className={strong}>Desi Dictation</span> onto the Applications folder. It lives
+            in your menu bar as a mic icon; there is no Dock icon, by design.
           </p>
         </InstallStep>
 
         <InstallStep n={2} title={<>Get past Apple’s “could not verify”.</>}>
           <p>
             The beta is signed with my own certificate but not notarised by Apple yet. That costs $99 a year and comes
-            before the public launch. Until then macOS blocks the first open. This is expected, not malware, and you only
-            do it once.
+            before the public launch. Until then macOS blocks the first open. This is expected, not malware, and you
+            only do it once.
           </p>
           <UnblockRoutes />
         </InstallStep>
@@ -81,13 +82,13 @@ export const InstallSection = () => (
         <InstallStep n={4} title="Download the models you speak.">
           <p>
             Menu bar → <span className={strong}>Open Desi Dictation… → Models</span>. Get one{" "}
-            <span className="text-redpen">★</span> per language you speak, plus the VAD add-on. All free during the beta,
-            and every download is SHA256-checked.
+            <span className="text-redpen">★</span> per language you speak, plus the VAD add-on. All free during the
+            beta, and every download is SHA256-checked.
           </p>
           <ModelsTable />
           <p>
-            Leave <span className={strong}>Model: Auto</span>. Each language remembers its own model and loads it when you
-            switch.
+            Leave <span className={strong}>Model: Auto</span>. Each language remembers its own model and loads it when
+            you switch.
           </p>
         </InstallStep>
 
@@ -98,7 +99,8 @@ export const InstallSection = () => (
           </p>
           <p>
             The words land at your cursor and stay on your clipboard. <Key>Esc</Key> throws a dictation away. Prefer
-            tap-to-start, or a different key like <Key>Right ⌘</Key> or <Key>F13</Key>? Both are on the Dictation screen.
+            tap-to-start, or a different key like <Key>Right ⌘</Key> or <Key>F13</Key>? Both are on the Dictation
+            screen.
           </p>
         </InstallStep>
       </ol>

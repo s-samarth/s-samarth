@@ -21,7 +21,16 @@ export const prerenderedRoutes: RouteMeta[] = [
     meta: {
       title: "Desi Dictation | Local Hinglish dictation for macOS",
       description:
-        "Hold a key, speak Hinglish, release. Free, fully local dictation for Apple Silicon Macs. Download the DMG and install it in five minutes.",
+        "Hold a key, speak Hinglish, release. Free, fully local dictation for Apple Silicon Macs, compared with Wispr Flow, MacWhisper and Superwhisper.",
+    },
+  },
+  {
+    path: "/desi-dictation/install",
+    file: "desi-dictation/install/index.html",
+    meta: {
+      title: "Install Desi Dictation | Setup guide for macOS",
+      description:
+        "Download the Desi Dictation DMG, get past Apple's unverified-developer warning, grant three permissions and pick your models. Five minutes, once.",
     },
   },
 ];

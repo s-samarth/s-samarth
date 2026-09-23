@@ -1,5 +1,5 @@
-import { ArrowUpRight, Download } from "lucide-react";
-import { release, requirements } from "@/data/desiDictation";
+import { ArrowRight, Download } from "lucide-react";
+import { INSTALL_PATH, release, requirements } from "@/data/desiDictation";
 import { riseDelay } from "@/lib/rise";
 import { Highlight } from "../notebook/Highlight";
 import { DesiDictationScene } from "../projects/DesiDictationScene";
@@ -13,7 +13,7 @@ export const DownloadStamp = () => (
 );
 
 /**
- * Page one of the product page: name, the promise, the download, and the
+ * The product page's first screen: name, the promise, the download, and the
  * looping scene from the home page printed large. Entrances use CSS `.rise`
  * so the prerendered HTML is readable before JavaScript loads.
  */
@@ -21,7 +21,7 @@ export const DdHero = () => (
   <section id="top" className="relative">
     <div className="page-x pb-16 pt-24 md:pb-24 md:pt-28">
       <p className="rise label relative" style={riseDelay(0.1)}>
-        <span className="!text-redpen">p.01 · </span>Exp.02 · Local speech · macOS · Free beta
+        <span className="!text-redpen">p.01 · </span>Hinglish dictation for Mac · Free beta
       </p>
 
       <div className="mt-10 grid grid-cols-[minmax(0,1fr)] items-center gap-x-16 gap-y-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
@@ -29,7 +29,10 @@ export const DdHero = () => (
           <h1 className="rise headline text-[3.4rem] sm:text-7xl md:text-[5.2rem]" style={riseDelay(0.2)}>
             Desi Dictation
           </h1>
-          <p className="rise mt-5 max-w-xl text-[21px] leading-snug text-graphite md:text-[24px]" style={riseDelay(0.3)}>
+          <p
+            className="rise mt-5 max-w-xl text-[21px] leading-snug text-graphite md:text-[24px]"
+            style={riseDelay(0.3)}
+          >
             Hold a key,{" "}
             <em>
               <Highlight delay={1}>speak the way you actually talk</Highlight>
@@ -46,24 +49,26 @@ export const DdHero = () => (
               v{release.version} · {release.size} DMG · {requirements.slice(0, 2).join(" · ")}
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-6">
-              <a href="#install" className="btn-pen">
-                How to install
+              <a href={INSTALL_PATH} className="btn-pen">
+                Install guide <ArrowRight size={14} />
               </a>
-              <a href={release.repo} target="_blank" rel="noopener noreferrer" className="btn-pen">
-                Code on GitHub <ArrowUpRight size={14} />
+              <a href="#compare" className="btn-pen">
+                How it compares
               </a>
             </div>
           </div>
 
           <p className="rise hand mt-8 -rotate-1 text-[24px]" style={riseDelay(0.7)}>
-            not notarised by Apple yet, so do read step 2 ↓
+            not notarised by Apple yet. the install guide has the fix
           </p>
         </div>
 
         <figure className="rise relative" style={riseDelay(0.35)}>
           <div className="print">
             <span className="tape -top-3 left-1/2 -translate-x-1/2 rotate-2" />
-            <div className={`relative aspect-[4/5] overflow-hidden font-sans sm:aspect-[5/4] ${washes["desi-dictation"]}`}>
+            <div
+              className={`relative aspect-[4/5] overflow-hidden font-sans sm:aspect-[5/4] ${washes["desi-dictation"]}`}
+            >
               <DesiDictationScene />
             </div>
             <figcaption className="label mt-2.5 px-1 !text-[10px]">fig. 1 · Hold right ⌥, speak, release</figcaption>

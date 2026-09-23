@@ -3,6 +3,10 @@
  * docs/SETUP_GUIDE.md, docs/TROUBLESHOOTING.md and the GitHub release.
  * To ship a new version, update `release` and nothing else.
  */
+/** Where the product and its install guide live on this site. */
+export const PRODUCT_PATH = "/desi-dictation";
+export const INSTALL_PATH = "/desi-dictation/install";
+
 const REPO = "https://github.com/s-samarth/desi-dictation";
 const VERSION = "0.6.2";
 const FILE = `DesiDictation-${VERSION}.dmg`;

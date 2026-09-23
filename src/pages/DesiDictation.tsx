@@ -1,30 +1,33 @@
-import { useEffect } from "react";
-import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { ProductNav } from "@/components/desi/ProductNav";
 import { DdHero } from "@/components/desi/DdHero";
-import { InstallSection } from "@/components/desi/InstallSection";
-import { StuckSection } from "@/components/desi/StuckSection";
-import { prerenderedRoutes } from "@/seo/routes";
-
-const meta = prerenderedRoutes.find((r) => r.path === "/desi-dictation")?.meta;
+import { LanguagesSection } from "@/components/desi/LanguagesSection";
+import { FeaturesSection } from "@/components/desi/FeaturesSection";
+import { PrivacySection } from "@/components/desi/PrivacySection";
+import { CompareSection } from "@/components/desi/CompareSection";
+import { FaqSection, PricingSection } from "@/components/desi/PricingFaqSection";
+import { DdCta } from "@/components/desi/DdCta";
+import { useRouteTitle } from "@/seo/useRouteTitle";
 
 /**
- * /desi-dictation: the product page. Same notebook, its own three pages:
- * what it is and the download, the install, and what to do when stuck.
+ * /desi-dictation: the product's own page, inside the same notebook. Its
+ * header is the product's, and "by Samarth Saraswat" leads back home.
+ * The install steps live on their own page (/desi-dictation/install).
  */
 const DesiDictation = () => {
-  // The prerendered HTML already has the right <title>; this covers dev mode.
-  useEffect(() => {
-    if (meta) document.title = meta.title;
-  }, []);
-
+  useRouteTitle("/desi-dictation");
   return (
     <div className="min-h-screen">
-      <Navigation />
+      <ProductNav />
       <main className="relative z-10">
         <DdHero />
-        <InstallSection />
-        <StuckSection />
+        <LanguagesSection />
+        <FeaturesSection />
+        <PrivacySection />
+        <CompareSection />
+        <PricingSection />
+        <FaqSection />
+        <DdCta />
       </main>
       <Footer />
     </div>

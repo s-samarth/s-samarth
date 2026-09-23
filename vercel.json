@@ -1,6 +1,16 @@
 {
   "rewrites": [
-    { "source": "/desi-dictation", "destination": "/desi-dictation/index.html" },
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/desi-dictation",
+      "destination": "/desi-dictation/index.html"
+    },
+    {
+      "source": "/desi-dictation/install",
+      "destination": "/desi-dictation/install/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
   ]
 }

@@ -21,7 +21,9 @@ export const InstallStep = ({ n, title, children }: InstallStepProps) => (
       </span>
       <div className="min-w-0">
         <h3 className="headline text-[1.9rem] leading-tight md:mt-2 md:text-[2.3rem]">{title}</h3>
-        <div className="mt-4 max-w-[54rem] space-y-4 text-[18px] leading-relaxed text-graphite-dim [&>p]:max-w-2xl [&>table]:max-w-3xl">{children}</div>
+        <div className="mt-4 max-w-[54rem] space-y-4 text-[18px] leading-relaxed text-graphite-dim [&>p]:max-w-2xl [&>table]:max-w-3xl">
+          {children}
+        </div>
       </div>
     </Reveal>
   </li>

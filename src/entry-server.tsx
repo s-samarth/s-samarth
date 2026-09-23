@@ -26,7 +26,7 @@ export const render = (location: string) =>
 
 /** JSON-LD per page: the person graph on home, the app on its own page. */
 export const jsonLd = (path: string) =>
-  JSON.stringify(path === "/desi-dictation" ? desiDictationLd() : structuredData(cutout));
+  JSON.stringify(path.startsWith("/desi-dictation") ? desiDictationLd() : structuredData(cutout));
 
 export { prerenderedRoutes };
 
