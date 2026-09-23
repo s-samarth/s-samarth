@@ -9,7 +9,7 @@ const FactsCard = () => (
     {facts.map((fact) => (
       <div key={fact.key} className="grid grid-cols-[6rem_1fr] gap-4 border-b border-rule py-3 last:border-0 md:grid-cols-[7rem_1fr]">
         <dt className="label pt-1 !text-[11px]">{fact.key}</dt>
-        <dd className="text-[17px] leading-snug text-graphite">
+        <dd className="text-[17px] leading-snug text-graphite [overflow-wrap:anywhere]">
           {fact.href ? (
             <a href={fact.href} target="_blank" rel="noopener noreferrer" className="link-ink">
               {fact.value}
@@ -47,7 +47,7 @@ export const WhoSection = () => (
   <section id="who">
     <div className="page-x py-24 md:py-32">
       <PageHead page="02" name="Who" title="The fine print." />
-      <div className="mt-14 grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+      <div className="mt-14 grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-12">
         <Reveal>
           <FactsCard />
         </Reveal>

@@ -1,6 +1,7 @@
 /**
  * Looping scene for Survive AI: a phone with no signal takes a Hinglish
  * query, three retrieval legs light up, fuse, and a cited answer streams in.
+ * The phone is 272 px wide so the longest answer line never clips.
  * Timing lives in styles/scenes.css (9 s loop).
  */
 const legs = [
@@ -27,8 +28,8 @@ const NoSignal = () => (
 
 export const SurviveAiScene = () => (
   <div className="flex h-full w-full items-center justify-center p-4" aria-hidden="true">
-    <div className="relative w-[258px] shrink-0 rounded-[28px] border border-graphite/15 bg-white p-2.5 shadow-[0_24px_50px_-24px_rgba(29,36,48,0.45)]">
-      <div className="rounded-[20px] border border-graphite/10 bg-[#FBFCFD] px-3.5 pb-3 pt-2.5">
+    <div className="relative w-[272px] shrink-0 rounded-[28px] border border-graphite/15 bg-white p-2.5 shadow-[0_24px_50px_-24px_rgba(29,36,48,0.45)]">
+      <div className="rounded-[20px] border border-graphite/10 bg-[#FBFCFD] px-3 pb-3 pt-2.5">
         {/* status bar */}
         <div className="flex items-center justify-between font-mono text-[10px] text-graphite-dim">
           <span>03:12</span>
@@ -66,7 +67,7 @@ export const SurviveAiScene = () => (
           </div>
 
           {/* answer */}
-          <div className="rounded-2xl rounded-bl-sm bg-[#EEF1F5] px-3 py-2 text-[11.5px] leading-[18px] text-graphite">
+          <div className="rounded-2xl rounded-bl-sm bg-[#EEF1F5] px-3 py-2 text-[11px] leading-[18px] text-graphite">
             {answerLines.map((line) => (
               <div key={line.cls} className={`sv-loop ${line.cls} whitespace-nowrap`}>
                 {line.text}
