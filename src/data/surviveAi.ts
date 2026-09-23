@@ -25,7 +25,7 @@ export const saRelease = {
   repo: REPO,
 };
 
-export const saRequirements = ["Android 7+", "6 GB RAM", "Free"];
+export const saRequirements = ["Android 7+", "6 GB RAM", "Free, open source"];
 
 /** The product header on both Survive AI pages. */
 export const saNav = {

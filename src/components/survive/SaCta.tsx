@@ -26,7 +26,7 @@ export const SaCta = ({ onInstallPage = false }: { onInstallPage?: boolean }) =>
             </a>
           )}
           <a href={saRelease.repo} target="_blank" rel="noopener noreferrer" className="btn-pen">
-            Code on GitHub
+            Source on GitHub
           </a>
         </div>
         <p className="mt-8 max-w-2xl text-[16.5px] leading-relaxed text-graphite-dim">

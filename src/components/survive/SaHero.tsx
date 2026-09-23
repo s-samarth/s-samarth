@@ -28,7 +28,7 @@ export const SaHero = () => (
   <section id="top" className="relative">
     <div className="page-x pb-16 pt-24 md:pb-24 md:pt-28">
       <p className="rise label relative" style={riseDelay(0.1)}>
-        <span className="!text-redpen">p.01 · </span>Offline survival assistant · Android · Free
+        <span className="!text-redpen">p.01 · </span>Offline survival assistant · Android · Free and open source
       </p>
 
       <div className="mt-10 grid grid-cols-[minmax(0,1fr)] items-center gap-x-16 gap-y-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">

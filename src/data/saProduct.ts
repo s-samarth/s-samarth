@@ -152,11 +152,15 @@ export const saFaqs: FaqItem[] = [
     a: "On purpose. A plain APK can be passed on by USB or Bluetooth where the store is blocked or there’s no internet. Check the SHA-256 before installing one someone handed you.",
   },
   {
+    q: "Is it open source?",
+    a: "Yes. The app, the search pipeline, the evaluation sets and the guides are on GitHub under Apache 2.0. The Gemma models are Google’s, under Gemma’s own terms.",
+  },
+  {
     q: "Is there an iPhone version?",
     a: "The iOS app builds from the same code and is tested on every release, but iPhones can’t install apps from outside the App Store, so it needs TestFlight first. Not yet.",
   },
   {
     q: "Does it cost anything?",
-    a: "No, and it won’t. The code is on GitHub, and there are no ads, no account and no paid tier.",
+    a: "No, and it won’t. It’s open source under Apache 2.0, with no ads, no account and no paid tier.",
   },
 ];
