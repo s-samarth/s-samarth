@@ -63,7 +63,7 @@ export const structuredData = (photoUrl: string) => {
         name: p.title,
         description: p.oneLiner,
         codeRepository: p.github,
-        ...(p.live && { url: p.live.href }),
+        ...(p.live && { url: absolute(p.live.href) }),
         keywords: p.kind,
         author: { "@id": PERSON_ID },
       })),

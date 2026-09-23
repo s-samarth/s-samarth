@@ -36,7 +36,7 @@ export const llmsTxt = () => {
       "",
       ...p.specs.map((s) => `- ${s.key}: ${s.value}`),
       `- Code: ${p.github}`,
-      ...(p.live ? [`- Live: ${p.live.href}`] : []),
+      ...(p.live ? [`- ${p.live.label}: ${p.live.href.startsWith("/") ? SITE_URL + p.live.href : p.live.href}`] : []),
       "",
     ]),
     "## Writing",

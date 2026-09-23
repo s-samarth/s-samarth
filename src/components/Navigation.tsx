@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { pages } from "@/content/pages";
 import { useActivePage } from "@/hooks/use-active-page";
 
@@ -10,6 +11,8 @@ export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const active = useActivePage(pageIds);
+  // Off the home page (e.g. /desi-dictation) the section links point back to it.
+  const home = useLocation().pathname === "/" ? "" : "/";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
@@ -34,7 +37,7 @@ export const Navigation = () => {
       }`}
     >
       <nav className="mx-auto flex h-14 w-full max-w-[1180px] items-center justify-between px-5 md:pl-24 md:pr-10">
-        <a href="#top" className="font-serif text-[20px] font-medium tracking-tight text-graphite" onClick={close}>
+        <a href={home || "#top"} className="font-serif text-[20px] font-medium tracking-tight text-graphite" onClick={close}>
           Samarth Saraswat
         </a>
 
@@ -42,7 +45,7 @@ export const Navigation = () => {
           {pages.map((page) => (
             <a
               key={page.id}
-              href={`#${page.id}`}
+              href={`${home}#${page.id}`}
               className={`font-mono text-[12px] font-medium uppercase tracking-[0.12em] transition-colors hover:text-graphite ${
                 active === page.id ? "text-graphite underline decoration-marker decoration-[3px] underline-offset-[6px]" : "text-graphite-soft"
               }`}
@@ -50,7 +53,7 @@ export const Navigation = () => {
               {page.label}
             </a>
           ))}
-          <a href="#ticket" className="btn-stamp !px-3.5 !py-1.5 !text-[11px]">
+          <a href={`${home}#ticket`} className="btn-stamp !px-3.5 !py-1.5 !text-[11px]">
             Raise a ticket
           </a>
         </div>
@@ -78,7 +81,7 @@ export const Navigation = () => {
               {pages.map((page, i) => (
                 <motion.a
                   key={page.id}
-                  href={`#${page.id}`}
+                  href={`${home}#${page.id}`}
                   onClick={close}
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -90,7 +93,7 @@ export const Navigation = () => {
                 </motion.a>
               ))}
             </div>
-            <a href="#ticket" onClick={close} className="btn-stamp mt-8 self-start">
+            <a href={`${home}#ticket`} onClick={close} className="btn-stamp mt-8 self-start">
               Raise a ticket
             </a>
           </motion.div>

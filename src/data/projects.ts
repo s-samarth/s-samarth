@@ -59,6 +59,7 @@ export const projects: Project[] = [
       { key: "Stack", value: "Swift, SwiftUI, whisper.cpp, Metal, Silero VAD" },
     ],
     github: "https://github.com/s-samarth/desi-dictation",
+    live: { href: "/desi-dictation", label: "Download for Mac" },
     note: "1.47 s on an M3 Air",
   },
   {

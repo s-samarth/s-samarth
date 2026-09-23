@@ -4,6 +4,7 @@ import { AppShell, AppRoutes } from "./App";
 import cutout from "@/assets/samarth-cutout.webp";
 import { structuredData } from "./seo/structuredData";
 import { llmsTxt } from "./seo/llmsTxt";
+import { prerenderedRoutes, desiDictationLd } from "./seo/routes";
 
 /**
  * Build-time entry, never shipped to the browser. scripts/prerender.mjs
@@ -14,15 +15,19 @@ import { llmsTxt } from "./seo/llmsTxt";
  * JavaScript (most AI bots) still read every word. In the browser, React
  * then hydrates it (main.tsx): same tree, only the router differs.
  */
-export const render = () =>
+export const render = (location: string) =>
   renderToString(
     <AppShell>
-      <StaticRouter location="/">
+      <StaticRouter location={location}>
         <AppRoutes />
       </StaticRouter>
     </AppShell>,
   );
 
-export const jsonLd = () => JSON.stringify(structuredData(cutout));
+/** JSON-LD per page: the person graph on home, the app on its own page. */
+export const jsonLd = (path: string) =>
+  JSON.stringify(path === "/desi-dictation" ? desiDictationLd() : structuredData(cutout));
+
+export { prerenderedRoutes };
 
 export { llmsTxt };

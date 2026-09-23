@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    { "source": "/desi-dictation", "destination": "/desi-dictation/index.html" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }

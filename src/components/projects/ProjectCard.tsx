@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Project, ProjectSpec } from "@/data/projects";
 import { Reveal } from "../Reveal";
 import { Highlight } from "../notebook/Highlight";
@@ -10,6 +10,9 @@ interface ProjectCardProps {
   /** Position in the list, written in the margin as the experiment number. */
   index: number;
 }
+
+/** Off-site links open in a new tab; pages on this site open in place. */
+const external = (href: string) => (href.startsWith("/") ? {} : { target: "_blank", rel: "noopener noreferrer" });
 
 /** A spec value, with the highlighter over its one number to remember. */
 const SpecValue = ({ spec }: { spec: ProjectSpec }) => {
@@ -64,8 +67,8 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
           <div className="mt-7 flex flex-wrap items-center gap-6">
             {project.live && (
-              <a href={project.live.href} target="_blank" rel="noopener noreferrer" className="btn-stamp">
-                {project.live.label} <ArrowUpRight size={15} />
+              <a href={project.live.href} {...external(project.live.href)} className="btn-stamp">
+                {project.live.label} {project.live.href.startsWith("/") ? <ArrowRight size={15} /> : <ArrowUpRight size={15} />}
               </a>
             )}
             <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-pen">

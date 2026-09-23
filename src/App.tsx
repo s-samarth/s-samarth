@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import Index from "./pages/Index";
+import DesiDictation from "./pages/DesiDictation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ export const AppShell = ({ children }: { children: ReactNode }) => (
 export const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Index />} />
+    <Route path="/desi-dictation" element={<DesiDictation />} />
     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
     <Route path="*" element={<NotFound />} />
   </Routes>

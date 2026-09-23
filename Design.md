@@ -30,6 +30,14 @@ and seen what Samarth builds for fun, not skimmed a CV. So the fun parts come fi
 
 Page data lives in `src/content/pages.ts`; the order is set in `src/pages/Index.tsx`.
 
+**`/desi-dictation`** is a second notebook with its own three pages (the product
+and its download, a five-step install, troubleshooting). It reuses the same kit
+and the looping scene from the home page. Its copy lives in
+`src/data/desiDictation.ts`; to ship a new app version, change `VERSION`, `size`
+and `sha256` there. The DMG is linked straight from the GitHub release. Each
+prerendered route, with its own title, description and JSON-LD, is listed in
+`src/seo/routes.ts`, and `scripts/prerender.mjs` writes one HTML file per route.
+
 ## 2. How the design was arrived at
 
 Three passes. The first two were rejected; why they failed is the most useful
