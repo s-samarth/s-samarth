@@ -17,13 +17,13 @@ export const languageModes: LanguageMode[] = [
     name: "Hinglish",
     said: "kal meeting hai, please deck ready rakhna",
     typed: "Kal meeting hai, please deck ready rakhna.",
-    model: "Oriserve Hinglish Apex",
+    model: "Oriserve Hinglish Prime",
   },
   {
     name: "English",
     said: "send the invoice by friday, and cc finance",
     typed: "Send the invoice by Friday, and cc finance.",
-    model: "NVIDIA Parakeet",
+    model: "NVIDIA Parakeet · Qwen3-ASR",
   },
   { name: "हिन्दी", said: "kal meeting hai", typed: "कल मीटिंग है", model: "Vaani Hindi" },
 ];
@@ -41,35 +41,32 @@ export const features: Feature[] = [
     body: "WhatsApp Web, Slack, Mail, Notes, your IDE. If it has a text cursor, the words land there, and on your clipboard too.",
   },
   {
-    title: "Per-app language",
-    body: "Pin WhatsApp to Hinglish and Mail to English once. It switches by itself, and tells you when a rule kicked in.",
+    title: "Learns from your fixes",
+    body: "It wrote Rowan, you fix it to Rohan right there in the text. A small popup asks “Always write Rowan as Rohan?” Nothing is learned without your yes.",
   },
   {
-    title: "Your words, your spellings",
-    body: "Teach it names, brands and code terms once: saraswath becomes Saraswat, gpt becomes GPT. Right-click any past dictation to add one.",
+    title: "Names right the first time",
+    body: "Saraswath becomes Saraswat because it sounds and looks almost the same. Names visible on screen count too, read locally and forgotten after. Every fix is shown, and undoing one stops it for good.",
+  },
+  {
+    title: "Your words, two lists",
+    body: "English and Hinglish keep separate word lists, so “nahi” never touches your English. Select any word in any app and right-click → Always write as… to add one.",
+  },
+  {
+    title: "Your Hinglish spelling",
+    body: "Hinglish has no fixed spelling. If the chat already says “nahi”, a dictated “nahin” comes out “nahi”, so the message reads consistent.",
+  },
+  {
+    title: "Per-app language",
+    body: "Pin WhatsApp to Hinglish and Mail to English once. It switches by itself, and tells you when a rule kicked in.",
   },
   {
     title: "Pauses are fine",
     body: "Voice-activity detection handles thinking pauses and long dictations. Transcription runs in chunks while you speak.",
   },
   {
-    title: "Speak desi, write English",
-    body: "Say it in Hindi or Hinglish, get polished English pasted. If the AI step fails, your original words paste instead.",
-    ai: true,
-  },
-  {
-    title: "Structure my thoughts",
-    body: "Ramble for as long as you like, then pick Notes, Action list, Email draft or Outline. In beta.",
-    ai: true,
-  },
-  {
-    title: "Tone, with Faithful by default",
-    body: "Faithful never rewrites what you said. Casual, Professional and Respectful are there when you want them.",
-    ai: true,
-  },
-  {
     title: "A day of history",
-    body: "The last 24 hours of dictations, searchable, stored only on your Mac. Turn it off if you like.",
+    body: "The last 24 hours of dictations, searchable, stored only on your Mac, with every automatic fix marked. Turn it off if you like.",
   },
 ];
 
@@ -79,8 +76,8 @@ export interface Speed {
 }
 
 export const speeds: Speed[] = [
-  { value: "0.21 s", what: "per English dictation, on an M3 MacBook Air" },
-  { value: "1.47 s", what: "per Hinglish dictation, same Mac" },
+  { value: "0.1 s", what: "per English dictation, on an M3 MacBook Air" },
+  { value: "1.8 s", what: "per Hinglish dictation, same Mac" },
   { value: "0 bytes", what: "of your voice sent anywhere" },
 ];
 
@@ -89,6 +86,7 @@ export const privacyPoints = [
   "No cloud transcription. Audio never leaves your Mac.",
   "No telemetry, not even the anonymous kind.",
   "It only goes online when you ask it to, like downloading a model.",
+  "Names on screen, if you allow it, are read for one dictation and dropped. Never saved.",
 ];
 
 export interface Faq {
@@ -99,7 +97,15 @@ export interface Faq {
 export const faqs: Faq[] = [
   {
     q: "Is it really offline?",
-    a: "Yes. Once the models are downloaded, dictation works with Wi-Fi off. The optional AI features use Ollama, which also runs on your Mac.",
+    a: "Yes. Once the models are downloaded, dictation works with Wi-Fi off, vocabulary learning included.",
+  },
+  {
+    q: "How does it learn my words?",
+    a: "Dictate, then fix a misheard word in the text within 30 seconds. When you stop typing (or press Enter), it asks whether to always write it your way. It only asks about sound-alike spellings, never grammar or rewrites, and nothing is saved without your yes. The app’s Guide page explains every switch next to the switch itself.",
+  },
+  {
+    q: "Does it read my screen?",
+    a: "Only if you turn on “Use names on screen”. Then, when you start dictating, it reads the names visible in that window so a reply to Rohan isn’t typed as Rowan. The text stays in memory for that one dictation, then it’s gone. All of it is off until you switch it on.",
   },
   {
     q: "Why does macOS say it can’t verify the app?",
@@ -111,11 +117,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "Will it run on my Mac?",
-    a: "It needs an Apple Silicon Mac (M1 or newer) on macOS 14 or later. Intel Macs aren’t supported. On an 8 GB Mac, pick the lighter Hinglish Swift model.",
+    a: "It needs an Apple Silicon Mac (M1 or newer) on macOS 14 or later. Intel Macs aren’t supported.",
   },
   {
     q: "How much space does it take?",
-    a: "The app is under 2 MB. Models are separate: about 1 GB for Hinglish plus English, and another 1 GB if you add शुद्ध हिन्दी.",
+    a: "The app itself is small. Models are separate: about 1.5 GB for Hinglish plus English, another 1 GB if you add शुद्ध हिन्दी, and 2 GB more for the most accurate English model.",
   },
   {
     q: "Does it cost anything?",
@@ -123,6 +129,6 @@ export const faqs: Faq[] = [
   },
   {
     q: "Is it open source?",
-    a: "The app code is on GitHub. The Hinglish models are Oriserve’s, released under Apache 2.0, and run on whisper.cpp.",
+    a: "The app code is on GitHub. The Hinglish models are Oriserve’s, released under Apache 2.0, and run on whisper.cpp; English runs NVIDIA’s Parakeet or Alibaba’s Qwen3-ASR.",
   },
 ];

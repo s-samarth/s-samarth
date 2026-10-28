@@ -51,17 +51,17 @@ export const projects: Project[] = [
       "Local-first Hinglish dictation for macOS. Hold a key, speak the way you actually talk, release, and Roman-script Hinglish lands in whatever app you are typing in.",
     body: [
       "Dictation tools understand English or Hindi. Nobody in Bangalore talks like that. “Kal meeting hai, please deck ready rakhna” is one sentence, and it should land as one sentence.",
-      "A global hotkey captures 16 kHz audio, whisper.cpp runs a Hinglish fine-tuned Whisper on Metal, a user dictionary cleans it up, and a pasteboard swap drops the text into the focused app. No cloud, no subscription, runs on a MacBook Air. The current beta ships five curated models with per-language defaults, voice-activity pause handling, chunked transcription for long dictation, and a warm-mic pre-roll so the first word is never lost.",
+      "A global hotkey captures 16 kHz audio, whisper.cpp runs a Hinglish fine-tuned Whisper on Metal, a user dictionary cleans it up, and a pasteboard swap drops the text into the focused app. No cloud, no subscription, runs on a MacBook Air. It learns your vocabulary from the fixes you already make: correct a misheard name in the text and it asks to remember it, with separate English and Hinglish lists. Five curated models with per-language defaults, voice-activity pause handling, chunked transcription for long dictation, and a warm-mic pre-roll so the first word is never lost.",
     ],
     specs: [
       { key: "Runs on", value: "macOS, Apple Silicon, fully local" },
-      { key: "Latency", value: "0.21 s English, 1.47 s Hinglish per dictation (M3 Air)", mark: "1.47 s Hinglish" },
-      { key: "Models", value: "Oriserve Whisper-Hindi2Hinglish, Parakeet TDT, Vaani" },
-      { key: "Stack", value: "Swift, SwiftUI, whisper.cpp, Metal, Silero VAD" },
+      { key: "Latency", value: "0.1 s English, 1.8 s Hinglish per dictation (M3 Air)", mark: "1.8 s Hinglish" },
+      { key: "Models", value: "Oriserve Hinglish Prime, Parakeet TDT, Qwen3-ASR, Vaani" },
+      { key: "Stack", value: "Swift, SwiftUI, whisper.cpp, transcribe.cpp, Metal, Silero VAD" },
     ],
     github: "https://github.com/s-samarth/desi-dictation",
     live: { href: "/desi-dictation", label: "Get it for Mac" },
-    note: "1.47 s on an M3 Air",
+    note: "1.8 s on an M3 Air",
   },
   {
     id: "study-hub",

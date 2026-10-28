@@ -45,12 +45,12 @@ export const rows: Row[] = [
     },
   },
   {
-    label: "AI rewrite and translate",
+    label: "Learns your names",
     cells: {
-      "Desi Dictation": { text: "On-device, optional", tone: "yes" },
-      "Wispr Flow": { text: "In the cloud", tone: "meh" },
-      MacWhisper: { text: "Cloud, with your own key", tone: "meh" },
-      Superwhisper: { text: "Cloud LLMs, optional", tone: "meh" },
+      "Desi Dictation": { text: "From your fixes, asks first", tone: "yes" },
+      "Wispr Flow": { text: "From your fixes, automatically", tone: "yes" },
+      MacWhisper: { text: "Replacements you set up", tone: "meh" },
+      Superwhisper: { text: "Words you add by hand", tone: "meh" },
     },
   },
   {
