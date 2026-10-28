@@ -22,7 +22,7 @@ export const prerenderedRoutes: RouteMeta[] = [
     meta: {
       title: "Desi Dictation | Local Hinglish dictation for macOS",
       description:
-        "Hold a key, speak Hinglish, release. Free, fully local dictation for Apple Silicon Macs, compared with Wispr Flow, MacWhisper and Superwhisper.",
+        "Hold a key, speak Hinglish, release. Free, fully local dictation for Apple Silicon Macs that learns your names from the fixes you make, compared with Wispr Flow, MacWhisper and Superwhisper.",
     },
   },
   {

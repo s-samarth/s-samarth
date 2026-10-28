@@ -7,7 +7,8 @@ const tilts = ["-rotate-[0.5deg]", "rotate-[0.4deg]", "rotate-[0.2deg]", "-rotat
 
 /**
  * Page three: what the app does beyond the words, as a grid of index cards.
- * The on-device AI features wear a small red stamp saying they need Ollama.
+ * Any on-device AI feature (none ship today; the app hides them until
+ * released) wears a small red stamp saying it needs Ollama.
  */
 export const FeaturesSection = () => (
   <section id="features">
@@ -20,7 +21,7 @@ export const FeaturesSection = () => (
             Everything around <em className="text-redpen">the words.</em>
           </>
         }
-        lede="Dictation is the core. The rest is what makes it yours: per-app language, your own spellings, and an optional AI layer that also runs on your Mac."
+        lede="Dictation is the core. The rest is what makes it yours: it learns your names from the fixes you already make, keeps your Hinglish spellings, and switches language per app. All of it on your Mac."
       />
 
       <div className="mt-14 grid grid-cols-[minmax(0,1fr)] gap-7 sm:grid-cols-2 lg:grid-cols-4">
@@ -40,7 +41,7 @@ export const FeaturesSection = () => (
         ))}
       </div>
       <p className="hand mt-10 -rotate-1 text-[23px]">
-        Ollama is a free app that runs AI models on your Mac. The AI tab sets it up.
+        Not sure what to switch on? The app’s Guide explains every switch, right next to it.
       </p>
     </div>
   </section>

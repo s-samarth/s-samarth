@@ -7,7 +7,7 @@ import { FaqSection as SharedFaq } from "../product/FaqSection";
 
 const included = [
   "Every model: Hinglish, English, हिन्दी and the pause detector",
-  "Every feature, including the on-device AI layer",
+  "Every feature, including vocabulary that learns from your fixes",
   "No word limits, no account, no card",
 ];
 

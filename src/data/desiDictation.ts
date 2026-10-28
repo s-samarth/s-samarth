@@ -14,8 +14,8 @@ const REPO = "https://github.com/s-samarth/desi-dictation";
 const LATEST = `${REPO}/releases/latest/download`;
 
 export const release = {
-  version: "0.6.2",
-  size: "1.8 MB",
+  version: "0.6.3",
+  size: "4.8 MB",
   file: "DesiDictation.dmg",
   url: `${LATEST}/DesiDictation.dmg`,
   checksumUrl: `${LATEST}/DesiDictation.dmg.sha256`,
@@ -64,10 +64,9 @@ export interface Model {
 }
 
 export const models: Model[] = [
-  { name: "Hinglish Apex", forWhat: "Hinglish, “kal meeting hai, deck ready rakhna”", size: "547 MB", pick: true },
-  { name: "Hinglish Swift", forWhat: "Hinglish on older or 8 GB Macs", size: "141 MB" },
-  { name: "Parakeet", forWhat: "English, fastest and most accurate", size: "416 MB", pick: true },
-  { name: "Whisper Large v3 Turbo", forWhat: "English fallback, older Macs", size: "574 MB" },
+  { name: "Hinglish Prime", forWhat: "Hinglish, “kal meeting hai, deck ready rakhna”", size: "1.03 GB", pick: true },
+  { name: "Parakeet", forWhat: "English, fastest", size: "416 MB", pick: true },
+  { name: "Qwen3-ASR 1.7B", forWhat: "English, most accurate (a little slower)", size: "2.08 GB" },
   { name: "Vaani Hindi", forWhat: "शुद्ध हिन्दी, in Devanagari", size: "1.06 GB", pick: true },
   { name: "Silero VAD", forWhat: "Everyone. Better pauses and long dictations", size: "1 MB", pick: true },
 ];

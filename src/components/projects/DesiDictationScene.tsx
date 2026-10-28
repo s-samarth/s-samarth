@@ -50,7 +50,7 @@ export const DesiDictationScene = () => (
           </span>
           <span className="dd-caret ml-0.5 inline-block h-[15px] w-[1.5px] translate-y-[2px] bg-[#E5533D]" />
           <div className="dd-loop dd-timing mt-3 inline-flex items-center gap-2 rounded-sm bg-[#FFE3A8] px-1.5 py-0.5 font-mono text-[9px] font-medium uppercase tracking-wider text-[#8A5300]">
-            1.47 s · Apex q5_0 · local
+            1.8 s · Prime q5_0 · local
           </div>
         </div>
       </div>
