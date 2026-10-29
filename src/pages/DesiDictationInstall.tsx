@@ -1,11 +1,11 @@
 import { Footer } from "@/components/Footer";
 import { ProductNav } from "@/components/product/ProductNav";
-import { DownloadStamp } from "@/components/desi/DdHero";
+import { DownloadStamp, ReleaseLabel } from "@/components/desi/DdHero";
 import { InstallSection } from "@/components/desi/InstallSection";
 import { StuckSection } from "@/components/desi/StuckSection";
 import { DdCta } from "@/components/desi/DdCta";
 import { OneLineInstall } from "@/components/desi/OneLineInstall";
-import { ddNav, release, requirements } from "@/data/desiDictation";
+import { ddNav } from "@/data/desiDictation";
 import { riseDelay } from "@/lib/rise";
 import { useRouteTitle } from "@/seo/useRouteTitle";
 
@@ -45,7 +45,7 @@ const InstallHero = () => (
             <DownloadStamp />
           </div>
           <p className="label mt-4 !text-[10.5px]">
-            v{release.version} · {release.size} · {requirements.slice(0, 2).join(" · ")}
+            <ReleaseLabel />
           </p>
         </div>
       </div>
