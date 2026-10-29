@@ -8,7 +8,7 @@
  * for 10 minutes, so GitHub sees a handful of requests a day whatever the
  * traffic. It reads no visitor data and stores nothing.
  */
-import { summarize, type GithubRelease } from "../src/lib/releaseStats";
+import { summarize, type GithubRelease } from "../src/lib/releaseStats.js";
 
 const RELEASES = "https://api.github.com/repos/s-samarth/desi-dictation/releases?per_page=100";
 

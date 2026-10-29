@@ -6,7 +6,7 @@
  *
  * Used by api/downloads.ts (cached for every visitor) and, as a fallback, by
  * the page itself, so both always agree. No "@/" imports: the API function
- * imports this file by a relative path.
+ * imports this file by a relative path, with ".js" (Node ESM needs it).
  */
 
 export interface GithubRelease {
