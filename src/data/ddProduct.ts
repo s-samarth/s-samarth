@@ -137,6 +137,10 @@ export const faqs: Faq[] = [
     a: "Only if you turn on “Suggest names on screen”. Then, when you start dictating, it reads the names visible in that window so a reply to Rohan isn’t typed as Rowan. The text stays in memory for that one dictation, then it’s gone. All of it is off until you switch it on.",
   },
   {
+    q: "Where does the download count come from?",
+    a: "From GitHub, which counts every download of every release file. The number at the top adds them up across all releases and all three ways in: the Download button, the one-line installer and the GitHub releases page. It refreshes about every 10 minutes. It counts downloads, not people, and it includes my own test downloads. Nothing on this site or in the app tracks you to get it.",
+  },
+  {
     q: "How do I send feedback?",
     a: "Menu bar → Send Feedback…. Type what happened; adding your app version or your last dictation is a tick box, off for the dictation, and you see the exact text before it goes. It’s sent to this site only when you press Send, then forwarded to my inbox and not stored. No audio, no IDs. Prefer email? The same window has an Email instead button.",
   },
