@@ -37,7 +37,7 @@ describe("POST /api/feedback", () => {
     const res = await post({ message: "Paste went to the wrong app", replyTo: "a@b.co" }, "feedback-1", "10.0.0.2");
     expect(res.status).toBe(200);
     const sent = JSON.parse(fetchMock.mock.calls[0][1].body);
-    expect(sent.template_params.from_email).toBe("a@b.co");
+    expect(sent.template_params.reply_to).toBe("a@b.co");
     expect(sent.template_params.message).toContain("Paste went to the wrong app");
     expect(sent.template_params.message).toContain("Last dictation: not included");
   });
