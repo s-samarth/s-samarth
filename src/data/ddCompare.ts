@@ -54,6 +54,33 @@ export const rows: Row[] = [
     },
   },
   {
+    label: "Shows the words it’s unsure of",
+    cells: {
+      "Desi Dictation": { text: "Underlines them before pasting", tone: "yes" },
+      "Wispr Flow": { text: "Not in its feature list", tone: "no" },
+      MacWhisper: { text: "Not in its feature list", tone: "no" },
+      Superwhisper: { text: "Not in its feature list", tone: "no" },
+    },
+  },
+  {
+    label: "Changes your words",
+    cells: {
+      "Desi Dictation": { text: "Only what you set up; the rest is suggested", tone: "yes" },
+      "Wispr Flow": { text: "AI edits automatically; reviewers say it changes phrasing", tone: "meh" },
+      MacWhisper: { text: "Raw text unless you add an AI prompt" },
+      Superwhisper: { text: "Whatever your mode’s AI prompt does" },
+    },
+  },
+  {
+    label: "Filler words (um, uh)",
+    cells: {
+      "Desi Dictation": { text: "Removed; “like”, “you know” offered", tone: "yes" },
+      "Wispr Flow": { text: "Removed by AI Auto Edits", tone: "yes" },
+      MacWhisper: { text: "Only with an AI prompt (API key or Ollama)", tone: "meh" },
+      Superwhisper: { text: "Through an AI mode", tone: "meh" },
+    },
+  },
+  {
     label: "Free tier",
     cells: {
       "Desi Dictation": { text: "Everything, during the beta", tone: "yes" },
@@ -93,6 +120,7 @@ export const rows: Row[] = [
 
 /** Said plainly, because a comparison that only lists wins isn't worth reading. */
 export const theyWin = [
+  "Wispr Flow’s automatic edits mean less to fix by hand, if you’re happy for it to rephrase you.",
   "Wispr Flow is on every platform, including Android, and its polish is the category benchmark.",
   "MacWhisper is years more mature and far better at transcribing files and meetings.",
   "Superwhisper has the deepest system of custom modes and runs on Windows.",

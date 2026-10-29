@@ -103,6 +103,21 @@ export const InstallSection = () => (
             screen.
           </p>
         </InstallStep>
+
+        <InstallStep n={6} tag="Optional" title="Choose how much it checks with you.">
+          <p>
+            Onboarding offers this as its last step, and it lives under{" "}
+            <span className={strong}>Dictation → Review</span>. Set Review before paste to{" "}
+            <span className={strong}>Only when unsure</span>: clean dictations still paste at once, and shaky words
+            get underlined before anything lands. Then pick how strict: Conservative for email, Moderate for everyday
+            messages, Liberal for coding agents.
+          </p>
+          <p>
+            Want purple “odd here” underlines and When it fits words? Get the optional{" "}
+            <span className={strong}>context checker</span> (397 MB) from the Models page. Everything is explained on
+            the <a href="/desi-dictation#review" className="underline decoration-redpen/60 underline-offset-4">product page</a>.
+          </p>
+        </InstallStep>
       </ol>
     </div>
   </section>

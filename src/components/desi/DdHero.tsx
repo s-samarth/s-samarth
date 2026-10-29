@@ -22,7 +22,7 @@ export const DdHero = () => (
   <section id="top" className="relative">
     <div className="page-x pb-16 pt-24 md:pb-24 md:pt-28">
       <p className="rise label relative" style={riseDelay(0.1)}>
-        <span className="!text-redpen">p.01 · </span>Hinglish dictation for Mac · Free beta
+        <span className="!text-redpen">p.01 · </span>Dictation you can trust · Mac · Free beta
       </p>
 
       <div className="mt-10 grid grid-cols-[minmax(0,1fr)] items-center gap-x-16 gap-y-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
@@ -38,10 +38,11 @@ export const DdHero = () => (
             <em>
               <Highlight delay={1}>speak the way you actually talk</Highlight>
             </em>
-            , release. Roman-script Hinglish lands in whatever app you are typing in.
+            , release. English, Roman-script Hinglish or हिन्दी lands in whatever app you are typing in.
           </p>
           <p className="rise lede mt-4 max-w-xl" style={riseDelay(0.4)}>
-            No cloud, no subscription, no account. Your voice never leaves your Mac.
+            It checks with you only when it’s unsure, and never swaps a word on a guess. No cloud, no account: your
+            voice never leaves your Mac.
           </p>
 
           <div className="rise mt-9" style={riseDelay(0.5)}>
@@ -55,6 +56,9 @@ export const DdHero = () => (
             <div className="mt-7 flex flex-wrap items-center gap-6">
               <a href={INSTALL_PATH} className="btn-pen">
                 Install guide <ArrowRight size={14} />
+              </a>
+              <a href="#watch" className="btn-pen">
+                Watch the film
               </a>
               <a href="#compare" className="btn-pen">
                 How it compares

@@ -32,14 +32,23 @@ Page data lives in `src/content/pages.ts`; the order is set in `src/pages/Index.
 
 **`/desi-dictation`** is the product page for the Mac app, in the same
 notebook but with its own header (`ProductNav`: the product's sections, a
-Download stamp, and "by Samarth Saraswat" back home). Seven pages: hero,
-languages, features, privacy and speed, comparison, pricing, FAQ.
-**`/desi-dictation/install`** holds the five install steps (including the
-Gatekeeper workaround and its `xattr` command) and troubleshooting.
+Download stamp, and "by Samarth Saraswat" back home). Ten pages: hero, the
+launch film, languages, features, review (when it checks with you, the
+underline colours, keys, and the Conservative / Moderate / Liberal levels),
+the guide (the optional context checker and every switch with when to flip
+it), privacy and speed, comparison, pricing, FAQ. The pitch is "dictation
+you can trust": it asks only when it's unsure and never swaps a word on a guess.
+**`/desi-dictation/install`** holds the install steps (including the
+Gatekeeper workaround and its `xattr` command, and an optional sixth step for
+Review) and troubleshooting.
 
 - Copy: `src/data/desiDictation.ts` (release, commands, install),
-  `src/data/ddProduct.ts` (features, FAQ), `src/data/ddCompare.ts` (the
-  comparison; add a row or a product there, the table follows).
+  `src/data/ddProduct.ts` (features, FAQ), `src/data/ddTrust.ts` (review
+  modes, strictness levels with their measured numbers, the context checker,
+  every switch), `src/data/ddCompare.ts` (the comparison; add a row or a
+  product there, the table follows).
+- The launch film is `public/desi-dictation/launch.mp4` with its poster; it
+  is rendered in the app repo (`launch-video/`, Remotion) and copied here.
 - Downloads use the app repo's stable `releases/latest/download/DesiDictation.dmg`
   and its one-line `install.sh`, so a new release needs no site change except
   the `version` and `size` labels in desiDictation.ts.

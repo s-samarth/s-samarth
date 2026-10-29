@@ -4,14 +4,14 @@ import { Reveal } from "../Reveal";
 import { CompareTable, TheyWin } from "../product/CompareTable";
 
 /**
- * Page five: how it stacks up. The data lives in data/ddCompare.ts so rows
+ * Page eight: how it stacks up. The data lives in data/ddCompare.ts so rows
  * and products can be added without touching this layout.
  */
 export const CompareSection = () => (
   <section id="compare">
     <div className="page-x py-20 md:py-28">
       <PageHead
-        page="05"
+        page="08"
         name="Compare"
         title={
           <>

@@ -5,7 +5,7 @@ import { Reveal } from "../Reveal";
 const tilts = ["-rotate-[0.8deg]", "rotate-[0.5deg]", "-rotate-[0.3deg]"];
 
 /**
- * Page two: the three language modes as index cards. What you say is in
+ * Page three: the three language modes as index cards. What you say is in
  * biro handwriting, what it types is in print, so the card reads as
  * "spoken, then written".
  */
@@ -13,7 +13,7 @@ export const LanguagesSection = () => (
   <section id="languages">
     <div className="page-x py-20 md:py-28">
       <PageHead
-        page="02"
+        page="03"
         name="Languages"
         title={
           <>

@@ -3,6 +3,9 @@ import { ProductNav } from "@/components/product/ProductNav";
 import { DdHero } from "@/components/desi/DdHero";
 import { LanguagesSection } from "@/components/desi/LanguagesSection";
 import { FeaturesSection } from "@/components/desi/FeaturesSection";
+import { VideoSection } from "@/components/desi/VideoSection";
+import { ReviewSection } from "@/components/desi/ReviewSection";
+import { GuideSection } from "@/components/desi/GuideSection";
 import { PrivacySection } from "@/components/desi/PrivacySection";
 import { CompareSection } from "@/components/desi/CompareSection";
 import { FaqSection, PricingSection } from "@/components/desi/PricingFaqSection";
@@ -22,8 +25,11 @@ const DesiDictation = () => {
       <ProductNav config={ddNav} />
       <main className="relative z-10">
         <DdHero />
+        <VideoSection />
         <LanguagesSection />
         <FeaturesSection />
+        <ReviewSection />
+        <GuideSection />
         <PrivacySection />
         <CompareSection />
         <PricingSection />

@@ -1,4 +1,5 @@
 import { models, permissions } from "@/data/desiDictation";
+import { switches } from "@/data/ddTrust";
 
 /**
  * The two reference tables in the install steps, drawn like the lab-results
@@ -56,6 +57,31 @@ export const ModelsTable = () => (
           <td className={`${td} font-mono text-[13px] text-graphite-soft md:whitespace-nowrap md:text-right`}>
             {m.size}
           </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+
+/** Every switch: where it lives, how it starts, when to flip it. */
+export const SwitchesTable = () => (
+  <table className="w-full border-t-2 border-graphite text-[15.5px]">
+    <thead className="sr-only md:not-sr-only md:table-header-group">
+      <tr>
+        <th className={`${th} pt-3`}>Switch</th>
+        <th className={`${th} pt-3`}>Starts</th>
+        <th className={`${th} pt-3`}>Flip it when</th>
+      </tr>
+    </thead>
+    <tbody>
+      {switches.map((s) => (
+        <tr key={s.name} className={row}>
+          <td className={`${td} font-medium text-graphite`}>
+            {s.name}
+            <span className="label mt-0.5 block !text-[9.5px] !tracking-[0.08em]">{s.where}</span>
+          </td>
+          <td className={`${td} whitespace-nowrap font-mono text-[13px] text-graphite-dim`}>{s.starts}</td>
+          <td className={td}>{s.flip}</td>
         </tr>
       ))}
     </tbody>
