@@ -4,6 +4,7 @@ import { riseDelay } from "@/lib/rise";
 import { useLatestRelease } from "@/hooks/use-latest-release";
 import { Highlight } from "../notebook/Highlight";
 import { DesiDictationScene } from "../projects/DesiDictationScene";
+import { DownloadCount } from "./DownloadCount";
 import { OneLineInstall } from "./OneLineInstall";
 import { washes } from "../projects/washes";
 
@@ -39,6 +40,9 @@ export const DdHero = () => (
 
       <div className="mt-10 grid grid-cols-[minmax(0,1fr)] items-center gap-x-16 gap-y-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
         <div>
+          <div className="rise mb-6" style={riseDelay(0.15)}>
+            <DownloadCount />
+          </div>
           <h1 className="rise headline text-[3.4rem] sm:text-7xl md:text-[5.2rem]" style={riseDelay(0.2)}>
             Desi Dictation
           </h1>

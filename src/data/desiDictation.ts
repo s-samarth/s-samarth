@@ -28,8 +28,8 @@ export const release = {
   file: WEB_FILE,
   url: `${LATEST}/${WEB_FILE}`,
   checksumUrl: `${LATEST}/${WEB_FILE}.sha256`,
-  /** Read on page load to keep the label current without a site change. */
-  api: "https://api.github.com/repos/s-samarth/desi-dictation/releases/latest",
+  /** Read on page load (via /api/downloads) for the label and the download count. */
+  api: "https://api.github.com/repos/s-samarth/desi-dictation/releases?per_page=100",
   notes: `${REPO}/releases`,
   repo: REPO,
 };
