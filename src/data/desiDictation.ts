@@ -14,8 +14,8 @@ const REPO = "https://github.com/s-samarth/desi-dictation";
 const LATEST = `${REPO}/releases/latest/download`;
 
 export const release = {
-  version: "0.6.3",
-  size: "4.8 MB",
+  version: "0.7.0",
+  size: "8.3 MB",
   file: "DesiDictation.dmg",
   url: `${LATEST}/DesiDictation.dmg`,
   checksumUrl: `${LATEST}/DesiDictation.dmg.sha256`,
