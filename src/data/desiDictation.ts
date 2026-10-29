@@ -2,9 +2,16 @@
  * Everything the /desi-dictation pages say, lifted from the app repo's
  * install.sh, docs/SETUP_GUIDE.md, docs/TROUBLESHOOTING.md and its releases.
  *
- * Every release publishes a stable-named DesiDictation.dmg (plus .sha256),
- * so the download link and the installer always fetch the newest build.
- * Only `version` and `size` are display text: bump them when a release ships.
+ * Every release publishes the same DMG under three names, each counted
+ * separately by GitHub, so downloads per route need no tracking at all:
+ *   DesiDictation-mac.dmg   this site's Download button
+ *   DesiDictation.dmg       the one-line installer (install.sh)
+ *   DesiDictation-<v>.dmg   the GitHub releases page
+ * The button and the installer use `releases/latest/download/…`, so a new
+ * release needs no change here, and counts add up across releases
+ * (`scripts/download_counts.sh` in the app repo prints the totals).
+ * `version` and `size` are only the fallback label: the page reads the
+ * latest release from GitHub when it loads (useLatestRelease).
  */
 /** Where the product and its install guide live on this site. */
 export const PRODUCT_PATH = "/desi-dictation";
@@ -12,13 +19,17 @@ export const INSTALL_PATH = "/desi-dictation/install";
 
 const REPO = "https://github.com/s-samarth/desi-dictation";
 const LATEST = `${REPO}/releases/latest/download`;
+/** The copy only this site links to, so its count is the site's downloads. */
+const WEB_FILE = "DesiDictation-mac.dmg";
 
 export const release = {
   version: "0.7.0",
   size: "8.3 MB",
-  file: "DesiDictation.dmg",
-  url: `${LATEST}/DesiDictation.dmg`,
-  checksumUrl: `${LATEST}/DesiDictation.dmg.sha256`,
+  file: WEB_FILE,
+  url: `${LATEST}/${WEB_FILE}`,
+  checksumUrl: `${LATEST}/${WEB_FILE}.sha256`,
+  /** Read on page load to keep the label current without a site change. */
+  api: "https://api.github.com/repos/s-samarth/desi-dictation/releases/latest",
   notes: `${REPO}/releases`,
   repo: REPO,
 };

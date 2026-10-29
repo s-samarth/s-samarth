@@ -101,7 +101,7 @@ export const privacyPoints = [
   "No account, no sign-in, no email.",
   "No cloud transcription. Audio never leaves your Mac.",
   "No telemetry, not even the anonymous kind.",
-  "It only goes online when you ask it to, like downloading a model.",
+  "It only goes online when you ask it to: downloading a model, or sending feedback.",
   "Names on screen, if you allow it, are read for one dictation and dropped. Never saved.",
   "The context checker is a model on your Mac too. It reads your sentence; it never sends it.",
 ];
@@ -135,6 +135,10 @@ export const faqs: Faq[] = [
   {
     q: "Does it read my screen?",
     a: "Only if you turn on “Suggest names on screen”. Then, when you start dictating, it reads the names visible in that window so a reply to Rohan isn’t typed as Rowan. The text stays in memory for that one dictation, then it’s gone. All of it is off until you switch it on.",
+  },
+  {
+    q: "How do I send feedback?",
+    a: "Menu bar → Send Feedback…. Type what happened; adding your app version or your last dictation is a tick box, off for the dictation, and you see the exact text before it goes. It’s sent to this site only when you press Send, then forwarded to my inbox and not stored. No audio, no IDs. Prefer email? The same window has an Email instead button.",
   },
   {
     q: "Why does macOS say it can’t verify the app?",

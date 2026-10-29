@@ -1,10 +1,22 @@
 import { ArrowRight, Download } from "lucide-react";
 import { INSTALL_PATH, release, requirements } from "@/data/desiDictation";
 import { riseDelay } from "@/lib/rise";
+import { useLatestRelease } from "@/hooks/use-latest-release";
 import { Highlight } from "../notebook/Highlight";
 import { DesiDictationScene } from "../projects/DesiDictationScene";
 import { OneLineInstall } from "./OneLineInstall";
 import { washes } from "../projects/washes";
+
+/** "v0.7.0 · 8.3 MB · macOS 14+ · Apple Silicon", kept current from GitHub. */
+export const ReleaseLabel = ({ suffix = "" }: { suffix?: string }) => {
+  const latest = useLatestRelease();
+  return (
+    <>
+      v{latest.version} · {latest.size}
+      {suffix} · {requirements.slice(0, 2).join(" · ")}
+    </>
+  );
+};
 
 /** The primary action, reused at the foot of the page. One per view. */
 export const DownloadStamp = () => (
@@ -48,7 +60,7 @@ export const DdHero = () => (
           <div className="rise mt-9" style={riseDelay(0.5)}>
             <DownloadStamp />
             <p className="label mt-4 !text-[11px]">
-              v{release.version} · {release.size} DMG · {requirements.slice(0, 2).join(" · ")}
+              <ReleaseLabel suffix=" DMG" />
             </p>
             <div className="mt-8 max-w-xl">
               <OneLineInstall compact />

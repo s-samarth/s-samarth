@@ -17,7 +17,7 @@
       "destination": "/survive-ai/install/index.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api/).*)",
       "destination": "/"
     }
   ]
