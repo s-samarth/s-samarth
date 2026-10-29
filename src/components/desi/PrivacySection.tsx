@@ -4,7 +4,7 @@ import { Reveal } from "../Reveal";
 import { Highlight } from "../notebook/Highlight";
 
 /**
- * Page four: privacy on the left as a ticked list, speed on the right as a
+ * Page seven: privacy on the left as a ticked list, speed on the right as a
  * yellow sticky note of three numbers.
  */
 export const PrivacySection = () => (
@@ -13,7 +13,7 @@ export const PrivacySection = () => (
       <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-16 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
         <div>
           <PageHead
-            page="04"
+            page="07"
             name="Privacy · Speed"
             title={
               <>

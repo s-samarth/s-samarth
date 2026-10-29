@@ -14,8 +14,8 @@ const REPO = "https://github.com/s-samarth/desi-dictation";
 const LATEST = `${REPO}/releases/latest/download`;
 
 export const release = {
-  version: "0.6.3",
-  size: "4.8 MB",
+  version: "0.7.0",
+  size: "8.3 MB",
   file: "DesiDictation.dmg",
   url: `${LATEST}/DesiDictation.dmg`,
   checksumUrl: `${LATEST}/DesiDictation.dmg.sha256`,
@@ -69,6 +69,11 @@ export const models: Model[] = [
   { name: "Qwen3-ASR 1.7B", forWhat: "English, most accurate (a little slower)", size: "2.08 GB" },
   { name: "Vaani Hindi", forWhat: "शुद्ध हिन्दी, in Devanagari", size: "1.06 GB", pick: true },
   { name: "Silero VAD", forWhat: "Everyone. Better pauses and long dictations", size: "1 MB", pick: true },
+  {
+    name: "Context checker",
+    forWhat: "Optional. Purple “odd here” underlines, When it fits words, smarter filler suggestions",
+    size: "397 MB",
+  },
 ];
 
 export interface Fix {
@@ -103,7 +108,10 @@ export const ddNav = {
   productPath: PRODUCT_PATH,
   installPath: INSTALL_PATH,
   sections: [
+    { id: "watch", label: "Watch" },
     { id: "features", label: "Features" },
+    { id: "review", label: "Review" },
+    { id: "guide", label: "Guide" },
     { id: "compare", label: "Compare" },
     { id: "pricing", label: "Pricing" },
     { id: "faq", label: "FAQ" },

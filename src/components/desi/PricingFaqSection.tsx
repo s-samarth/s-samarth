@@ -7,16 +7,16 @@ import { FaqSection as SharedFaq } from "../product/FaqSection";
 
 const included = [
   "Every model: Hinglish, English, हिन्दी and the pause detector",
-  "Every feature, including vocabulary that learns from your fixes",
+  "Every feature: Review before paste, the context checker, vocabulary that learns from your fixes",
   "No word limits, no account, no card",
 ];
 
-/** Page six: one plan, because there is one plan. A ticket stub, torn at the side. */
+/** Page nine: one plan, because there is one plan. A ticket stub, torn at the side. */
 export const PricingSection = () => (
   <section id="pricing">
     <div className="page-x py-20 md:py-28">
       <PageHead
-        page="06"
+        page="09"
         name="Pricing"
         title={
           <>
@@ -54,5 +54,5 @@ export const PricingSection = () => (
   </section>
 );
 
-/** Page seven: the shared FAQ layout with this product's questions. */
-export const FaqSection = () => <SharedFaq page="07" faqs={faqs} />;
+/** Page ten: the shared FAQ layout with this product's questions. */
+export const FaqSection = () => <SharedFaq page="10" faqs={faqs} />;

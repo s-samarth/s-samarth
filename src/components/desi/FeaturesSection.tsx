@@ -6,7 +6,7 @@ import { Reveal } from "../Reveal";
 const tilts = ["-rotate-[0.5deg]", "rotate-[0.4deg]", "rotate-[0.2deg]", "-rotate-[0.3deg]"];
 
 /**
- * Page three: what the app does beyond the words, as a grid of index cards.
+ * Page four: what the app does beyond the words, as a grid of index cards.
  * Any on-device AI feature (none ship today; the app hides them until
  * released) wears a small red stamp saying it needs Ollama.
  */
@@ -14,14 +14,14 @@ export const FeaturesSection = () => (
   <section id="features">
     <div className="page-x py-20 md:py-28">
       <PageHead
-        page="03"
+        page="04"
         name="Features"
         title={
           <>
             Everything around <em className="text-redpen">the words.</em>
           </>
         }
-        lede="Dictation is the core. The rest is what makes it yours: it learns your names from the fixes you already make, keeps your Hinglish spellings, and switches language per app. All of it on your Mac."
+        lede="Dictation is the core. The rest is what makes it yours, and what makes it safe to trust: it checks the words it’s unsure of, learns your names from the fixes you already make, and never swaps a word on a guess. All of it on your Mac."
       />
 
       <div className="mt-14 grid grid-cols-[minmax(0,1fr)] gap-7 sm:grid-cols-2 lg:grid-cols-4">
