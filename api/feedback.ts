@@ -1,26 +1,30 @@
 /**
  * POST /api/feedback: where Desi Dictation's "Send Feedback" window sends a
  * report, only when the user presses Send. It forwards the report to
- * Samarth's inbox through the same EmailJS service as the site's contact
- * form, and keeps nothing: no database, no logs of what was written.
+ * Samarth's inbox through its own EmailJS account (samarthsaraswat13), apart
+ * from the contact form's, and keeps nothing: no database, no logs of what
+ * was written, and the template is set to "Do not save private data" so
+ * EmailJS's history doesn't keep it either.
  *
  * The app sends exactly what its window shows: the message, and optionally a
  * reply address, an app-info line and the last dictation. No IDs, no audio.
  *
- * Setup (once, in the EmailJS dashboard): Account → Security → allow API
- * calls from non-browser apps. If "Use Private Key" is on there, set
- * EMAILJS_PRIVATE_KEY in the Vercel project's environment variables.
+ * Setup (done 2026-10-30): EmailJS Account → Security allows API calls from
+ * non-browser apps, with "Use Private Key" on, so the Vercel project needs
+ * EMAILJS_PRIVATE_KEY (EmailJS Account → General → Private Key). The
+ * template "Desi Dictation feedback" uses {{subject}}, {{message}} and
+ * {{reply_to}}.
  */
 
 const EMAILJS = {
   url: "https://api.emailjs.com/api/v1.0/email/send",
-  service: "service_eo3ck3c",
-  template: "template_va2byvf",
-  publicKey: "tGHLrscykSp5T6HoO",
+  service: "service_c6a0pva",
+  template: "template_z3xpi3n",
+  publicKey: "zaoPHRNuoT-I6JH_y",
 };
 
 /** Where replies go when the sender left no address. */
-const OWNER = "samarth.iitg@gmail.com";
+const OWNER = "samarthsaraswat13@gmail.com";
 
 /** The app's header; anything else is not our window. */
 const CLIENT = "feedback-1";
@@ -94,9 +98,7 @@ export async function POST(request: Request): Promise<Response> {
       user_id: EMAILJS.publicKey,
       accessToken: process.env.EMAILJS_PRIVATE_KEY || undefined,
       template_params: {
-        to_name: "Samarth",
-        from_name: "Desi Dictation app",
-        from_email: report.replyTo ?? OWNER,
+        reply_to: report.replyTo ?? OWNER,
         subject: `[Desi Dictation feedback] ${report.message.slice(0, 60)}`,
         message,
       },
