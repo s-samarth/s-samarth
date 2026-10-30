@@ -36,6 +36,15 @@ export const release = {
 
 export const requirements = ["macOS 14+", "Apple Silicon", "Free beta"];
 
+/** Where the hero's two install routes sit; the nav's Download lands here, not on the DMG. */
+export const GET_ANCHOR = `${PRODUCT_PATH}#get`;
+
+/** The legal pages live in the app repo, next to the code they describe. */
+export const legal = {
+  terms: `${REPO}/blob/main/docs/legal/TERMS_OF_SERVICE.md`,
+  privacy: `${REPO}/blob/main/docs/legal/PRIVACY_POLICY.md`,
+};
+
 /** The one-line installer from the app repo. curl sets no quarantine flag, so Gatekeeper never asks. */
 export const installer = {
   command: "curl -fsSL https://raw.githubusercontent.com/s-samarth/desi-dictation/main/install.sh | bash",
@@ -127,5 +136,5 @@ export const ddNav = {
     { id: "pricing", label: "Pricing" },
     { id: "faq", label: "FAQ" },
   ],
-  download: { href: release.url, label: "Download" },
+  download: { href: GET_ANCHOR, label: "Download" },
 };

@@ -1,11 +1,11 @@
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Star } from "lucide-react";
 import { INSTALL_PATH, release, requirements } from "@/data/desiDictation";
 import { riseDelay } from "@/lib/rise";
 import { useLatestRelease } from "@/hooks/use-latest-release";
 import { Highlight } from "../notebook/Highlight";
 import { DesiDictationScene } from "../projects/DesiDictationScene";
 import { DownloadCount } from "./DownloadCount";
-import { OneLineInstall } from "./OneLineInstall";
+import { GetIt } from "./GetIt";
 import { washes } from "../projects/washes";
 
 /** "v0.7.0 · 8.3 MB · macOS 14+ · Apple Silicon", kept current from GitHub. */
@@ -27,9 +27,10 @@ export const DownloadStamp = () => (
 );
 
 /**
- * The product page's first screen: name, the promise, the download, and the
- * looping scene from the home page printed large. Entrances use CSS `.rise`
- * so the prerendered HTML is readable before JavaScript loads.
+ * The product page's first screen: name, the promise, and the looping scene
+ * from the home page printed large, then the two ways in (GetIt), Terminal
+ * first. Entrances use CSS `.rise` so the prerendered HTML is readable
+ * before JavaScript loads.
  */
 export const DdHero = () => (
   <section id="top" className="relative">
@@ -62,14 +63,10 @@ export const DdHero = () => (
           </p>
 
           <div className="rise mt-9" style={riseDelay(0.5)}>
-            <DownloadStamp />
-            <p className="label mt-4 !text-[11px]">
-              <ReleaseLabel suffix=" DMG" />
-            </p>
-            <div className="mt-8 max-w-xl">
-              <OneLineInstall compact />
-            </div>
-            <div className="mt-7 flex flex-wrap items-center gap-6">
+            <div className="flex flex-wrap items-center gap-6">
+              <a href="#get" className="btn-stamp !px-6 !py-3 !text-[14px]">
+                <Download size={16} /> Get it free
+              </a>
               <a href={INSTALL_PATH} className="btn-pen">
                 Install guide <ArrowRight size={14} />
               </a>
@@ -79,12 +76,11 @@ export const DdHero = () => (
               <a href="#compare" className="btn-pen">
                 How it compares
               </a>
+              <a href={release.repo} target="_blank" rel="noopener noreferrer" className="btn-pen">
+                <Star size={14} /> Star on GitHub
+              </a>
             </div>
           </div>
-
-          <p className="rise hand mt-8 -rotate-1 text-[24px]" style={riseDelay(0.7)}>
-            the Terminal way skips Apple’s “could not verify” warning
-          </p>
         </div>
 
         <figure className="rise relative" style={riseDelay(0.35)}>
@@ -98,6 +94,10 @@ export const DdHero = () => (
             <figcaption className="label mt-2.5 px-1 !text-[10px]">fig. 1 · Hold right ⌥, speak, release</figcaption>
           </div>
         </figure>
+      </div>
+
+      <div className="rise mt-16 md:mt-20" style={riseDelay(0.6)}>
+        <GetIt />
       </div>
     </div>
   </section>
