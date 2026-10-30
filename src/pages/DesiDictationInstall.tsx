@@ -39,7 +39,7 @@ const InstallHero = () => (
           <span className="tape -top-3 left-8 !h-5 !w-16 -rotate-3" />
           <h2 className="border-b-2 border-redpen/50 pb-2 font-serif text-[1.6rem] font-medium">Or by hand</h2>
           <p className="mt-3 text-[16.5px] leading-snug text-graphite-dim">
-            Download the DMG, then follow every step below, starting at 1.
+            Download the DMG, then follow every step below, starting at 1. macOS will say it “could not verify” the app: that’s the missing $99 Apple fee, not malware, and step 2 clears it with one command.
           </p>
           <div className="mt-6">
             <DownloadStamp />
