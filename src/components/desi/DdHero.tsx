@@ -8,7 +8,7 @@ import { DownloadCount } from "./DownloadCount";
 import { GetIt } from "./GetIt";
 import { washes } from "../projects/washes";
 
-/** "v0.7.0 · 8.3 MB · macOS 14+ · Apple Silicon", kept current from GitHub. */
+/** "v0.7.4 · 8.6 MB · macOS 14+ · Apple Silicon", kept current from GitHub. */
 export const ReleaseLabel = ({ suffix = "" }: { suffix?: string }) => {
   const latest = useLatestRelease();
   return (
