@@ -1,0 +1,54 @@
+/*
+  Link-preview cards (1200 x 630), drawn as a page of the notebook.
+  Rendered to JPEG by hand (see Design.md, "Link previews"); not shipped.
+  Values mirror tailwind.config.ts and src/index.css.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  --paper: #f6f3ea; --card: #fffdf7; --graphite: #1d2430; --dim: #4a5263; --soft: #7a8292;
+  --biro: #2b5ba8; --redpen: #c8412b; --marker: #f2a33a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body {
+  position: relative; color: var(--graphite); font-family: Newsreader, Georgia, serif;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(43, 91, 168, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43, 91, 168, 0.1) 1px, transparent 1px),
+    linear-gradient(rgba(43, 91, 168, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43, 91, 168, 0.06) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  -webkit-font-smoothing: antialiased;
+}
+/* The red margin rule. */
+body::before { content: ""; position: absolute; top: 0; bottom: 0; left: 84px; width: 1.5px; background: rgba(200, 65, 43, 0.55); }
+
+.left { position: absolute; left: 120px; top: 74px; width: 600px; }
+.label { font: 500 15px/1 "IBM Plex Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--soft); }
+.label .no { color: var(--redpen); }
+.headline { margin-top: 34px; font-weight: 500; font-size: 104px; line-height: 0.98; letter-spacing: -0.02em; }
+.headline em { font-style: italic; }
+.lede { margin-top: 30px; font-size: 31px; line-height: 1.32; color: var(--graphite); }
+.lede.dim { margin-top: 14px; font-size: 26px; color: var(--dim); }
+.hl {
+  background-image: linear-gradient(transparent 42%, rgba(242, 163, 58, 0.45) 42%, rgba(242, 163, 58, 0.45) 88%, transparent 88%);
+  -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 0 4px; margin: 0 -4px;
+}
+.url { position: absolute; left: 120px; bottom: 50px; font: 500 16px/1 "IBM Plex Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--graphite); }
+.url::after { content: ""; display: block; margin-top: 10px; height: 3px; width: 64px; background: var(--marker); }
+.hand { font-family: Caveat, cursive; font-weight: 600; color: var(--biro); }
+
+.tape {
+  position: absolute; height: 34px; background: rgba(226, 205, 140, 0.72);
+  clip-path: polygon(2% 0, 98% 6%, 100% 100%, 0 94%);
+}
+/* A photo print taped into the notebook, with a pastel wash inside. */
+.print {
+  position: absolute; background: var(--card); padding: 12px 12px 0;
+  box-shadow: 0 1px 2px rgba(29, 36, 48, 0.12), 0 22px 40px -12px rgba(29, 36, 48, 0.3);
+}
+.print .wash { position: relative; overflow: hidden; }
+.print .fig { padding: 14px 4px 16px; font: 500 13px/1 "IBM Plex Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--soft); }
+.ui { font-family: Inter, -apple-system, sans-serif; }

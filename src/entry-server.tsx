@@ -25,12 +25,14 @@ export const render = (location: string) =>
   );
 
 /** JSON-LD per page: the person graph on home, each app on its own pages. */
-export const jsonLd = (path: string) => {
+export const jsonLd = (path: string, dateModified?: string) => {
   if (path.startsWith("/desi-dictation")) return JSON.stringify(desiDictationLd());
   if (path.startsWith("/survive-ai")) return JSON.stringify(surviveAiLd());
-  return JSON.stringify(structuredData(cutout));
+  return JSON.stringify(structuredData(cutout, dateModified));
 };
 
 export { prerenderedRoutes };
 
 export { llmsTxt };
+
+export { parseSitemap, lastmodFor, sitemapXml } from "./seo/sitemap";

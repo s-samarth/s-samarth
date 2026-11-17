@@ -52,9 +52,10 @@ Review) and troubleshooting.
 - Downloads use the app repo's stable `releases/latest/download/DesiDictation.dmg`
   and its one-line `install.sh`, so a new release needs no site change except
   the `version` and `size` labels in desiDictation.ts.
-- Prerendered routes, each with its own title, description and JSON-LD, are
-  listed in `src/seo/routes.ts`; `scripts/prerender.mjs` writes one HTML file
-  per route and `vercel.json` rewrites each path to it.
+- Prerendered routes, each with its own title, description, JSON-LD and
+  preview card, are listed in `src/seo/routes.ts`; `scripts/prerender.mjs`
+  writes one HTML file per route and `vercel.json` rewrites each path to it.
+  See [docs/engineering/seo.md](docs/engineering/seo.md).
 
 **`/survive-ai`** and **`/survive-ai/install`** follow the same shape for the
 Android app. Eight pages: hero, why offline (the book vs the answer), the 18
@@ -209,3 +210,27 @@ It ties the whole page together: the hero's "AI builder." gets the same stroke.
 - Source files stay under 200 lines. No new dependencies without asking.
 - Framer Motion v12 is the only animation library; CSS keyframes run the loops.
 - `MotionConfig reducedMotion="user"` and a CSS media query honour reduced motion.
+
+## 7. Link previews
+
+The card a chat app or social site shows when someone pastes a link
+(`og:image`). There are three, each a page of the notebook at 1200 x 630:
+
+| Card | Used by | Shows |
+| --- | --- | --- |
+| `src/assets/og/home.jpg` | `/` | The hero: name, highlighted "AI builder.", the owner's Heart / Brain / Greed line, the cut-out sticker and its caption |
+| `src/assets/og/desi-dictation.jpg` | `/desi-dictation`, `/desi-dictation/install` | The product hero line and a print of a Notes window with the listening pill |
+| `src/assets/og/survive-ai.jpg` | `/survive-ai`, `/survive-ai/install` | The product hero line and a print of the phone answering "kutte ne kaata" offline (the real answer from `saProduct.ts`) |
+
+The sources are plain HTML in `scripts/og/` (one shared `og.css` that mirrors
+the palette and type). To change one: edit the HTML, open it in Chromium at a
+1200 x 630 viewport, wait for the fonts, screenshot it, then convert:
+
+```bash
+sips -s format jpeg -s formatOptions 86 card.png --out src/assets/og/home.jpg
+```
+
+Keep each under 300 KB. The filename can stay the same: the import gives it a
+new hashed URL, so chat apps fetch it fresh. **Redraw the cards whenever the
+design changes.** The pass-two card outlived its design by two months because
+nobody did (see the build log in docs/engineering/seo.md).
