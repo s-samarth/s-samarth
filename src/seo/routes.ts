@@ -1,23 +1,47 @@
 import { SITE_URL } from "@/data/profile";
 import { release, requirements } from "@/data/desiDictation";
 import { saRelease, saRequirements } from "@/data/surviveAi";
+import homeCard from "@/assets/og/home.jpg";
+import ddCard from "@/assets/og/desi-dictation.jpg";
+import saCard from "@/assets/og/survive-ai.jpg";
+
+/**
+ * The card a chat app or social site shows when someone pastes the link
+ * (og:image). The source designs are scripts/og/*.html. They are imported, so
+ * Vite gives each a content-hashed URL: change the picture and the URL
+ * changes with it, which is what makes WhatsApp and LinkedIn drop their
+ * cached copy of the old one.
+ */
+export interface PreviewCard {
+  src: string;
+  alt: string;
+}
+
+const cards = {
+  home: { src: homeCard, alt: "A notebook page: Samarth Saraswat, AI builder, beside a cut-out photo of Samarth holding a microphone" },
+  desi: { src: ddCard, alt: "Desi Dictation: hold a key, speak the way you actually talk, release. A Notes window filling with Hinglish." },
+  survive: { src: saCard, alt: "Survive AI answering \u201ckutte ne kaata\u201d offline: wash it with soap and water for 15 minutes, then get the anti-rabies vaccine" },
+} satisfies Record<string, PreviewCard>;
 
 /**
  * Pages that are prerendered at build time, and the head tags each one needs.
- * The home page keeps the tags already written in index.html (`meta` absent);
- * every other page swaps its own in (scripts/prerender.mjs).
+ * The home page keeps the title and description written in index.html
+ * (`meta` absent); every other page swaps its own in. Every page sets its
+ * own preview card (scripts/prerender.mjs).
  */
 export interface RouteMeta {
   path: string;
   /** Where the HTML lands inside dist/. */
   file: string;
   meta?: { title: string; description: string };
+  image: PreviewCard;
 }
 
 export const prerenderedRoutes: RouteMeta[] = [
-  { path: "/", file: "index.html" },
+  { path: "/", file: "index.html", image: cards.home },
   {
     path: "/desi-dictation",
+    image: cards.desi,
     file: "desi-dictation/index.html",
     meta: {
       title: "Desi Dictation | Dictation you can trust, for macOS",
@@ -27,6 +51,7 @@ export const prerenderedRoutes: RouteMeta[] = [
   },
   {
     path: "/desi-dictation/install",
+    image: cards.desi,
     file: "desi-dictation/install/index.html",
     meta: {
       title: "Install Desi Dictation | Setup guide for macOS",
@@ -36,6 +61,7 @@ export const prerenderedRoutes: RouteMeta[] = [
   },
   {
     path: "/survive-ai",
+    image: cards.survive,
     file: "survive-ai/index.html",
     meta: {
       title: "Survive AI | Offline emergency answers for Android",
@@ -45,6 +71,7 @@ export const prerenderedRoutes: RouteMeta[] = [
   },
   {
     path: "/survive-ai/install",
+    image: cards.survive,
     file: "survive-ai/install/index.html",
     meta: {
       title: "Install Survive AI | Android APK setup guide",

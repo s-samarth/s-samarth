@@ -12,8 +12,11 @@ const absolute = (path: string) => (path.startsWith("http") ? path : `${SITE_URL
  * page is about (a Person), what that person made, and which other profiles
  * are the same person (`sameAs`). Every node points back at the Person by
  * @id, so a crawler sees one connected identity instead of loose facts.
+ *
+ * `dateModified` is the page's last real change (the prerender takes it from
+ * the sitemap's lastmod), never the build time; omitted when not given.
  */
-export const structuredData = (photoUrl: string) => {
+export const structuredData = (photoUrl: string, dateModified?: string) => {
   const [now, before] = jobs;
   return {
     "@context": "https://schema.org",
@@ -55,7 +58,7 @@ export const structuredData = (photoUrl: string) => {
         name: `${profile.name}, ${profile.headline}`,
         isPartOf: { "@id": `${SITE_URL}/#website` },
         mainEntity: { "@id": PERSON_ID },
-        dateModified: new Date().toISOString(),
+        ...(dateModified && { dateModified }),
       },
       ...projects.map((p) => ({
         "@type": "SoftwareSourceCode",
