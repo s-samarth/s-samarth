@@ -23,8 +23,8 @@ const LATEST = `${REPO}/releases/latest/download`;
 const WEB_FILE = "DesiDictation-mac.dmg";
 
 export const release = {
-  version: "0.7.5",
-  size: "9.4 MB",
+  version: "0.7.6",
+  size: "8.7 MB",
   file: WEB_FILE,
   url: `${LATEST}/${WEB_FILE}`,
   checksumUrl: `${LATEST}/${WEB_FILE}.sha256`,
